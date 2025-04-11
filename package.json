@@ -11,13 +11,20 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.6.0",
+    "bcrypt": "^5.1.1",
     "ccsturabe": "file:",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "validator": "^13.15.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.0",
+    "@types/validator": "^13.12.3",
     "eslint": "^9.24.0",
     "nodemon": "^3.1.9",
     "prettier": "^3.5.3",
