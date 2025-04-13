@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import { signupValidation } from "utils/validation";
-import { prisma } from "@lib/prisma";
+import { signupValidation } from "../utils/validation";
+import { prisma } from "../lib/prisma";
 import validator from "validator";
 import TokenService from "../services/tonkenService";
 const authRouter = express.Router();
@@ -10,6 +10,7 @@ authRouter.post("/signup", async (req: Request, res: Response) => {
   try {
     await signupValidation(req);
     const { name, email, password } = req.body;
+    console.log("Body : ", req.body);
 
     const existingUser = await prisma.user.findUnique({
       where: { email },
@@ -25,9 +26,10 @@ authRouter.post("/signup", async (req: Request, res: Response) => {
     }
     const passwordHash = await bcrypt.hash(password, 10);
 
-    const user = prisma.user.create({
+    const user = await prisma.user.create({
       data: { name, password: passwordHash, email },
       select: {
+        // Add select to return only needed fields
         id: true,
         name: true,
         email: true,
@@ -39,6 +41,7 @@ authRouter.post("/signup", async (req: Request, res: Response) => {
       success: true,
       data: user
     });
+    return;
   } catch (err) {
     const errorId = Math.random().toString(36).substring(2, 9);
     res.status(500).json({
@@ -55,12 +58,13 @@ authRouter.post("/signup", async (req: Request, res: Response) => {
 authRouter.post("/signin", async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
+    console.log("Body : ", req.body);
     if (!validator.isEmail(email)) {
       res.status(401).json({ message: "Invalid Credentials" });
       return;
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await await prisma.user.findUnique({
       where: { email },
       select: { name: true, email: true, password: true, id: true }
     });
@@ -80,6 +84,7 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
     }
     if (isValidPassword) {
       const token = TokenService.generateToken({ id: user.id });
+      console.log("Token : ", token);
       res.cookie("token", token, {
         maxAge: 12 * 60 * 60 * 1000,
         httpOnly: true,
@@ -101,3 +106,5 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+export default authRouter;
