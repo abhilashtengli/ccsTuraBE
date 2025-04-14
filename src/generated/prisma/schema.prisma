@@ -32,6 +32,13 @@ enum GalleryCategory {
   Sports
 }
 
+enum Departments {
+  dept_a
+  dept_b
+  dept_c
+  dept_d
+}
+
 model User {
   id        String   @id @default(uuid())
   name      String
@@ -43,16 +50,16 @@ model User {
   @@map("user")
 }
 
-model Department {
-  id          String          @id @default(uuid())
-  name        String          @db.VarChar(100)
-  description String?
-  createdAt   DateTime        @default(now()) @map("created_at")
-  updatedAt   DateTime        @default(now()) @updatedAt @map("updated_at")
-  faculty     FacultyMember[]
+// model Department {
+//   id          String          @id @default(uuid())
+//   name        String          @db.VarChar(100)
+//   description String?
+//   createdAt   DateTime        @default(now()) @map("created_at")
+//   updatedAt   DateTime        @default(now()) @updatedAt @map("updated_at")
+//   faculty     FacultyMember[]
 
-  @@map("department")
-}
+//   @@map("department")
+// }
 
 model Notice {
   id        String   @id @default(uuid())
@@ -80,7 +87,6 @@ model Bulletin {
 
 model FacultyMember {
   id              String      @id @default(uuid())
-  departmentId    String      @map("department_id")
   firstName       String      @map("first_name") @db.VarChar(100)
   lastName        String      @map("last_name") @db.VarChar(100)
   email           String      @db.VarChar(255)
@@ -93,7 +99,8 @@ model FacultyMember {
   socialLinks     Json?       @map("social_links")
   createdAt       DateTime    @default(now()) @map("created_at")
   updatedAt       DateTime    @default(now()) @updatedAt @map("updated_at")
-  department      Department  @relation(fields: [departmentId], references: [id])
+  // department      Department  @relation(fields: [departmentId], references: [id])
+  depatment       Departments
 
   @@map("faculty_members")
 }

@@ -126,14 +126,6 @@ exports.Prisma.UserScalarFieldEnum = {
   updateAt: 'updateAt'
 };
 
-exports.Prisma.DepartmentScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.NoticeScalarFieldEnum = {
   id: 'id',
   category: 'category',
@@ -156,7 +148,6 @@ exports.Prisma.BulletinScalarFieldEnum = {
 
 exports.Prisma.FacultyMemberScalarFieldEnum = {
   id: 'id',
-  departmentId: 'departmentId',
   firstName: 'firstName',
   lastName: 'lastName',
   email: 'email',
@@ -168,7 +159,8 @@ exports.Prisma.FacultyMemberScalarFieldEnum = {
   cvUrl: 'cvUrl',
   socialLinks: 'socialLinks',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  depatment: 'depatment'
 };
 
 exports.Prisma.NewsUpdateScalarFieldEnum = {
@@ -266,6 +258,13 @@ exports.FacultyType = exports.$Enums.FacultyType = {
   Non_Teaching: 'Non_Teaching'
 };
 
+exports.Departments = exports.$Enums.Departments = {
+  dept_a: 'dept_a',
+  dept_b: 'dept_b',
+  dept_c: 'dept_c',
+  dept_d: 'dept_d'
+};
+
 exports.StatusType = exports.$Enums.StatusType = {
   Open: 'Open',
   Closed: 'Closed'
@@ -281,7 +280,6 @@ exports.GalleryCategory = exports.$Enums.GalleryCategory = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Department: 'Department',
   Notice: 'Notice',
   Bulletin: 'Bulletin',
   FacultyMember: 'FacultyMember',

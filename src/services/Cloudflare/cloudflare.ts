@@ -1,0 +1,38 @@
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import dotenv from "dotenv";
+dotenv.config();
+import { v4 as uuidv4 } from "uuid";
+
+const s3 = new S3Client({
+  region: "auto",
+  endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+  credentials: {
+    accessKeyId: process.env.CLOUDFLARE_ACCESS_KEY!,
+    secretAccessKey: process.env.CLOUDFLARE_SECRET_KEY!
+  }
+});
+
+export const generatePresignedUrl = async (
+  fileName: string,
+  contentType: string
+) => {
+  const uniqueFileName = `${uuidv4()}-${Date.now()}-${fileName}`;
+  const key = `ccstura/${uniqueFileName}`;
+  const command = new PutObjectCommand({
+    Bucket: process.env.CLOUDFLARE_BUCKET_NAME,
+    Key: key,
+    ContentType: contentType
+  });
+
+  const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 }); // 1 hour expiry
+  return {
+    signedUrl,
+    key,
+    publicUrl: getPublicUrl(key)
+  };
+};
+
+export const getPublicUrl = (key: string) => {
+  return `https://${process.env.CLOUDFLARE_PUBLIC_DOMAIN}/${key}`;
+};
