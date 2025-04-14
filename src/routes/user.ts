@@ -1,6 +1,5 @@
-import express from "express"
+import express from "express";
 
 const userRouter = express.Router();
 
-
-userRouter.post("/")
+userRouter.post("/");
