@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const s3 = new S3Client({
   region: "auto",
+
   endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
     accessKeyId: process.env.CLOUDFLARE_ACCESS_KEY!,
@@ -19,6 +20,9 @@ export const generatePresignedUrl = async (
 ) => {
   const uniqueFileName = `${uuidv4()}-${Date.now()}-${fileName}`;
   const key = `ccstura/${uniqueFileName}`;
+
+  console.log("KEY : ", key);
+
   const command = new PutObjectCommand({
     Bucket: process.env.CLOUDFLARE_BUCKET_NAME,
     Key: key,
@@ -34,5 +38,6 @@ export const generatePresignedUrl = async (
 };
 
 export const getPublicUrl = (key: string) => {
-  return `https://${process.env.CLOUDFLARE_PUBLIC_DOMAIN}/${key}`;
+  //   return `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
+  return `https://pub-b92d90920cc74e50b3cfe34b7361b237.r2.dev/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
 };

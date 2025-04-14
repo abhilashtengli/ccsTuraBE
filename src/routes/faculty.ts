@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import authRouter from "./auth";
-import { facultyValidation } from "utils/validation";
-import { generatePresignedUrl } from "services/Cloudflare/cloudflare";
+import { facultyValidation } from "../utils/validation";
+import { generatePresignedUrl } from "../services/Cloudflare/cloudflare";
 const facultyRouter = express.Router();
 
 facultyRouter.post(
@@ -18,7 +18,7 @@ facultyRouter.post(
         });
         return;
       }
-      const user = req.user;
+      const user = (req as Request & { user?: any }).user;
       if (!user) {
         res
           .status(401)
@@ -45,13 +45,17 @@ facultyRouter.post(
 
 facultyRouter.post(
   "/getSigned-url",
-  authRouter,
+  //   authRouter,
   async (req: Request, res: Response) => {
     const { fileName, contentType } = req.body;
+    console.log("BODY : ", req.body);
     const { signedUrl, key, publicUrl } = await generatePresignedUrl(
       fileName,
       contentType
     );
+    console.log("RESPONSE sUrl : ", signedUrl);
+    console.log("RESPONSE key : ", key);
+    console.log("RESPONSE pUrl : ", publicUrl);
     res.json({ signedUrl, key, publicUrl });
     return;
   }
@@ -62,3 +66,5 @@ facultyRouter.post(
 // 2. UploadTheFile
 // 3. getSavedFileUrl
 // 4. SaveUrlInDb
+
+export default facultyRouter;
