@@ -121,7 +121,7 @@ facultyRouter.delete(
         return;
       }
 
-      const faculty = await prisma.facultyMember.delete({
+      const deleteFaculty = await prisma.facultyMember.delete({
         where: { id: id }
       });
 

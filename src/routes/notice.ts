@@ -81,25 +81,25 @@ noticeRouter.delete(
           message: "Notice Id is required"
         });
       }
-      const isNoticePresent = await prisma.notice.findUnique({
-        where: { id: id }
-      });
-      if (!isNoticePresent) {
-        res.status(404).json({
-          message: `Notice not found with ID: ${id}`
-        });
-        return;
-      }
+
       await prisma.notice.delete({
         where: { id: id }
       });
       res.status(200).json({
         message: "Notice deleted successfully"
       });
-    } catch (err: any) {
-      if (err.code === "P2025") {
-        // This is a Prisma error code for record not found
-        res.status(404).json({ message: "Faculty member not found" });
+    } catch (err: unknown) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === "P2025") {
+          res.status(404).json({
+            message: "Notice not found" // Fixed message consistency
+          });
+          return;
+        }
+
+        res.status(400).json({
+          message: "Database operation failed"
+        });
         return;
       }
       res.status(500).json({
