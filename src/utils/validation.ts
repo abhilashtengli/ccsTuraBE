@@ -49,3 +49,10 @@ export const facultyValidation = z.object({
     message: "Department is required"
   })
 });
+
+export const noticeValidation = z.object({
+  category: z.string(),
+  title: z.string(),
+  pdfUrl: z.string(),
+  isActive: z.boolean()
+});
