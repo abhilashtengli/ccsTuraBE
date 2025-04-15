@@ -77,3 +77,17 @@ export const advertismentValidation = z.object({
   isActive: z.boolean().default(true),
   pdfUrl: z.string().optional()
 });
+
+export const tenderValidation = z.object({
+  title: z.string(),
+  reference: z.string().optional(),
+  publishedDate: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+  closingDate: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+  category: z.string().optional(),
+  pdfUrl: z.string(),
+  status: z.enum(["Open", "Closed"])
+});
