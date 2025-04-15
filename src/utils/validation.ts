@@ -56,3 +56,13 @@ export const noticeValidation = z.object({
   pdfUrl: z.string(),
   isActive: z.boolean()
 });
+
+export const newsValidation = z.object({
+  title: z.string().max(80),
+  description: z.string(),
+  publishDate: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+  isActive: z.boolean().default(true)
+  // publishDate: z.coerce.date(),
+});

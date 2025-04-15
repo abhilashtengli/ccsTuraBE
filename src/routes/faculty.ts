@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import { facultyValidation } from "../utils/validation";
 import { generatePresignedUrl } from "../services/Cloudflare/cloudflare";
 import { prisma } from "../lib/prisma";
+import { Prisma } from "../generated/prisma";
 const facultyRouter = express.Router();
 
 facultyRouter.post(
@@ -10,6 +11,13 @@ facultyRouter.post(
   authRouter,
   async (req: Request, res: Response) => {
     try {
+      const user = (req as Request & { user?: any }).user;
+      if (!user) {
+        res
+          .status(401)
+          .send({ message: "Please Sign In to add Faculty members" });
+        return;
+      }
       const body = req.body;
       const result = await facultyValidation.safeParse(body);
       if (!result.success) {
@@ -17,13 +25,6 @@ facultyRouter.post(
           message: "Invalid Input",
           error: result.error.errors
         });
-        return;
-      }
-      const user = (req as Request & { user?: any }).user;
-      if (!user) {
-        res
-          .status(401)
-          .send({ message: "Please Sign In to add Faculty members" });
         return;
       }
 
@@ -68,6 +69,15 @@ facultyRouter.post(
       });
       return;
     } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === "P2002") {
+          res.status(409).json({
+            code: "CONFLICT",
+            message: "Faculty member with this email already exists"
+          });
+        }
+        return;
+      }
       res
         .status(500)
         .json({ message: "Something went wrong please try again later" });
@@ -96,6 +106,12 @@ facultyRouter.post(
 facultyRouter.get("/getAll", async (req: Request, res: Response) => {
   try {
     const facultyData = await prisma.facultyMember.findMany();
+    if (!facultyData) {
+      res.status(404).json({
+        message: "No Faculty data Found"
+      });
+      return;
+    }
     res.status(200).json({
       message: "success",
       data: facultyData
@@ -129,10 +145,18 @@ facultyRouter.delete(
         message: "Faculty member deleted successfully"
       });
       return;
-    } catch (err: any) {
-      if (err.code === "P2025") {
-        // This is a Prisma error code for record not found
-        res.status(404).json({ message: "Faculty member not found" });
+    } catch (err: unknown) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === "P2025") {
+          res.status(404).json({
+            message: "faculty not found" // Fixed message consistency
+          });
+          return;
+        }
+
+        res.status(400).json({
+          message: "Database operation failed"
+        });
         return;
       }
       res.status(500).json({
