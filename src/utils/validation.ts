@@ -91,3 +91,13 @@ export const tenderValidation = z.object({
   pdfUrl: z.string(),
   status: z.enum(["Open", "Closed"])
 });
+
+export const staffFormValidation = z.object({
+  title: z.string(),
+  formType: z.string(),
+  updatedDate: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+  pdfUrl: z.string(),
+  isActive: z.boolean().default(true)
+});
