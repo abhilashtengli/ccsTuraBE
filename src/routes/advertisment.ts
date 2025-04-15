@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import { advertismentValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
+import { deleteContent } from "../services/Cloudflare/cloudflare";
 const advertismentRouter = express.Router();
 
 advertismentRouter.post(
@@ -93,28 +94,47 @@ advertismentRouter.delete(
         res.status(400).json({ message: "Advertisement Id is required" });
         return;
       }
+      const ad = await prisma.advertisement.findUnique({
+        where: { id: id },
+        select: { pdfKey: true }
+      });
+      if (!ad || ad.pdfKey) {
+        res.status(404).json({
+          message: "Advertisment not found"
+        });
+        return;
+      }
+
+      if (ad.pdfKey !== null) {
+        const deletionResult = await deleteContent(ad.pdfKey);
+        if (!deletionResult?.success) {
+          console.warn(
+            `AD deletion failed for ${ad.pdfKey}:`,
+            deletionResult.error
+          );
+        }
+      } else {
+        // Handle the null case appropriately
+        console.warn("No PDF key provided; skipping deletion.");
+      }
+
       await prisma.advertisement.delete({
         where: { id: id }
       });
       res.status(200).json({
         message: "Advertisement deleted successfully"
       });
+      return;
     } catch (err: unknown) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        if (err.code === "P2025") {
-          res.status(404).json({
-            message: "Advertisement not found" // Fixed message consistency
-          });
-          return;
-        }
-
-        res.status(400).json({
-          message: "Database operation failed"
+        res.status(404).json({
+          code: "NOT_FOUND",
+          message: "Image record not found"
         });
         return;
       }
       res.status(500).json({
-        message: "Something went wrong, Please try again later!"
+        message: err instanceof Error ? err.message : "Deletion failed"
       });
       return;
     }

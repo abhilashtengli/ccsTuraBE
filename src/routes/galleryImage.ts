@@ -3,7 +3,7 @@ import authRouter from "./auth";
 import { imageValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
-import { deleteContent } from "services/Cloudflare/cloudflare";
+import { deleteContent } from "../services/Cloudflare/cloudflare";
 const imageRouter = express.Router();
 
 imageRouter.post(

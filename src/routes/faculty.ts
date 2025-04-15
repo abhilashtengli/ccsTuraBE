@@ -1,7 +1,10 @@
 import express, { Request, Response } from "express";
 import authRouter from "./auth";
 import { facultyValidation } from "../utils/validation";
-import { generatePresignedUrl } from "../services/Cloudflare/cloudflare";
+import {
+  deleteContent,
+  generatePresignedUrl
+} from "../services/Cloudflare/cloudflare";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 const facultyRouter = express.Router();
@@ -63,7 +66,7 @@ facultyRouter.post(
           socialLinks: formattedSocialLinks,
           department,
           imageKey: imageKey,
-          pdfKey : pdfKey
+          pdfKey: pdfKey
         }
       });
 
@@ -141,7 +144,20 @@ facultyRouter.delete(
         return;
       }
 
-      const deleteFaculty = await prisma.facultyMember.delete({
+      const faKeys = await prisma.facultyMember.findUnique({
+        where: { id: id },
+        select: { imageKey: true, pdfKey: true }
+      });
+
+      if (!faKeys) {
+        console.warn(`Faculty member with id ${id} not found.`);
+        return;
+      }
+
+      await attemptDelete(faKeys.pdfKey, "PDF");
+      await attemptDelete(faKeys.imageKey, "Image");
+
+      await prisma.facultyMember.delete({
         where: { id: id }
       });
 
@@ -171,10 +187,18 @@ facultyRouter.delete(
   }
 );
 
-//Step to upload file and save file url
-// 1. getPresignedUrl
-// 2. UploadTheFile
-// 3. getSavedFileUrl
-// 4. SaveUrlInDb
-
 export default facultyRouter;
+
+const attemptDelete = async (key: string | null, label: string) => {
+  if (key) {
+    const deletionResult = await deleteContent(key);
+    if (!deletionResult?.success) {
+      console.warn(
+        `${label} deletion failed for ${key}:`,
+        deletionResult.error
+      );
+    }
+  } else {
+    console.info(`No ${label} key provided; skipping deletion.`);
+  }
+};
