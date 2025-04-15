@@ -121,7 +121,7 @@ model Advertisement {
   id           String    @id @default(uuid())
   title        String    @db.VarChar(50)
   description  String?
-  departmentId String
+  department   String
   deadlineDate DateTime? @map("deadline_date")
   pdfUrl       String?   @map("pdf_url") @db.VarChar(512)
   isActive     Boolean   @default(true) @map("is_active")

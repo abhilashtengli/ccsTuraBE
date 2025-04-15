@@ -66,3 +66,14 @@ export const newsValidation = z.object({
   isActive: z.boolean().default(true)
   // publishDate: z.coerce.date(),
 });
+
+export const advertismentValidation = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  department: z.string(),
+  deadlineDate: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+  isActive: z.boolean().default(true),
+  pdfUrl: z.string().optional()
+});

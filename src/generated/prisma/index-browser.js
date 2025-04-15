@@ -177,7 +177,7 @@ exports.Prisma.AdvertisementScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  departmentId: 'departmentId',
+  department: 'department',
   deadlineDate: 'deadlineDate',
   pdfUrl: 'pdfUrl',
   isActive: 'isActive',

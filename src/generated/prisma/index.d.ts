@@ -6939,7 +6939,7 @@ export namespace Prisma {
     id: string | null
     title: string | null
     description: string | null
-    departmentId: string | null
+    department: string | null
     deadlineDate: Date | null
     pdfUrl: string | null
     isActive: boolean | null
@@ -6951,7 +6951,7 @@ export namespace Prisma {
     id: string | null
     title: string | null
     description: string | null
-    departmentId: string | null
+    department: string | null
     deadlineDate: Date | null
     pdfUrl: string | null
     isActive: boolean | null
@@ -6963,7 +6963,7 @@ export namespace Prisma {
     id: number
     title: number
     description: number
-    departmentId: number
+    department: number
     deadlineDate: number
     pdfUrl: number
     isActive: number
@@ -6977,7 +6977,7 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    departmentId?: true
+    department?: true
     deadlineDate?: true
     pdfUrl?: true
     isActive?: true
@@ -6989,7 +6989,7 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    departmentId?: true
+    department?: true
     deadlineDate?: true
     pdfUrl?: true
     isActive?: true
@@ -7001,7 +7001,7 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    departmentId?: true
+    department?: true
     deadlineDate?: true
     pdfUrl?: true
     isActive?: true
@@ -7086,7 +7086,7 @@ export namespace Prisma {
     id: string
     title: string
     description: string | null
-    departmentId: string
+    department: string
     deadlineDate: Date | null
     pdfUrl: string | null
     isActive: boolean
@@ -7115,7 +7115,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    departmentId?: boolean
+    department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
     isActive?: boolean
@@ -7127,7 +7127,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    departmentId?: boolean
+    department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
     isActive?: boolean
@@ -7139,7 +7139,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    departmentId?: boolean
+    department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
     isActive?: boolean
@@ -7151,7 +7151,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    departmentId?: boolean
+    department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
     isActive?: boolean
@@ -7159,7 +7159,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "departmentId" | "deadlineDate" | "pdfUrl" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
+  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "department" | "deadlineDate" | "pdfUrl" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
 
   export type $AdvertisementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Advertisement"
@@ -7168,7 +7168,7 @@ export namespace Prisma {
       id: string
       title: string
       description: string | null
-      departmentId: string
+      department: string
       deadlineDate: Date | null
       pdfUrl: string | null
       isActive: boolean
@@ -7600,7 +7600,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Advertisement", 'String'>
     readonly title: FieldRef<"Advertisement", 'String'>
     readonly description: FieldRef<"Advertisement", 'String'>
-    readonly departmentId: FieldRef<"Advertisement", 'String'>
+    readonly department: FieldRef<"Advertisement", 'String'>
     readonly deadlineDate: FieldRef<"Advertisement", 'DateTime'>
     readonly pdfUrl: FieldRef<"Advertisement", 'String'>
     readonly isActive: FieldRef<"Advertisement", 'Boolean'>
@@ -12184,7 +12184,7 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     description: 'description',
-    departmentId: 'departmentId',
+    department: 'department',
     deadlineDate: 'deadlineDate',
     pdfUrl: 'pdfUrl',
     isActive: 'isActive',
@@ -12765,7 +12765,7 @@ export namespace Prisma {
     id?: StringFilter<"Advertisement"> | string
     title?: StringFilter<"Advertisement"> | string
     description?: StringNullableFilter<"Advertisement"> | string | null
-    departmentId?: StringFilter<"Advertisement"> | string
+    department?: StringFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableFilter<"Advertisement"> | string | null
     isActive?: BoolFilter<"Advertisement"> | boolean
@@ -12777,7 +12777,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    departmentId?: SortOrder
+    department?: SortOrder
     deadlineDate?: SortOrderInput | SortOrder
     pdfUrl?: SortOrderInput | SortOrder
     isActive?: SortOrder
@@ -12792,7 +12792,7 @@ export namespace Prisma {
     NOT?: AdvertisementWhereInput | AdvertisementWhereInput[]
     title?: StringFilter<"Advertisement"> | string
     description?: StringNullableFilter<"Advertisement"> | string | null
-    departmentId?: StringFilter<"Advertisement"> | string
+    department?: StringFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableFilter<"Advertisement"> | string | null
     isActive?: BoolFilter<"Advertisement"> | boolean
@@ -12804,7 +12804,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    departmentId?: SortOrder
+    department?: SortOrder
     deadlineDate?: SortOrderInput | SortOrder
     pdfUrl?: SortOrderInput | SortOrder
     isActive?: SortOrder
@@ -12822,7 +12822,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Advertisement"> | string
     title?: StringWithAggregatesFilter<"Advertisement"> | string
     description?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
-    departmentId?: StringWithAggregatesFilter<"Advertisement"> | string
+    department?: StringWithAggregatesFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableWithAggregatesFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
     isActive?: BoolWithAggregatesFilter<"Advertisement"> | boolean
@@ -13489,7 +13489,7 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    departmentId: string
+    department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
     isActive?: boolean
@@ -13501,7 +13501,7 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    departmentId: string
+    department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
     isActive?: boolean
@@ -13513,7 +13513,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    departmentId?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -13525,7 +13525,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    departmentId?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -13537,7 +13537,7 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    departmentId: string
+    department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
     isActive?: boolean
@@ -13549,7 +13549,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    departmentId?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -13561,7 +13561,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    departmentId?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -14243,7 +14243,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    departmentId?: SortOrder
+    department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
     isActive?: SortOrder
@@ -14255,7 +14255,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    departmentId?: SortOrder
+    department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
     isActive?: SortOrder
@@ -14267,7 +14267,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    departmentId?: SortOrder
+    department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
     isActive?: SortOrder
