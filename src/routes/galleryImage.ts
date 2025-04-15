@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import { imageValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
+import { deleteContent } from "services/Cloudflare/cloudflare";
 const imageRouter = express.Router();
 
 imageRouter.post(
@@ -85,28 +86,50 @@ imageRouter.delete(
         res.status(400).json({ message: "Image Id is required" });
         return;
       }
+      const image = await prisma.galleryImage.findUnique({
+        where: { id: id },
+        select: { imageKey: true, imageUrl: true }
+      });
+      if (!image) {
+        res.status(404).json({
+          message: "Image not found"
+        });
+        return;
+      }
+      const deletionResult = await deleteContent(image.imageKey);
+      if (!deletionResult?.success) {
+        console.warn(
+          `Image deletion failed for ${image.imageKey}:`,
+          deletionResult.error
+        );
+      }
+
       await prisma.galleryImage.delete({
         where: { id: id }
       });
       res.status(200).json({
-        message: "Image deleted successfully"
+        code: deletionResult.success ? "FULLY_DELETED" : "PARTIALLY_DELETED",
+        message: deletionResult.success
+          ? "Image deleted successfully"
+          : "Image record removed (storage deletion failed)",
+        details: deletionResult.success
+          ? undefined
+          : {
+              storageError: deletionResult.error
+            }
       });
+      return;
     } catch (err: unknown) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        if (err.code === "P2025") {
-          res.status(404).json({
-            message: "Image not found" // Fixed message consistency
-          });
-          return;
-        }
-
-        res.status(400).json({
-          message: "Database operation failed"
+        res.status(404).json({
+          code: "NOT_FOUND",
+          message: "Image record not found"
         });
         return;
       }
+
       res.status(500).json({
-        message: "Something went wrong, Please try again later!"
+        message: err instanceof Error ? err.message : "Deletion failed"
       });
       return;
     }

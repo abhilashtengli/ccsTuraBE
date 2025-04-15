@@ -1,4 +1,9 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+  S3ServiceException
+} from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import dotenv from "dotenv";
 dotenv.config();
@@ -32,6 +37,7 @@ export const generatePresignedUrl = async (
   const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 }); // 1 hour expiry
   return {
     signedUrl,
+    key,
     publicUrl: getPublicUrl(key)
   };
 };
@@ -39,4 +45,30 @@ export const generatePresignedUrl = async (
 export const getPublicUrl = (key: string) => {
   //   return `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
   return `https://${process.env.PUBLIC_URL}/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
+};
+
+export const deleteContent = async (key: string) => {
+  try {
+    const deleteCommand = new DeleteObjectCommand({
+      Bucket: process.env.CLOUDFLARE_BUCKET_NAME,
+      Key: key
+    });
+    await s3.send(deleteCommand);
+    return { success: true };
+  } catch (err) {
+    if (err instanceof S3ServiceException) {
+      // Handle specific S3 errors
+      if (err.name === "NoSuchKey") {
+        return { success: true }; // Treat missing file as success
+      }
+      return {
+        success: false,
+        error: "Failed to delete content from storage"
+      };
+    }
+    return { 
+      success: false, 
+      error: 'Unexpected error during deletion' 
+    };
+  }
 };
