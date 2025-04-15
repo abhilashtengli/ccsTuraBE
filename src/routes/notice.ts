@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import authRouter from "./auth";
-import { generatePresignedUrl } from "../services/Cloudflare/cloudflare";
 import { noticeValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
