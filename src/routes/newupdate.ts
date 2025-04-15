@@ -65,6 +65,10 @@ newsRouter.get("/getAll", async (req: Request, res: Response) => {
       });
       return;
     }
+    res.status(200).json({
+      message: "success",
+      data: news
+    });
   } catch (err) {
     res.status(500).json({
       message: "Could not fetch the News, please try again later"

@@ -34,10 +34,12 @@ facultyRouter.post(
         email,
         contactNumber,
         profileImageUrl,
+        imageKey,
         designation,
         isHod,
         facultyType,
         cvUrl,
+        pdfKey,
         socialLinks,
         department
       } = result.data;
@@ -59,7 +61,9 @@ facultyRouter.post(
           facultyType: facultyType,
           cvUrl: cvUrl !== "" ? cvUrl : undefined,
           socialLinks: formattedSocialLinks,
-          department
+          department,
+          imageKey: imageKey,
+          pdfKey : pdfKey
         }
       });
 

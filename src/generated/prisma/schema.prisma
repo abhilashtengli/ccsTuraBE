@@ -66,6 +66,7 @@ model Notice {
   category  String   @db.VarChar(100)
   title     String   @db.VarChar(255)
   pdfUrl    String   @map("pdf_url") @db.VarChar(512)
+  pdfKey    String   @map("pdf_key")
   isActive  Boolean  @default(true) @map("is_active")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
@@ -92,10 +93,12 @@ model FacultyMember {
   email           String      @db.VarChar(255)
   contactNumber   String?     @map("contact_number") @db.VarChar(20)
   profileImageUrl String?     @map("profile_image_url") @db.VarChar(512)
+  imageKey        String?     @map("image_key")
   designation     String      @db.VarChar(100)
   isHod           Boolean     @default(false) @map("is_hod")
   facultyType     FacultyType @map("faculty_type")
   cvUrl           String?     @map("cv_url") @db.VarChar(512)
+  pdfKey          String?     @map("pdf_key")
   socialLinks     Json?       @map("social_links")
   createdAt       DateTime    @default(now()) @map("created_at")
   updatedAt       DateTime    @default(now()) @updatedAt @map("updated_at")
@@ -124,6 +127,7 @@ model Advertisement {
   department   String
   deadlineDate DateTime? @map("deadline_date")
   pdfUrl       String?   @map("pdf_url") @db.VarChar(512)
+  pdfKey       String?   @map("pdf_key")
   isActive     Boolean   @default(true) @map("is_active")
   createdAt    DateTime  @default(now()) @map("created_at")
   updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at")
@@ -139,6 +143,7 @@ model Tender {
   closingDate   DateTime   @map("closing_date")
   category      String?    @db.VarChar(100)
   pdfUrl        String     @map("pdf_url") @db.VarChar(512)
+  pdfKey        String?    @map("pdf_key")
   status        StatusType
   createdAt     DateTime   @default(now()) @map("created_at")
   updatedAt     DateTime   @default(now()) @updatedAt @map("updated_at")
@@ -152,6 +157,7 @@ model StaffForm {
   formType    String   @map("form_type") @db.VarChar(50)
   updatedDate DateTime @map("updated_date")
   pdfUrl      String   @map("pdf_url") @db.VarChar(512)
+  pdfKey      String?  @map("pdf_key")
   isActive    Boolean  @default(true) @map("is_active")
   createdAt   DateTime @default(now()) @map("created_at")
 
@@ -159,25 +165,22 @@ model StaffForm {
 }
 
 model GalleryImage {
-  id          String          @id @default(uuid())
-  imageUrl    String          @map("image_url") @db.VarChar(512)
-  category    GalleryCategory
-  title       String?         @db.VarChar(255)
-  description String?
-  isActive    Boolean         @default(true) @map("is_active")
-  createdAt   DateTime        @default(now()) @map("created_at")
+  id        String          @id @default(uuid())
+  imageUrl  String          @map("image_url") @db.VarChar(512)
+  category  GalleryCategory
+  imageKey  String
+  createdAt DateTime        @default(now()) @map("created_at")
 
   @@map("gallery_images")
 }
 
 model GalleryVideo {
-  id          String   @id @default(uuid())
-  youtubeUrl  String   @map("youtube_url") @db.VarChar(512)
-  category    String   @db.VarChar(50)
-  title       String?  @db.VarChar(255)
-  description String?
-  isActive    Boolean  @default(true) @map("is_active")
-  createdAt   DateTime @default(now()) @map("created_at")
+  id         String   @id @default(uuid())
+  youtubeUrl String   @map("youtube_url") @db.VarChar(512)
+  youtubeKey String   @map("youtube_key")
+  category   String   @db.VarChar(50)
+  title      String?  @db.VarChar(255)
+  createdAt  DateTime @default(now()) @map("created_at")
 
   @@map("gallery_videos")
 }

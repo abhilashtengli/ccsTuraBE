@@ -2769,6 +2769,7 @@ export namespace Prisma {
     category: string | null
     title: string | null
     pdfUrl: string | null
+    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2779,6 +2780,7 @@ export namespace Prisma {
     category: string | null
     title: string | null
     pdfUrl: string | null
+    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2789,6 +2791,7 @@ export namespace Prisma {
     category: number
     title: number
     pdfUrl: number
+    pdfKey: number
     isActive: number
     createdAt: number
     updatedAt: number
@@ -2801,6 +2804,7 @@ export namespace Prisma {
     category?: true
     title?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -2811,6 +2815,7 @@ export namespace Prisma {
     category?: true
     title?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -2821,6 +2826,7 @@ export namespace Prisma {
     category?: true
     title?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -2904,6 +2910,7 @@ export namespace Prisma {
     category: string
     title: string
     pdfUrl: string
+    pdfKey: string
     isActive: boolean
     createdAt: Date
     updatedAt: Date
@@ -2931,6 +2938,7 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2941,6 +2949,7 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2951,6 +2960,7 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2961,12 +2971,13 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type NoticeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "category" | "title" | "pdfUrl" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["notice"]>
+  export type NoticeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "category" | "title" | "pdfUrl" | "pdfKey" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["notice"]>
 
   export type $NoticePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Notice"
@@ -2976,6 +2987,7 @@ export namespace Prisma {
       category: string
       title: string
       pdfUrl: string
+      pdfKey: string
       isActive: boolean
       createdAt: Date
       updatedAt: Date
@@ -3406,6 +3418,7 @@ export namespace Prisma {
     readonly category: FieldRef<"Notice", 'String'>
     readonly title: FieldRef<"Notice", 'String'>
     readonly pdfUrl: FieldRef<"Notice", 'String'>
+    readonly pdfKey: FieldRef<"Notice", 'String'>
     readonly isActive: FieldRef<"Notice", 'Boolean'>
     readonly createdAt: FieldRef<"Notice", 'DateTime'>
     readonly updatedAt: FieldRef<"Notice", 'DateTime'>
@@ -4813,10 +4826,12 @@ export namespace Prisma {
     email: string | null
     contactNumber: string | null
     profileImageUrl: string | null
+    imageKey: string | null
     designation: string | null
     isHod: boolean | null
     facultyType: $Enums.FacultyType | null
     cvUrl: string | null
+    pdfKey: string | null
     createdAt: Date | null
     updatedAt: Date | null
     department: $Enums.Departments | null
@@ -4829,10 +4844,12 @@ export namespace Prisma {
     email: string | null
     contactNumber: string | null
     profileImageUrl: string | null
+    imageKey: string | null
     designation: string | null
     isHod: boolean | null
     facultyType: $Enums.FacultyType | null
     cvUrl: string | null
+    pdfKey: string | null
     createdAt: Date | null
     updatedAt: Date | null
     department: $Enums.Departments | null
@@ -4845,10 +4862,12 @@ export namespace Prisma {
     email: number
     contactNumber: number
     profileImageUrl: number
+    imageKey: number
     designation: number
     isHod: number
     facultyType: number
     cvUrl: number
+    pdfKey: number
     socialLinks: number
     createdAt: number
     updatedAt: number
@@ -4864,10 +4883,12 @@ export namespace Prisma {
     email?: true
     contactNumber?: true
     profileImageUrl?: true
+    imageKey?: true
     designation?: true
     isHod?: true
     facultyType?: true
     cvUrl?: true
+    pdfKey?: true
     createdAt?: true
     updatedAt?: true
     department?: true
@@ -4880,10 +4901,12 @@ export namespace Prisma {
     email?: true
     contactNumber?: true
     profileImageUrl?: true
+    imageKey?: true
     designation?: true
     isHod?: true
     facultyType?: true
     cvUrl?: true
+    pdfKey?: true
     createdAt?: true
     updatedAt?: true
     department?: true
@@ -4896,10 +4919,12 @@ export namespace Prisma {
     email?: true
     contactNumber?: true
     profileImageUrl?: true
+    imageKey?: true
     designation?: true
     isHod?: true
     facultyType?: true
     cvUrl?: true
+    pdfKey?: true
     socialLinks?: true
     createdAt?: true
     updatedAt?: true
@@ -4986,10 +5011,12 @@ export namespace Prisma {
     email: string
     contactNumber: string | null
     profileImageUrl: string | null
+    imageKey: string | null
     designation: string
     isHod: boolean
     facultyType: $Enums.FacultyType
     cvUrl: string | null
+    pdfKey: string | null
     socialLinks: JsonValue | null
     createdAt: Date
     updatedAt: Date
@@ -5020,10 +5047,12 @@ export namespace Prisma {
     email?: boolean
     contactNumber?: boolean
     profileImageUrl?: boolean
+    imageKey?: boolean
     designation?: boolean
     isHod?: boolean
     facultyType?: boolean
     cvUrl?: boolean
+    pdfKey?: boolean
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -5037,10 +5066,12 @@ export namespace Prisma {
     email?: boolean
     contactNumber?: boolean
     profileImageUrl?: boolean
+    imageKey?: boolean
     designation?: boolean
     isHod?: boolean
     facultyType?: boolean
     cvUrl?: boolean
+    pdfKey?: boolean
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -5054,10 +5085,12 @@ export namespace Prisma {
     email?: boolean
     contactNumber?: boolean
     profileImageUrl?: boolean
+    imageKey?: boolean
     designation?: boolean
     isHod?: boolean
     facultyType?: boolean
     cvUrl?: boolean
+    pdfKey?: boolean
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -5071,17 +5104,19 @@ export namespace Prisma {
     email?: boolean
     contactNumber?: boolean
     profileImageUrl?: boolean
+    imageKey?: boolean
     designation?: boolean
     isHod?: boolean
     facultyType?: boolean
     cvUrl?: boolean
+    pdfKey?: boolean
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     department?: boolean
   }
 
-  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "designation" | "isHod" | "facultyType" | "cvUrl" | "socialLinks" | "createdAt" | "updatedAt" | "department", ExtArgs["result"]["facultyMember"]>
+  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "imageKey" | "designation" | "isHod" | "facultyType" | "cvUrl" | "pdfKey" | "socialLinks" | "createdAt" | "updatedAt" | "department", ExtArgs["result"]["facultyMember"]>
 
   export type $FacultyMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FacultyMember"
@@ -5093,10 +5128,12 @@ export namespace Prisma {
       email: string
       contactNumber: string | null
       profileImageUrl: string | null
+      imageKey: string | null
       designation: string
       isHod: boolean
       facultyType: $Enums.FacultyType
       cvUrl: string | null
+      pdfKey: string | null
       socialLinks: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
@@ -5530,10 +5567,12 @@ export namespace Prisma {
     readonly email: FieldRef<"FacultyMember", 'String'>
     readonly contactNumber: FieldRef<"FacultyMember", 'String'>
     readonly profileImageUrl: FieldRef<"FacultyMember", 'String'>
+    readonly imageKey: FieldRef<"FacultyMember", 'String'>
     readonly designation: FieldRef<"FacultyMember", 'String'>
     readonly isHod: FieldRef<"FacultyMember", 'Boolean'>
     readonly facultyType: FieldRef<"FacultyMember", 'FacultyType'>
     readonly cvUrl: FieldRef<"FacultyMember", 'String'>
+    readonly pdfKey: FieldRef<"FacultyMember", 'String'>
     readonly socialLinks: FieldRef<"FacultyMember", 'Json'>
     readonly createdAt: FieldRef<"FacultyMember", 'DateTime'>
     readonly updatedAt: FieldRef<"FacultyMember", 'DateTime'>
@@ -6942,6 +6981,7 @@ export namespace Prisma {
     department: string | null
     deadlineDate: Date | null
     pdfUrl: string | null
+    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6954,6 +6994,7 @@ export namespace Prisma {
     department: string | null
     deadlineDate: Date | null
     pdfUrl: string | null
+    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6966,6 +7007,7 @@ export namespace Prisma {
     department: number
     deadlineDate: number
     pdfUrl: number
+    pdfKey: number
     isActive: number
     createdAt: number
     updatedAt: number
@@ -6980,6 +7022,7 @@ export namespace Prisma {
     department?: true
     deadlineDate?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -6992,6 +7035,7 @@ export namespace Prisma {
     department?: true
     deadlineDate?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -7004,6 +7048,7 @@ export namespace Prisma {
     department?: true
     deadlineDate?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
@@ -7089,6 +7134,7 @@ export namespace Prisma {
     department: string
     deadlineDate: Date | null
     pdfUrl: string | null
+    pdfKey: string | null
     isActive: boolean
     createdAt: Date
     updatedAt: Date
@@ -7118,6 +7164,7 @@ export namespace Prisma {
     department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7130,6 +7177,7 @@ export namespace Prisma {
     department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7142,6 +7190,7 @@ export namespace Prisma {
     department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7154,12 +7203,13 @@ export namespace Prisma {
     department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "department" | "deadlineDate" | "pdfUrl" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
+  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "department" | "deadlineDate" | "pdfUrl" | "pdfKey" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
 
   export type $AdvertisementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Advertisement"
@@ -7171,6 +7221,7 @@ export namespace Prisma {
       department: string
       deadlineDate: Date | null
       pdfUrl: string | null
+      pdfKey: string | null
       isActive: boolean
       createdAt: Date
       updatedAt: Date
@@ -7603,6 +7654,7 @@ export namespace Prisma {
     readonly department: FieldRef<"Advertisement", 'String'>
     readonly deadlineDate: FieldRef<"Advertisement", 'DateTime'>
     readonly pdfUrl: FieldRef<"Advertisement", 'String'>
+    readonly pdfKey: FieldRef<"Advertisement", 'String'>
     readonly isActive: FieldRef<"Advertisement", 'Boolean'>
     readonly createdAt: FieldRef<"Advertisement", 'DateTime'>
     readonly updatedAt: FieldRef<"Advertisement", 'DateTime'>
@@ -7990,6 +8042,7 @@ export namespace Prisma {
     closingDate: Date | null
     category: string | null
     pdfUrl: string | null
+    pdfKey: string | null
     status: $Enums.StatusType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8003,6 +8056,7 @@ export namespace Prisma {
     closingDate: Date | null
     category: string | null
     pdfUrl: string | null
+    pdfKey: string | null
     status: $Enums.StatusType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8016,6 +8070,7 @@ export namespace Prisma {
     closingDate: number
     category: number
     pdfUrl: number
+    pdfKey: number
     status: number
     createdAt: number
     updatedAt: number
@@ -8031,6 +8086,7 @@ export namespace Prisma {
     closingDate?: true
     category?: true
     pdfUrl?: true
+    pdfKey?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8044,6 +8100,7 @@ export namespace Prisma {
     closingDate?: true
     category?: true
     pdfUrl?: true
+    pdfKey?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8057,6 +8114,7 @@ export namespace Prisma {
     closingDate?: true
     category?: true
     pdfUrl?: true
+    pdfKey?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8143,6 +8201,7 @@ export namespace Prisma {
     closingDate: Date
     category: string | null
     pdfUrl: string
+    pdfKey: string | null
     status: $Enums.StatusType
     createdAt: Date
     updatedAt: Date
@@ -8173,6 +8232,7 @@ export namespace Prisma {
     closingDate?: boolean
     category?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8186,6 +8246,7 @@ export namespace Prisma {
     closingDate?: boolean
     category?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8199,6 +8260,7 @@ export namespace Prisma {
     closingDate?: boolean
     category?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8212,12 +8274,13 @@ export namespace Prisma {
     closingDate?: boolean
     category?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TenderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "reference" | "publishedDate" | "closingDate" | "category" | "pdfUrl" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["tender"]>
+  export type TenderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "reference" | "publishedDate" | "closingDate" | "category" | "pdfUrl" | "pdfKey" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["tender"]>
 
   export type $TenderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Tender"
@@ -8230,6 +8293,7 @@ export namespace Prisma {
       closingDate: Date
       category: string | null
       pdfUrl: string
+      pdfKey: string | null
       status: $Enums.StatusType
       createdAt: Date
       updatedAt: Date
@@ -8663,6 +8727,7 @@ export namespace Prisma {
     readonly closingDate: FieldRef<"Tender", 'DateTime'>
     readonly category: FieldRef<"Tender", 'String'>
     readonly pdfUrl: FieldRef<"Tender", 'String'>
+    readonly pdfKey: FieldRef<"Tender", 'String'>
     readonly status: FieldRef<"Tender", 'StatusType'>
     readonly createdAt: FieldRef<"Tender", 'DateTime'>
     readonly updatedAt: FieldRef<"Tender", 'DateTime'>
@@ -9048,6 +9113,7 @@ export namespace Prisma {
     formType: string | null
     updatedDate: Date | null
     pdfUrl: string | null
+    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
   }
@@ -9058,6 +9124,7 @@ export namespace Prisma {
     formType: string | null
     updatedDate: Date | null
     pdfUrl: string | null
+    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
   }
@@ -9068,6 +9135,7 @@ export namespace Prisma {
     formType: number
     updatedDate: number
     pdfUrl: number
+    pdfKey: number
     isActive: number
     createdAt: number
     _all: number
@@ -9080,6 +9148,7 @@ export namespace Prisma {
     formType?: true
     updatedDate?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
   }
@@ -9090,6 +9159,7 @@ export namespace Prisma {
     formType?: true
     updatedDate?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
   }
@@ -9100,6 +9170,7 @@ export namespace Prisma {
     formType?: true
     updatedDate?: true
     pdfUrl?: true
+    pdfKey?: true
     isActive?: true
     createdAt?: true
     _all?: true
@@ -9183,6 +9254,7 @@ export namespace Prisma {
     formType: string
     updatedDate: Date
     pdfUrl: string
+    pdfKey: string | null
     isActive: boolean
     createdAt: Date
     _count: StaffFormCountAggregateOutputType | null
@@ -9210,6 +9282,7 @@ export namespace Prisma {
     formType?: boolean
     updatedDate?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
@@ -9220,6 +9293,7 @@ export namespace Prisma {
     formType?: boolean
     updatedDate?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
@@ -9230,6 +9304,7 @@ export namespace Prisma {
     formType?: boolean
     updatedDate?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
@@ -9240,11 +9315,12 @@ export namespace Prisma {
     formType?: boolean
     updatedDate?: boolean
     pdfUrl?: boolean
+    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
   }
 
-  export type StaffFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "formType" | "updatedDate" | "pdfUrl" | "isActive" | "createdAt", ExtArgs["result"]["staffForm"]>
+  export type StaffFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "formType" | "updatedDate" | "pdfUrl" | "pdfKey" | "isActive" | "createdAt", ExtArgs["result"]["staffForm"]>
 
   export type $StaffFormPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StaffForm"
@@ -9255,6 +9331,7 @@ export namespace Prisma {
       formType: string
       updatedDate: Date
       pdfUrl: string
+      pdfKey: string | null
       isActive: boolean
       createdAt: Date
     }, ExtArgs["result"]["staffForm"]>
@@ -9685,6 +9762,7 @@ export namespace Prisma {
     readonly formType: FieldRef<"StaffForm", 'String'>
     readonly updatedDate: FieldRef<"StaffForm", 'DateTime'>
     readonly pdfUrl: FieldRef<"StaffForm", 'String'>
+    readonly pdfKey: FieldRef<"StaffForm", 'String'>
     readonly isActive: FieldRef<"StaffForm", 'Boolean'>
     readonly createdAt: FieldRef<"StaffForm", 'DateTime'>
   }
@@ -10067,9 +10145,7 @@ export namespace Prisma {
     id: string | null
     imageUrl: string | null
     category: $Enums.GalleryCategory | null
-    title: string | null
-    description: string | null
-    isActive: boolean | null
+    imageKey: string | null
     createdAt: Date | null
   }
 
@@ -10077,9 +10153,7 @@ export namespace Prisma {
     id: string | null
     imageUrl: string | null
     category: $Enums.GalleryCategory | null
-    title: string | null
-    description: string | null
-    isActive: boolean | null
+    imageKey: string | null
     createdAt: Date | null
   }
 
@@ -10087,9 +10161,7 @@ export namespace Prisma {
     id: number
     imageUrl: number
     category: number
-    title: number
-    description: number
-    isActive: number
+    imageKey: number
     createdAt: number
     _all: number
   }
@@ -10099,9 +10171,7 @@ export namespace Prisma {
     id?: true
     imageUrl?: true
     category?: true
-    title?: true
-    description?: true
-    isActive?: true
+    imageKey?: true
     createdAt?: true
   }
 
@@ -10109,9 +10179,7 @@ export namespace Prisma {
     id?: true
     imageUrl?: true
     category?: true
-    title?: true
-    description?: true
-    isActive?: true
+    imageKey?: true
     createdAt?: true
   }
 
@@ -10119,9 +10187,7 @@ export namespace Prisma {
     id?: true
     imageUrl?: true
     category?: true
-    title?: true
-    description?: true
-    isActive?: true
+    imageKey?: true
     createdAt?: true
     _all?: true
   }
@@ -10202,9 +10268,7 @@ export namespace Prisma {
     id: string
     imageUrl: string
     category: $Enums.GalleryCategory
-    title: string | null
-    description: string | null
-    isActive: boolean
+    imageKey: string
     createdAt: Date
     _count: GalleryImageCountAggregateOutputType | null
     _min: GalleryImageMinAggregateOutputType | null
@@ -10229,9 +10293,7 @@ export namespace Prisma {
     id?: boolean
     imageUrl?: boolean
     category?: boolean
-    title?: boolean
-    description?: boolean
-    isActive?: boolean
+    imageKey?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
@@ -10239,9 +10301,7 @@ export namespace Prisma {
     id?: boolean
     imageUrl?: boolean
     category?: boolean
-    title?: boolean
-    description?: boolean
-    isActive?: boolean
+    imageKey?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
@@ -10249,9 +10309,7 @@ export namespace Prisma {
     id?: boolean
     imageUrl?: boolean
     category?: boolean
-    title?: boolean
-    description?: boolean
-    isActive?: boolean
+    imageKey?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
@@ -10259,13 +10317,11 @@ export namespace Prisma {
     id?: boolean
     imageUrl?: boolean
     category?: boolean
-    title?: boolean
-    description?: boolean
-    isActive?: boolean
+    imageKey?: boolean
     createdAt?: boolean
   }
 
-  export type GalleryImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "category" | "title" | "description" | "isActive" | "createdAt", ExtArgs["result"]["galleryImage"]>
+  export type GalleryImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "category" | "imageKey" | "createdAt", ExtArgs["result"]["galleryImage"]>
 
   export type $GalleryImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GalleryImage"
@@ -10274,9 +10330,7 @@ export namespace Prisma {
       id: string
       imageUrl: string
       category: $Enums.GalleryCategory
-      title: string | null
-      description: string | null
-      isActive: boolean
+      imageKey: string
       createdAt: Date
     }, ExtArgs["result"]["galleryImage"]>
     composites: {}
@@ -10704,9 +10758,7 @@ export namespace Prisma {
     readonly id: FieldRef<"GalleryImage", 'String'>
     readonly imageUrl: FieldRef<"GalleryImage", 'String'>
     readonly category: FieldRef<"GalleryImage", 'GalleryCategory'>
-    readonly title: FieldRef<"GalleryImage", 'String'>
-    readonly description: FieldRef<"GalleryImage", 'String'>
-    readonly isActive: FieldRef<"GalleryImage", 'Boolean'>
+    readonly imageKey: FieldRef<"GalleryImage", 'String'>
     readonly createdAt: FieldRef<"GalleryImage", 'DateTime'>
   }
     
@@ -11087,30 +11139,27 @@ export namespace Prisma {
   export type GalleryVideoMinAggregateOutputType = {
     id: string | null
     youtubeUrl: string | null
+    youtubeKey: string | null
     category: string | null
     title: string | null
-    description: string | null
-    isActive: boolean | null
     createdAt: Date | null
   }
 
   export type GalleryVideoMaxAggregateOutputType = {
     id: string | null
     youtubeUrl: string | null
+    youtubeKey: string | null
     category: string | null
     title: string | null
-    description: string | null
-    isActive: boolean | null
     createdAt: Date | null
   }
 
   export type GalleryVideoCountAggregateOutputType = {
     id: number
     youtubeUrl: number
+    youtubeKey: number
     category: number
     title: number
-    description: number
-    isActive: number
     createdAt: number
     _all: number
   }
@@ -11119,30 +11168,27 @@ export namespace Prisma {
   export type GalleryVideoMinAggregateInputType = {
     id?: true
     youtubeUrl?: true
+    youtubeKey?: true
     category?: true
     title?: true
-    description?: true
-    isActive?: true
     createdAt?: true
   }
 
   export type GalleryVideoMaxAggregateInputType = {
     id?: true
     youtubeUrl?: true
+    youtubeKey?: true
     category?: true
     title?: true
-    description?: true
-    isActive?: true
     createdAt?: true
   }
 
   export type GalleryVideoCountAggregateInputType = {
     id?: true
     youtubeUrl?: true
+    youtubeKey?: true
     category?: true
     title?: true
-    description?: true
-    isActive?: true
     createdAt?: true
     _all?: true
   }
@@ -11222,10 +11268,9 @@ export namespace Prisma {
   export type GalleryVideoGroupByOutputType = {
     id: string
     youtubeUrl: string
+    youtubeKey: string
     category: string
     title: string | null
-    description: string | null
-    isActive: boolean
     createdAt: Date
     _count: GalleryVideoCountAggregateOutputType | null
     _min: GalleryVideoMinAggregateOutputType | null
@@ -11249,44 +11294,40 @@ export namespace Prisma {
   export type GalleryVideoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
+    youtubeKey?: boolean
     category?: boolean
     title?: boolean
-    description?: boolean
-    isActive?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
+    youtubeKey?: boolean
     category?: boolean
     title?: boolean
-    description?: boolean
-    isActive?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
+    youtubeKey?: boolean
     category?: boolean
     title?: boolean
-    description?: boolean
-    isActive?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectScalar = {
     id?: boolean
     youtubeUrl?: boolean
+    youtubeKey?: boolean
     category?: boolean
     title?: boolean
-    description?: boolean
-    isActive?: boolean
     createdAt?: boolean
   }
 
-  export type GalleryVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "youtubeUrl" | "category" | "title" | "description" | "isActive" | "createdAt", ExtArgs["result"]["galleryVideo"]>
+  export type GalleryVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "youtubeUrl" | "youtubeKey" | "category" | "title" | "createdAt", ExtArgs["result"]["galleryVideo"]>
 
   export type $GalleryVideoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GalleryVideo"
@@ -11294,10 +11335,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       youtubeUrl: string
+      youtubeKey: string
       category: string
       title: string | null
-      description: string | null
-      isActive: boolean
       createdAt: Date
     }, ExtArgs["result"]["galleryVideo"]>
     composites: {}
@@ -11724,10 +11764,9 @@ export namespace Prisma {
   interface GalleryVideoFieldRefs {
     readonly id: FieldRef<"GalleryVideo", 'String'>
     readonly youtubeUrl: FieldRef<"GalleryVideo", 'String'>
+    readonly youtubeKey: FieldRef<"GalleryVideo", 'String'>
     readonly category: FieldRef<"GalleryVideo", 'String'>
     readonly title: FieldRef<"GalleryVideo", 'String'>
-    readonly description: FieldRef<"GalleryVideo", 'String'>
-    readonly isActive: FieldRef<"GalleryVideo", 'Boolean'>
     readonly createdAt: FieldRef<"GalleryVideo", 'DateTime'>
   }
     
@@ -12126,6 +12165,7 @@ export namespace Prisma {
     category: 'category',
     title: 'title',
     pdfUrl: 'pdfUrl',
+    pdfKey: 'pdfKey',
     isActive: 'isActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12154,10 +12194,12 @@ export namespace Prisma {
     email: 'email',
     contactNumber: 'contactNumber',
     profileImageUrl: 'profileImageUrl',
+    imageKey: 'imageKey',
     designation: 'designation',
     isHod: 'isHod',
     facultyType: 'facultyType',
     cvUrl: 'cvUrl',
+    pdfKey: 'pdfKey',
     socialLinks: 'socialLinks',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -12187,6 +12229,7 @@ export namespace Prisma {
     department: 'department',
     deadlineDate: 'deadlineDate',
     pdfUrl: 'pdfUrl',
+    pdfKey: 'pdfKey',
     isActive: 'isActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12203,6 +12246,7 @@ export namespace Prisma {
     closingDate: 'closingDate',
     category: 'category',
     pdfUrl: 'pdfUrl',
+    pdfKey: 'pdfKey',
     status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12217,6 +12261,7 @@ export namespace Prisma {
     formType: 'formType',
     updatedDate: 'updatedDate',
     pdfUrl: 'pdfUrl',
+    pdfKey: 'pdfKey',
     isActive: 'isActive',
     createdAt: 'createdAt'
   };
@@ -12228,9 +12273,7 @@ export namespace Prisma {
     id: 'id',
     imageUrl: 'imageUrl',
     category: 'category',
-    title: 'title',
-    description: 'description',
-    isActive: 'isActive',
+    imageKey: 'imageKey',
     createdAt: 'createdAt'
   };
 
@@ -12240,10 +12283,9 @@ export namespace Prisma {
   export const GalleryVideoScalarFieldEnum: {
     id: 'id',
     youtubeUrl: 'youtubeUrl',
+    youtubeKey: 'youtubeKey',
     category: 'category',
     title: 'title',
-    description: 'description',
-    isActive: 'isActive',
     createdAt: 'createdAt'
   };
 
@@ -12483,6 +12525,7 @@ export namespace Prisma {
     category?: StringFilter<"Notice"> | string
     title?: StringFilter<"Notice"> | string
     pdfUrl?: StringFilter<"Notice"> | string
+    pdfKey?: StringFilter<"Notice"> | string
     isActive?: BoolFilter<"Notice"> | boolean
     createdAt?: DateTimeFilter<"Notice"> | Date | string
     updatedAt?: DateTimeFilter<"Notice"> | Date | string
@@ -12493,6 +12536,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12506,6 +12550,7 @@ export namespace Prisma {
     category?: StringFilter<"Notice"> | string
     title?: StringFilter<"Notice"> | string
     pdfUrl?: StringFilter<"Notice"> | string
+    pdfKey?: StringFilter<"Notice"> | string
     isActive?: BoolFilter<"Notice"> | boolean
     createdAt?: DateTimeFilter<"Notice"> | Date | string
     updatedAt?: DateTimeFilter<"Notice"> | Date | string
@@ -12516,6 +12561,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12532,6 +12578,7 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"Notice"> | string
     title?: StringWithAggregatesFilter<"Notice"> | string
     pdfUrl?: StringWithAggregatesFilter<"Notice"> | string
+    pdfKey?: StringWithAggregatesFilter<"Notice"> | string
     isActive?: BoolWithAggregatesFilter<"Notice"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Notice"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Notice"> | Date | string
@@ -12609,10 +12656,12 @@ export namespace Prisma {
     email?: StringFilter<"FacultyMember"> | string
     contactNumber?: StringNullableFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableFilter<"FacultyMember"> | string | null
+    imageKey?: StringNullableFilter<"FacultyMember"> | string | null
     designation?: StringFilter<"FacultyMember"> | string
     isHod?: BoolFilter<"FacultyMember"> | boolean
     facultyType?: EnumFacultyTypeFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableFilter<"FacultyMember"> | string | null
+    pdfKey?: StringNullableFilter<"FacultyMember"> | string | null
     socialLinks?: JsonNullableFilter<"FacultyMember">
     createdAt?: DateTimeFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeFilter<"FacultyMember"> | Date | string
@@ -12626,10 +12675,12 @@ export namespace Prisma {
     email?: SortOrder
     contactNumber?: SortOrderInput | SortOrder
     profileImageUrl?: SortOrderInput | SortOrder
+    imageKey?: SortOrderInput | SortOrder
     designation?: SortOrder
     isHod?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrderInput | SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     socialLinks?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12646,10 +12697,12 @@ export namespace Prisma {
     email?: StringFilter<"FacultyMember"> | string
     contactNumber?: StringNullableFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableFilter<"FacultyMember"> | string | null
+    imageKey?: StringNullableFilter<"FacultyMember"> | string | null
     designation?: StringFilter<"FacultyMember"> | string
     isHod?: BoolFilter<"FacultyMember"> | boolean
     facultyType?: EnumFacultyTypeFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableFilter<"FacultyMember"> | string | null
+    pdfKey?: StringNullableFilter<"FacultyMember"> | string | null
     socialLinks?: JsonNullableFilter<"FacultyMember">
     createdAt?: DateTimeFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeFilter<"FacultyMember"> | Date | string
@@ -12663,10 +12716,12 @@ export namespace Prisma {
     email?: SortOrder
     contactNumber?: SortOrderInput | SortOrder
     profileImageUrl?: SortOrderInput | SortOrder
+    imageKey?: SortOrderInput | SortOrder
     designation?: SortOrder
     isHod?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrderInput | SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     socialLinks?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12686,10 +12741,12 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"FacultyMember"> | string
     contactNumber?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
+    imageKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     designation?: StringWithAggregatesFilter<"FacultyMember"> | string
     isHod?: BoolWithAggregatesFilter<"FacultyMember"> | boolean
     facultyType?: EnumFacultyTypeWithAggregatesFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
+    pdfKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     socialLinks?: JsonNullableWithAggregatesFilter<"FacultyMember">
     createdAt?: DateTimeWithAggregatesFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"FacultyMember"> | Date | string
@@ -12768,6 +12825,7 @@ export namespace Prisma {
     department?: StringFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableFilter<"Advertisement"> | string | null
+    pdfKey?: StringNullableFilter<"Advertisement"> | string | null
     isActive?: BoolFilter<"Advertisement"> | boolean
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
@@ -12780,6 +12838,7 @@ export namespace Prisma {
     department?: SortOrder
     deadlineDate?: SortOrderInput | SortOrder
     pdfUrl?: SortOrderInput | SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12795,6 +12854,7 @@ export namespace Prisma {
     department?: StringFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableFilter<"Advertisement"> | string | null
+    pdfKey?: StringNullableFilter<"Advertisement"> | string | null
     isActive?: BoolFilter<"Advertisement"> | boolean
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
@@ -12807,6 +12867,7 @@ export namespace Prisma {
     department?: SortOrder
     deadlineDate?: SortOrderInput | SortOrder
     pdfUrl?: SortOrderInput | SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12825,6 +12886,7 @@ export namespace Prisma {
     department?: StringWithAggregatesFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableWithAggregatesFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
+    pdfKey?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
     isActive?: BoolWithAggregatesFilter<"Advertisement"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
@@ -12841,6 +12903,7 @@ export namespace Prisma {
     closingDate?: DateTimeFilter<"Tender"> | Date | string
     category?: StringNullableFilter<"Tender"> | string | null
     pdfUrl?: StringFilter<"Tender"> | string
+    pdfKey?: StringNullableFilter<"Tender"> | string | null
     status?: EnumStatusTypeFilter<"Tender"> | $Enums.StatusType
     createdAt?: DateTimeFilter<"Tender"> | Date | string
     updatedAt?: DateTimeFilter<"Tender"> | Date | string
@@ -12854,6 +12917,7 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrderInput | SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12870,6 +12934,7 @@ export namespace Prisma {
     closingDate?: DateTimeFilter<"Tender"> | Date | string
     category?: StringNullableFilter<"Tender"> | string | null
     pdfUrl?: StringFilter<"Tender"> | string
+    pdfKey?: StringNullableFilter<"Tender"> | string | null
     status?: EnumStatusTypeFilter<"Tender"> | $Enums.StatusType
     createdAt?: DateTimeFilter<"Tender"> | Date | string
     updatedAt?: DateTimeFilter<"Tender"> | Date | string
@@ -12883,6 +12948,7 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrderInput | SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12902,6 +12968,7 @@ export namespace Prisma {
     closingDate?: DateTimeWithAggregatesFilter<"Tender"> | Date | string
     category?: StringNullableWithAggregatesFilter<"Tender"> | string | null
     pdfUrl?: StringWithAggregatesFilter<"Tender"> | string
+    pdfKey?: StringNullableWithAggregatesFilter<"Tender"> | string | null
     status?: EnumStatusTypeWithAggregatesFilter<"Tender"> | $Enums.StatusType
     createdAt?: DateTimeWithAggregatesFilter<"Tender"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Tender"> | Date | string
@@ -12916,6 +12983,7 @@ export namespace Prisma {
     formType?: StringFilter<"StaffForm"> | string
     updatedDate?: DateTimeFilter<"StaffForm"> | Date | string
     pdfUrl?: StringFilter<"StaffForm"> | string
+    pdfKey?: StringNullableFilter<"StaffForm"> | string | null
     isActive?: BoolFilter<"StaffForm"> | boolean
     createdAt?: DateTimeFilter<"StaffForm"> | Date | string
   }
@@ -12926,6 +12994,7 @@ export namespace Prisma {
     formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
   }
@@ -12939,6 +13008,7 @@ export namespace Prisma {
     formType?: StringFilter<"StaffForm"> | string
     updatedDate?: DateTimeFilter<"StaffForm"> | Date | string
     pdfUrl?: StringFilter<"StaffForm"> | string
+    pdfKey?: StringNullableFilter<"StaffForm"> | string | null
     isActive?: BoolFilter<"StaffForm"> | boolean
     createdAt?: DateTimeFilter<"StaffForm"> | Date | string
   }, "id">
@@ -12949,6 +13019,7 @@ export namespace Prisma {
     formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     _count?: StaffFormCountOrderByAggregateInput
@@ -12965,6 +13036,7 @@ export namespace Prisma {
     formType?: StringWithAggregatesFilter<"StaffForm"> | string
     updatedDate?: DateTimeWithAggregatesFilter<"StaffForm"> | Date | string
     pdfUrl?: StringWithAggregatesFilter<"StaffForm"> | string
+    pdfKey?: StringNullableWithAggregatesFilter<"StaffForm"> | string | null
     isActive?: BoolWithAggregatesFilter<"StaffForm"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"StaffForm"> | Date | string
   }
@@ -12976,9 +13048,7 @@ export namespace Prisma {
     id?: StringFilter<"GalleryImage"> | string
     imageUrl?: StringFilter<"GalleryImage"> | string
     category?: EnumGalleryCategoryFilter<"GalleryImage"> | $Enums.GalleryCategory
-    title?: StringNullableFilter<"GalleryImage"> | string | null
-    description?: StringNullableFilter<"GalleryImage"> | string | null
-    isActive?: BoolFilter<"GalleryImage"> | boolean
+    imageKey?: StringFilter<"GalleryImage"> | string
     createdAt?: DateTimeFilter<"GalleryImage"> | Date | string
   }
 
@@ -12986,9 +13056,7 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    title?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    isActive?: SortOrder
+    imageKey?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -12999,9 +13067,7 @@ export namespace Prisma {
     NOT?: GalleryImageWhereInput | GalleryImageWhereInput[]
     imageUrl?: StringFilter<"GalleryImage"> | string
     category?: EnumGalleryCategoryFilter<"GalleryImage"> | $Enums.GalleryCategory
-    title?: StringNullableFilter<"GalleryImage"> | string | null
-    description?: StringNullableFilter<"GalleryImage"> | string | null
-    isActive?: BoolFilter<"GalleryImage"> | boolean
+    imageKey?: StringFilter<"GalleryImage"> | string
     createdAt?: DateTimeFilter<"GalleryImage"> | Date | string
   }, "id">
 
@@ -13009,9 +13075,7 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    title?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    isActive?: SortOrder
+    imageKey?: SortOrder
     createdAt?: SortOrder
     _count?: GalleryImageCountOrderByAggregateInput
     _max?: GalleryImageMaxOrderByAggregateInput
@@ -13025,9 +13089,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"GalleryImage"> | string
     imageUrl?: StringWithAggregatesFilter<"GalleryImage"> | string
     category?: EnumGalleryCategoryWithAggregatesFilter<"GalleryImage"> | $Enums.GalleryCategory
-    title?: StringNullableWithAggregatesFilter<"GalleryImage"> | string | null
-    description?: StringNullableWithAggregatesFilter<"GalleryImage"> | string | null
-    isActive?: BoolWithAggregatesFilter<"GalleryImage"> | boolean
+    imageKey?: StringWithAggregatesFilter<"GalleryImage"> | string
     createdAt?: DateTimeWithAggregatesFilter<"GalleryImage"> | Date | string
   }
 
@@ -13037,20 +13099,18 @@ export namespace Prisma {
     NOT?: GalleryVideoWhereInput | GalleryVideoWhereInput[]
     id?: StringFilter<"GalleryVideo"> | string
     youtubeUrl?: StringFilter<"GalleryVideo"> | string
+    youtubeKey?: StringFilter<"GalleryVideo"> | string
     category?: StringFilter<"GalleryVideo"> | string
     title?: StringNullableFilter<"GalleryVideo"> | string | null
-    description?: StringNullableFilter<"GalleryVideo"> | string | null
-    isActive?: BoolFilter<"GalleryVideo"> | boolean
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
   }
 
   export type GalleryVideoOrderByWithRelationInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
+    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -13060,20 +13120,18 @@ export namespace Prisma {
     OR?: GalleryVideoWhereInput[]
     NOT?: GalleryVideoWhereInput | GalleryVideoWhereInput[]
     youtubeUrl?: StringFilter<"GalleryVideo"> | string
+    youtubeKey?: StringFilter<"GalleryVideo"> | string
     category?: StringFilter<"GalleryVideo"> | string
     title?: StringNullableFilter<"GalleryVideo"> | string | null
-    description?: StringNullableFilter<"GalleryVideo"> | string | null
-    isActive?: BoolFilter<"GalleryVideo"> | boolean
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
   }, "id">
 
   export type GalleryVideoOrderByWithAggregationInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
+    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     _count?: GalleryVideoCountOrderByAggregateInput
     _max?: GalleryVideoMaxOrderByAggregateInput
@@ -13086,10 +13144,9 @@ export namespace Prisma {
     NOT?: GalleryVideoScalarWhereWithAggregatesInput | GalleryVideoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"GalleryVideo"> | string
     youtubeUrl?: StringWithAggregatesFilter<"GalleryVideo"> | string
+    youtubeKey?: StringWithAggregatesFilter<"GalleryVideo"> | string
     category?: StringWithAggregatesFilter<"GalleryVideo"> | string
     title?: StringNullableWithAggregatesFilter<"GalleryVideo"> | string | null
-    description?: StringNullableWithAggregatesFilter<"GalleryVideo"> | string | null
-    isActive?: BoolWithAggregatesFilter<"GalleryVideo"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"GalleryVideo"> | Date | string
   }
 
@@ -13161,6 +13218,7 @@ export namespace Prisma {
     category: string
     title: string
     pdfUrl: string
+    pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13171,6 +13229,7 @@ export namespace Prisma {
     category: string
     title: string
     pdfUrl: string
+    pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13181,6 +13240,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13191,6 +13251,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13201,6 +13262,7 @@ export namespace Prisma {
     category: string
     title: string
     pdfUrl: string
+    pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13211,6 +13273,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13221,6 +13284,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13303,10 +13367,12 @@ export namespace Prisma {
     email: string
     contactNumber?: string | null
     profileImageUrl?: string | null
+    imageKey?: string | null
     designation: string
     isHod?: boolean
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
+    pdfKey?: string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13320,10 +13386,12 @@ export namespace Prisma {
     email: string
     contactNumber?: string | null
     profileImageUrl?: string | null
+    imageKey?: string | null
     designation: string
     isHod?: boolean
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
+    pdfKey?: string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13337,10 +13405,12 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13354,10 +13424,12 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13371,10 +13443,12 @@ export namespace Prisma {
     email: string
     contactNumber?: string | null
     profileImageUrl?: string | null
+    imageKey?: string | null
     designation: string
     isHod?: boolean
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
+    pdfKey?: string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13388,10 +13462,12 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13405,10 +13481,12 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13492,6 +13570,7 @@ export namespace Prisma {
     department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
+    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13504,6 +13583,7 @@ export namespace Prisma {
     department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
+    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13516,6 +13596,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13528,6 +13609,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13540,6 +13622,7 @@ export namespace Prisma {
     department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
+    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13552,6 +13635,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13564,6 +13648,7 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13577,6 +13662,7 @@ export namespace Prisma {
     closingDate: Date | string
     category?: string | null
     pdfUrl: string
+    pdfKey?: string | null
     status: $Enums.StatusType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13590,6 +13676,7 @@ export namespace Prisma {
     closingDate: Date | string
     category?: string | null
     pdfUrl: string
+    pdfKey?: string | null
     status: $Enums.StatusType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13603,6 +13690,7 @@ export namespace Prisma {
     closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTypeFieldUpdateOperationsInput | $Enums.StatusType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13616,6 +13704,7 @@ export namespace Prisma {
     closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTypeFieldUpdateOperationsInput | $Enums.StatusType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13629,6 +13718,7 @@ export namespace Prisma {
     closingDate: Date | string
     category?: string | null
     pdfUrl: string
+    pdfKey?: string | null
     status: $Enums.StatusType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13642,6 +13732,7 @@ export namespace Prisma {
     closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTypeFieldUpdateOperationsInput | $Enums.StatusType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13655,6 +13746,7 @@ export namespace Prisma {
     closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTypeFieldUpdateOperationsInput | $Enums.StatusType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13666,6 +13758,7 @@ export namespace Prisma {
     formType: string
     updatedDate: Date | string
     pdfUrl: string
+    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
   }
@@ -13676,6 +13769,7 @@ export namespace Prisma {
     formType: string
     updatedDate: Date | string
     pdfUrl: string
+    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
   }
@@ -13686,6 +13780,7 @@ export namespace Prisma {
     formType?: StringFieldUpdateOperationsInput | string
     updatedDate?: DateTimeFieldUpdateOperationsInput | Date | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13696,6 +13791,7 @@ export namespace Prisma {
     formType?: StringFieldUpdateOperationsInput | string
     updatedDate?: DateTimeFieldUpdateOperationsInput | Date | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13706,6 +13802,7 @@ export namespace Prisma {
     formType: string
     updatedDate: Date | string
     pdfUrl: string
+    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
   }
@@ -13716,6 +13813,7 @@ export namespace Prisma {
     formType?: StringFieldUpdateOperationsInput | string
     updatedDate?: DateTimeFieldUpdateOperationsInput | Date | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13726,6 +13824,7 @@ export namespace Prisma {
     formType?: StringFieldUpdateOperationsInput | string
     updatedDate?: DateTimeFieldUpdateOperationsInput | Date | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13734,9 +13833,7 @@ export namespace Prisma {
     id?: string
     imageUrl: string
     category: $Enums.GalleryCategory
-    title?: string | null
-    description?: string | null
-    isActive?: boolean
+    imageKey: string
     createdAt?: Date | string
   }
 
@@ -13744,9 +13841,7 @@ export namespace Prisma {
     id?: string
     imageUrl: string
     category: $Enums.GalleryCategory
-    title?: string | null
-    description?: string | null
-    isActive?: boolean
+    imageKey: string
     createdAt?: Date | string
   }
 
@@ -13754,9 +13849,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13764,9 +13857,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13774,9 +13865,7 @@ export namespace Prisma {
     id?: string
     imageUrl: string
     category: $Enums.GalleryCategory
-    title?: string | null
-    description?: string | null
-    isActive?: boolean
+    imageKey: string
     createdAt?: Date | string
   }
 
@@ -13784,9 +13873,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13794,79 +13881,70 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoCreateInput = {
     id?: string
     youtubeUrl: string
+    youtubeKey: string
     category: string
     title?: string | null
-    description?: string | null
-    isActive?: boolean
     createdAt?: Date | string
   }
 
   export type GalleryVideoUncheckedCreateInput = {
     id?: string
     youtubeUrl: string
+    youtubeKey: string
     category: string
     title?: string | null
-    description?: string | null
-    isActive?: boolean
     createdAt?: Date | string
   }
 
   export type GalleryVideoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
+    youtubeKey?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
+    youtubeKey?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoCreateManyInput = {
     id?: string
     youtubeUrl: string
+    youtubeKey: string
     category: string
     title?: string | null
-    description?: string | null
-    isActive?: boolean
     createdAt?: Date | string
   }
 
   export type GalleryVideoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
+    youtubeKey?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
+    youtubeKey?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13965,6 +14043,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13975,6 +14054,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13985,6 +14065,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14110,10 +14191,12 @@ export namespace Prisma {
     email?: SortOrder
     contactNumber?: SortOrder
     profileImageUrl?: SortOrder
+    imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
+    pdfKey?: SortOrder
     socialLinks?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14127,10 +14210,12 @@ export namespace Prisma {
     email?: SortOrder
     contactNumber?: SortOrder
     profileImageUrl?: SortOrder
+    imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
+    pdfKey?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     department?: SortOrder
@@ -14143,10 +14228,12 @@ export namespace Prisma {
     email?: SortOrder
     contactNumber?: SortOrder
     profileImageUrl?: SortOrder
+    imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
+    pdfKey?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     department?: SortOrder
@@ -14246,6 +14333,7 @@ export namespace Prisma {
     department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14258,6 +14346,7 @@ export namespace Prisma {
     department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14270,6 +14359,7 @@ export namespace Prisma {
     department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14304,6 +14394,7 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14317,6 +14408,7 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14330,6 +14422,7 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14351,6 +14444,7 @@ export namespace Prisma {
     formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
   }
@@ -14361,6 +14455,7 @@ export namespace Prisma {
     formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
   }
@@ -14371,6 +14466,7 @@ export namespace Prisma {
     formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
+    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
   }
@@ -14386,9 +14482,7 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    isActive?: SortOrder
+    imageKey?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -14396,9 +14490,7 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    isActive?: SortOrder
+    imageKey?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -14406,9 +14498,7 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    isActive?: SortOrder
+    imageKey?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -14425,30 +14515,27 @@ export namespace Prisma {
   export type GalleryVideoCountOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
+    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrder
-    description?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
   }
 
   export type GalleryVideoMaxOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
+    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrder
-    description?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
   }
 
   export type GalleryVideoMinOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
+    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrder
-    description?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
   }
 

@@ -20,7 +20,8 @@ staffFormRouter.post(
         });
         return;
       }
-      const { title, formType, updatedDate, pdfUrl, isActive } = result.data;
+      const { title, formType, updatedDate, pdfUrl, pdfKey, isActive } =
+        result.data;
 
       const staffForm = await prisma.staffForm.create({
         data: {
@@ -28,6 +29,7 @@ staffFormRouter.post(
           formType: formType,
           updatedDate: updatedDate,
           pdfUrl: pdfUrl,
+          pdfKey: pdfKey,
           isActive: isActive
         }
       });

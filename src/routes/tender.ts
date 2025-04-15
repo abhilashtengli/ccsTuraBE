@@ -27,6 +27,7 @@ tenderRouter.post(
         closingDate,
         category,
         pdfUrl,
+        pdfKey,
         status
       } = result.data;
 
@@ -38,6 +39,7 @@ tenderRouter.post(
           closingDate: closingDate,
           category: category,
           pdfUrl: pdfUrl,
+          pdfKey: pdfKey,
           status: status
         }
       });

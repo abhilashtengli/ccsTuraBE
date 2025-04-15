@@ -131,6 +131,7 @@ exports.Prisma.NoticeScalarFieldEnum = {
   category: 'category',
   title: 'title',
   pdfUrl: 'pdfUrl',
+  pdfKey: 'pdfKey',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -153,10 +154,12 @@ exports.Prisma.FacultyMemberScalarFieldEnum = {
   email: 'email',
   contactNumber: 'contactNumber',
   profileImageUrl: 'profileImageUrl',
+  imageKey: 'imageKey',
   designation: 'designation',
   isHod: 'isHod',
   facultyType: 'facultyType',
   cvUrl: 'cvUrl',
+  pdfKey: 'pdfKey',
   socialLinks: 'socialLinks',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -180,6 +183,7 @@ exports.Prisma.AdvertisementScalarFieldEnum = {
   department: 'department',
   deadlineDate: 'deadlineDate',
   pdfUrl: 'pdfUrl',
+  pdfKey: 'pdfKey',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -193,6 +197,7 @@ exports.Prisma.TenderScalarFieldEnum = {
   closingDate: 'closingDate',
   category: 'category',
   pdfUrl: 'pdfUrl',
+  pdfKey: 'pdfKey',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -204,6 +209,7 @@ exports.Prisma.StaffFormScalarFieldEnum = {
   formType: 'formType',
   updatedDate: 'updatedDate',
   pdfUrl: 'pdfUrl',
+  pdfKey: 'pdfKey',
   isActive: 'isActive',
   createdAt: 'createdAt'
 };
@@ -212,19 +218,16 @@ exports.Prisma.GalleryImageScalarFieldEnum = {
   id: 'id',
   imageUrl: 'imageUrl',
   category: 'category',
-  title: 'title',
-  description: 'description',
-  isActive: 'isActive',
+  imageKey: 'imageKey',
   createdAt: 'createdAt'
 };
 
 exports.Prisma.GalleryVideoScalarFieldEnum = {
   id: 'id',
   youtubeUrl: 'youtubeUrl',
+  youtubeKey: 'youtubeKey',
   category: 'category',
   title: 'title',
-  description: 'description',
-  isActive: 'isActive',
   createdAt: 'createdAt'
 };
 

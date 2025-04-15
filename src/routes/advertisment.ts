@@ -20,8 +20,15 @@ advertismentRouter.post(
         });
         return;
       }
-      const { title, description, department, isActive, deadlineDate, pdfUrl } =
-        result.data;
+      const {
+        title,
+        description,
+        department,
+        isActive,
+        deadlineDate,
+        pdfUrl,
+        pdfKey
+      } = result.data;
 
       const advertisement = await prisma.advertisement.create({
         data: {
@@ -30,7 +37,8 @@ advertismentRouter.post(
           description: description,
           department: department,
           isActive: isActive,
-          pdfUrl: pdfUrl
+          pdfUrl: pdfUrl,
+          pdfKey: pdfKey
         }
       });
       res.status(201).json({

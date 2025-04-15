@@ -27,12 +27,14 @@ export const facultyValidation = z.object({
     .min(10, { message: "Contact number must be 10 digits" })
     .max(10, { message: "Contact number must be 10 digits" }),
   profileImageUrl: z.string({ message: "Profile image is required" }),
+  imageKey: z.string(),
   designation: z.string({ message: "Designation is required" }),
   isHod: z.boolean(),
   facultyType: z.enum(["Teaching", "Non_Teaching"], {
     message: "Faculty type must be either Teaching or Non_Teaching"
   }),
   cvUrl: z.string().optional(),
+  pdfKey: z.string().optional(),
   socialLinks: z
     .object({
       key: z.enum([
@@ -54,6 +56,7 @@ export const noticeValidation = z.object({
   category: z.string(),
   title: z.string(),
   pdfUrl: z.string(),
+  pdfKey: z.string(),
   isActive: z.boolean()
 });
 
@@ -75,7 +78,8 @@ export const advertismentValidation = z.object({
     .string()
     .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
   isActive: z.boolean().default(true),
-  pdfUrl: z.string().optional()
+  pdfUrl: z.string().optional(),
+  pdfKey: z.string().optional()
 });
 
 export const tenderValidation = z.object({
@@ -89,6 +93,7 @@ export const tenderValidation = z.object({
     .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
   category: z.string().optional(),
   pdfUrl: z.string(),
+  pdfKey: z.string(),
   status: z.enum(["Open", "Closed"])
 });
 
@@ -99,5 +104,19 @@ export const staffFormValidation = z.object({
     .string()
     .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
   pdfUrl: z.string(),
+  pdfKey: z.string(),
   isActive: z.boolean().default(true)
+});
+
+export const imageValidation = z.object({
+  imageUrl: z.string(),
+  imageKey: z.string(),
+  category: z.enum(["Campus", "Events", "Students", "Faculty", "Sports"])
+});
+
+export const videoValidation = z.object({
+  youtubeUrl: z.string(),
+  youtubeKey: z.string(),
+  category: z.string(),
+  title: z.string().optional()
 });

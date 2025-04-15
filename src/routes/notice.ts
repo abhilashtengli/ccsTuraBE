@@ -20,14 +20,15 @@ noticeRouter.post(
         });
         return;
       }
-      const { category, title, pdfUrl, isActive } = result.data;
+      const { category, title, pdfUrl, isActive, pdfKey } = result.data;
 
       const notice = await prisma.notice.create({
         data: {
           category: category,
           title: title,
           pdfUrl: pdfUrl,
-          isActive: isActive
+          isActive: isActive,
+          pdfKey: pdfKey
         }
       });
 
