@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import { generatePresignedUrl } from "../services/Cloudflare/cloudflare";
 import { noticeValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
+import { Prisma } from "../generated/prisma";
 const noticeRouter = express.Router();
 
 noticeRouter.post(
@@ -68,6 +69,45 @@ noticeRouter.get("/getAll", async (req: Request, res: Response) => {
   }
 });
 
+noticeRouter.delete(
+  "/delete-notice/:id",
+  authRouter,
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
 
+    try {
+      if (!id) {
+        res.status(404).json({
+          message: "Notice Id is required"
+        });
+      }
+      const isNoticePresent = await prisma.notice.findUnique({
+        where: { id: id }
+      });
+      if (!isNoticePresent) {
+        res.status(404).json({
+          message: `Notice not found with ID: ${id}`
+        });
+        return;
+      }
+      await prisma.notice.delete({
+        where: { id: id }
+      });
+      res.status(200).json({
+        message: "Notice deleted successfully"
+      });
+    } catch (err: any) {
+      if (err.code === "P2025") {
+        // This is a Prisma error code for record not found
+        res.status(404).json({ message: "Faculty member not found" });
+        return;
+      }
+      res.status(500).json({
+        message: "Something went wrong, Please try again later!"
+      });
+      return;
+    }
+  }
+);
 
 export default noticeRouter;
