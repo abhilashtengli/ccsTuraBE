@@ -23,7 +23,7 @@ export const facultyValidation = z.object({
   lastName: z.string().optional(),
   email: z.string().email({ message: "Invalid email address" }),
   contactNumber: z
-    .number()
+    .string()
     .min(10, { message: "Contact number must be 10 digits" })
     .max(10, { message: "Contact number must be 10 digits" }),
   profileImageUrl: z.string({ message: "Profile image is required" }),
@@ -35,14 +35,17 @@ export const facultyValidation = z.object({
   cvUrl: z.string().optional(),
   socialLinks: z
     .object({
-      linkedin: z.string().url().optional(),
-      twitter: z.string().url().optional(),
-      instagram: z.string().url().optional(),
-      facebook: z.string().url().optional(),
-      research_gate: z.string().url().optional()
+      key: z.enum([
+        "linkedin",
+        "twitter",
+        "instagram",
+        "facebook",
+        "research_gate"
+      ]),
+      value: z.string().url()
     })
     .optional(),
-  department: z.enum(["dept_a", "dept_b"], {
+  department: z.enum(["dept_a", "dept_b", "dept_c", "dept_d"], {
     message: "Department is required"
   })
 });

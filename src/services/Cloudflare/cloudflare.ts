@@ -32,12 +32,11 @@ export const generatePresignedUrl = async (
   const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 }); // 1 hour expiry
   return {
     signedUrl,
-    key,
     publicUrl: getPublicUrl(key)
   };
 };
 
 export const getPublicUrl = (key: string) => {
   //   return `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
-  return `https://pub-b92d90920cc74e50b3cfe34b7361b237.r2.dev/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
+  return `https://${process.env.PUBLIC_URL}/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
 };

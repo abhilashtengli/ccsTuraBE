@@ -4819,7 +4819,7 @@ export namespace Prisma {
     cvUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    depatment: $Enums.Departments | null
+    department: $Enums.Departments | null
   }
 
   export type FacultyMemberMaxAggregateOutputType = {
@@ -4835,7 +4835,7 @@ export namespace Prisma {
     cvUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    depatment: $Enums.Departments | null
+    department: $Enums.Departments | null
   }
 
   export type FacultyMemberCountAggregateOutputType = {
@@ -4852,7 +4852,7 @@ export namespace Prisma {
     socialLinks: number
     createdAt: number
     updatedAt: number
-    depatment: number
+    department: number
     _all: number
   }
 
@@ -4870,7 +4870,7 @@ export namespace Prisma {
     cvUrl?: true
     createdAt?: true
     updatedAt?: true
-    depatment?: true
+    department?: true
   }
 
   export type FacultyMemberMaxAggregateInputType = {
@@ -4886,7 +4886,7 @@ export namespace Prisma {
     cvUrl?: true
     createdAt?: true
     updatedAt?: true
-    depatment?: true
+    department?: true
   }
 
   export type FacultyMemberCountAggregateInputType = {
@@ -4903,7 +4903,7 @@ export namespace Prisma {
     socialLinks?: true
     createdAt?: true
     updatedAt?: true
-    depatment?: true
+    department?: true
     _all?: true
   }
 
@@ -4982,7 +4982,7 @@ export namespace Prisma {
   export type FacultyMemberGroupByOutputType = {
     id: string
     firstName: string
-    lastName: string
+    lastName: string | null
     email: string
     contactNumber: string | null
     profileImageUrl: string | null
@@ -4993,7 +4993,7 @@ export namespace Prisma {
     socialLinks: JsonValue | null
     createdAt: Date
     updatedAt: Date
-    depatment: $Enums.Departments
+    department: $Enums.Departments
     _count: FacultyMemberCountAggregateOutputType | null
     _min: FacultyMemberMinAggregateOutputType | null
     _max: FacultyMemberMaxAggregateOutputType | null
@@ -5027,7 +5027,7 @@ export namespace Prisma {
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    depatment?: boolean
+    department?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
   export type FacultyMemberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5044,7 +5044,7 @@ export namespace Prisma {
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    depatment?: boolean
+    department?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
   export type FacultyMemberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5061,7 +5061,7 @@ export namespace Prisma {
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    depatment?: boolean
+    department?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
   export type FacultyMemberSelectScalar = {
@@ -5078,10 +5078,10 @@ export namespace Prisma {
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    depatment?: boolean
+    department?: boolean
   }
 
-  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "designation" | "isHod" | "facultyType" | "cvUrl" | "socialLinks" | "createdAt" | "updatedAt" | "depatment", ExtArgs["result"]["facultyMember"]>
+  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "designation" | "isHod" | "facultyType" | "cvUrl" | "socialLinks" | "createdAt" | "updatedAt" | "department", ExtArgs["result"]["facultyMember"]>
 
   export type $FacultyMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FacultyMember"
@@ -5089,7 +5089,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       firstName: string
-      lastName: string
+      lastName: string | null
       email: string
       contactNumber: string | null
       profileImageUrl: string | null
@@ -5100,7 +5100,7 @@ export namespace Prisma {
       socialLinks: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
-      depatment: $Enums.Departments
+      department: $Enums.Departments
     }, ExtArgs["result"]["facultyMember"]>
     composites: {}
   }
@@ -5537,7 +5537,7 @@ export namespace Prisma {
     readonly socialLinks: FieldRef<"FacultyMember", 'Json'>
     readonly createdAt: FieldRef<"FacultyMember", 'DateTime'>
     readonly updatedAt: FieldRef<"FacultyMember", 'DateTime'>
-    readonly depatment: FieldRef<"FacultyMember", 'Departments'>
+    readonly department: FieldRef<"FacultyMember", 'Departments'>
   }
     
 
@@ -12161,7 +12161,7 @@ export namespace Prisma {
     socialLinks: 'socialLinks',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    depatment: 'depatment'
+    department: 'department'
   };
 
   export type FacultyMemberScalarFieldEnum = (typeof FacultyMemberScalarFieldEnum)[keyof typeof FacultyMemberScalarFieldEnum]
@@ -12605,7 +12605,7 @@ export namespace Prisma {
     NOT?: FacultyMemberWhereInput | FacultyMemberWhereInput[]
     id?: StringFilter<"FacultyMember"> | string
     firstName?: StringFilter<"FacultyMember"> | string
-    lastName?: StringFilter<"FacultyMember"> | string
+    lastName?: StringNullableFilter<"FacultyMember"> | string | null
     email?: StringFilter<"FacultyMember"> | string
     contactNumber?: StringNullableFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableFilter<"FacultyMember"> | string | null
@@ -12616,13 +12616,13 @@ export namespace Prisma {
     socialLinks?: JsonNullableFilter<"FacultyMember">
     createdAt?: DateTimeFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeFilter<"FacultyMember"> | Date | string
-    depatment?: EnumDepartmentsFilter<"FacultyMember"> | $Enums.Departments
+    department?: EnumDepartmentsFilter<"FacultyMember"> | $Enums.Departments
   }
 
   export type FacultyMemberOrderByWithRelationInput = {
     id?: SortOrder
     firstName?: SortOrder
-    lastName?: SortOrder
+    lastName?: SortOrderInput | SortOrder
     email?: SortOrder
     contactNumber?: SortOrderInput | SortOrder
     profileImageUrl?: SortOrderInput | SortOrder
@@ -12633,7 +12633,7 @@ export namespace Prisma {
     socialLinks?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    depatment?: SortOrder
+    department?: SortOrder
   }
 
   export type FacultyMemberWhereUniqueInput = Prisma.AtLeast<{
@@ -12642,7 +12642,7 @@ export namespace Prisma {
     OR?: FacultyMemberWhereInput[]
     NOT?: FacultyMemberWhereInput | FacultyMemberWhereInput[]
     firstName?: StringFilter<"FacultyMember"> | string
-    lastName?: StringFilter<"FacultyMember"> | string
+    lastName?: StringNullableFilter<"FacultyMember"> | string | null
     email?: StringFilter<"FacultyMember"> | string
     contactNumber?: StringNullableFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableFilter<"FacultyMember"> | string | null
@@ -12653,13 +12653,13 @@ export namespace Prisma {
     socialLinks?: JsonNullableFilter<"FacultyMember">
     createdAt?: DateTimeFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeFilter<"FacultyMember"> | Date | string
-    depatment?: EnumDepartmentsFilter<"FacultyMember"> | $Enums.Departments
+    department?: EnumDepartmentsFilter<"FacultyMember"> | $Enums.Departments
   }, "id">
 
   export type FacultyMemberOrderByWithAggregationInput = {
     id?: SortOrder
     firstName?: SortOrder
-    lastName?: SortOrder
+    lastName?: SortOrderInput | SortOrder
     email?: SortOrder
     contactNumber?: SortOrderInput | SortOrder
     profileImageUrl?: SortOrderInput | SortOrder
@@ -12670,7 +12670,7 @@ export namespace Prisma {
     socialLinks?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    depatment?: SortOrder
+    department?: SortOrder
     _count?: FacultyMemberCountOrderByAggregateInput
     _max?: FacultyMemberMaxOrderByAggregateInput
     _min?: FacultyMemberMinOrderByAggregateInput
@@ -12682,7 +12682,7 @@ export namespace Prisma {
     NOT?: FacultyMemberScalarWhereWithAggregatesInput | FacultyMemberScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"FacultyMember"> | string
     firstName?: StringWithAggregatesFilter<"FacultyMember"> | string
-    lastName?: StringWithAggregatesFilter<"FacultyMember"> | string
+    lastName?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     email?: StringWithAggregatesFilter<"FacultyMember"> | string
     contactNumber?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
@@ -12693,7 +12693,7 @@ export namespace Prisma {
     socialLinks?: JsonNullableWithAggregatesFilter<"FacultyMember">
     createdAt?: DateTimeWithAggregatesFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"FacultyMember"> | Date | string
-    depatment?: EnumDepartmentsWithAggregatesFilter<"FacultyMember"> | $Enums.Departments
+    department?: EnumDepartmentsWithAggregatesFilter<"FacultyMember"> | $Enums.Departments
   }
 
   export type NewsUpdateWhereInput = {
@@ -13299,7 +13299,7 @@ export namespace Prisma {
   export type FacultyMemberCreateInput = {
     id?: string
     firstName: string
-    lastName: string
+    lastName?: string | null
     email: string
     contactNumber?: string | null
     profileImageUrl?: string | null
@@ -13310,13 +13310,13 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    depatment: $Enums.Departments
+    department: $Enums.Departments
   }
 
   export type FacultyMemberUncheckedCreateInput = {
     id?: string
     firstName: string
-    lastName: string
+    lastName?: string | null
     email: string
     contactNumber?: string | null
     profileImageUrl?: string | null
@@ -13327,13 +13327,13 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    depatment: $Enums.Departments
+    department: $Enums.Departments
   }
 
   export type FacultyMemberUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13344,13 +13344,13 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depatment?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
+    department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
   }
 
   export type FacultyMemberUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13361,13 +13361,13 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depatment?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
+    department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
   }
 
   export type FacultyMemberCreateManyInput = {
     id?: string
     firstName: string
-    lastName: string
+    lastName?: string | null
     email: string
     contactNumber?: string | null
     profileImageUrl?: string | null
@@ -13378,13 +13378,13 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    depatment: $Enums.Departments
+    department: $Enums.Departments
   }
 
   export type FacultyMemberUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13395,13 +13395,13 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depatment?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
+    department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
   }
 
   export type FacultyMemberUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13412,7 +13412,7 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    depatment?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
+    department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
   }
 
   export type NewsUpdateCreateInput = {
@@ -14117,7 +14117,7 @@ export namespace Prisma {
     socialLinks?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    depatment?: SortOrder
+    department?: SortOrder
   }
 
   export type FacultyMemberMaxOrderByAggregateInput = {
@@ -14133,7 +14133,7 @@ export namespace Prisma {
     cvUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    depatment?: SortOrder
+    department?: SortOrder
   }
 
   export type FacultyMemberMinOrderByAggregateInput = {
@@ -14149,7 +14149,7 @@ export namespace Prisma {
     cvUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    depatment?: SortOrder
+    department?: SortOrder
   }
 
   export type EnumFacultyTypeWithAggregatesFilter<$PrismaModel = never> = {

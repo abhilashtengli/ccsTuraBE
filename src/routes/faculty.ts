@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import authRouter from "./auth";
 import { facultyValidation } from "../utils/validation";
 import { generatePresignedUrl } from "../services/Cloudflare/cloudflare";
+import { prisma } from "../lib/prisma";
 const facultyRouter = express.Router();
 
 facultyRouter.post(
@@ -39,7 +40,39 @@ facultyRouter.post(
         socialLinks,
         department
       } = result.data;
-    } catch (err) {}
+
+      const formattedSocialLinks =
+        socialLinks && Object.keys(socialLinks).length > 0
+          ? socialLinks // Only include socialLinks if it's not empty
+          : undefined;
+
+      const faculty = await prisma.facultyMember.create({
+        data: {
+          firstName: firstName,
+          lastName: lastName !== "" ? lastName : undefined,
+          email: email,
+          contactNumber: contactNumber !== "" ? contactNumber : undefined,
+          profileImageUrl: profileImageUrl !== "" ? profileImageUrl : undefined,
+          designation: designation,
+          isHod: isHod,
+          facultyType: facultyType,
+          cvUrl: cvUrl !== "" ? cvUrl : undefined,
+          socialLinks: formattedSocialLinks,
+          department
+        }
+      });
+
+      res.status(201).send({
+        message: "success",
+        data: faculty
+      });
+      return;
+    } catch (err) {
+      res
+        .status(500)
+        .json({ message: "Something went wrong please try again later" });
+      return;
+    }
   }
 );
 
@@ -49,15 +82,64 @@ facultyRouter.post(
   async (req: Request, res: Response) => {
     const { fileName, contentType } = req.body;
     console.log("BODY : ", req.body);
-    const { signedUrl, key, publicUrl } = await generatePresignedUrl(
+    const { signedUrl, publicUrl } = await generatePresignedUrl(
       fileName,
       contentType
     );
     console.log("RESPONSE sUrl : ", signedUrl);
-    console.log("RESPONSE key : ", key);
     console.log("RESPONSE pUrl : ", publicUrl);
-    res.json({ signedUrl, key, publicUrl });
+    res.json({ signedUrl, publicUrl });
     return;
+  }
+);
+
+facultyRouter.get("/getAll", async (req: Request, res: Response) => {
+  try {
+    const facultyData = await prisma.facultyMember.findMany();
+    res.status(200).json({
+      message: "success",
+      data: facultyData
+    });
+    return;
+  } catch (err) {
+    res.status(500).json({
+      message: "Could not fetch the Faculty data, please try again later"
+    });
+    return;
+  }
+});
+
+facultyRouter.delete(
+  "/delete-faculty/:id",
+  authRouter,
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+      if (!id) {
+        res.status(400).json({ message: "Faculty Id is required" });
+        return;
+      }
+
+      const faculty = await prisma.facultyMember.delete({
+        where: { id: id }
+      });
+
+      res.status(200).json({
+        message: "Faculty member deleted successfully"
+      });
+      return;
+    } catch (err: any) {
+      if (err.code === "P2025") {
+        // This is a Prisma error code for record not found
+        res.status(404).json({ message: "Faculty member not found" });
+        return;
+      }
+      res.status(500).json({
+        message: "Something went wrong, Please try again later!"
+      });
+      return;
+    }
   }
 );
 

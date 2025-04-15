@@ -160,7 +160,7 @@ exports.Prisma.FacultyMemberScalarFieldEnum = {
   socialLinks: 'socialLinks',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  depatment: 'depatment'
+  department: 'department'
 };
 
 exports.Prisma.NewsUpdateScalarFieldEnum = {
