@@ -87,11 +87,23 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
 
     const user = await await prisma.user.findUnique({
       where: { email },
-      select: { name: true, email: true, password: true, id: true }
+      select: {
+        name: true,
+        email: true,
+        password: true,
+        id: true,
+        isVerified: true
+      }
     });
     if (!user) {
       res.status(401).json({
         message: "Invalid Credentials"
+      });
+      return;
+    }
+    if (!user.isVerified) {
+      res.json({
+        message: "Please verify your email address before Sign In"
       });
       return;
     }
@@ -170,6 +182,12 @@ authRouter.post("/verify-email", async (req: Request, res: Response) => {
       });
       return;
     }
+    if (user.verificationCode !== code) {
+      res.status(400).json({
+        message: "Invalid verification code"
+      });
+      return;
+    }
     await prisma.user.update({
       where: { email },
       data: {
@@ -184,6 +202,140 @@ authRouter.post("/verify-email", async (req: Request, res: Response) => {
     console.log("Verification err : ", err);
     res.status(500).json({
       message: "Email Verification Failed due to internal server error",
+      success: false
+    });
+  }
+});
+
+authRouter.post("/forgot-password", async (req: Request, res: Response) => {
+  const { email } = req.body;
+  try {
+    if (!validator.isEmail(email)) {
+      res.status(401).json({ message: "Invalid email address" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { isVerified: true, name: true }
+    });
+    if (!user) {
+      res.status(401).json({
+        message: "Invalid Credentials"
+      });
+      return;
+    }
+    if (!user.isVerified) {
+      res.json({
+        message:
+          "Please verify your email address before resetting your password"
+      });
+      return;
+    }
+    const verificationCode = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
+
+    await prisma.user.update({
+      where: { email },
+      data: {
+        verificationCode: verificationCode,
+        verificationExpires: new Date(Date.now() + 10 * 60 * 1000)
+      }
+    });
+
+    const emailResult = await SendVerification(
+      email,
+      user.name,
+      verificationCode
+    );
+
+    if (!emailResult.success) {
+      res.status(500).json({
+        message: "Failed to send forgot password code",
+        error: emailResult.message
+      });
+    }
+
+    res.status(200).json({
+      message: "A verification code has been sent to your email",
+      success: true
+    });
+    return;
+  } catch (err) {
+    res.status(500).json({
+      message: "Internal server error, please try again later",
+      success: false
+    });
+  }
+});
+
+authRouter.post("/verify-code", async (req: Request, res: Response) => {
+  const { email, code, newPassword } = req.body;
+
+  try {
+    if (!email || !code || !newPassword) {
+      res
+        .status(400)
+        .json({ message: "All fields are required", success: false });
+      return;
+    }
+
+    if (!validator.isEmail(email)) {
+      res.status(401).json({ message: "Invalid Credentials" });
+      return;
+    }
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { verificationCode: true, verificationExpires: true }
+    });
+
+    if (!user) {
+      res.status(404).json({
+        message: "User not found"
+      });
+      return;
+    }
+    if (user.verificationCode !== code) {
+      res.status(400).json({
+        message: "Invalid verification code"
+      });
+      return;
+    }
+    if (
+      !user.verificationCode ||
+      !user.verificationExpires ||
+      user.verificationExpires < new Date()
+    ) {
+      res.status(400).json({
+        message: "Invalid or expired verification code"
+      });
+      return;
+    }
+    if (!validator.isStrongPassword(newPassword)) {
+      res.json({
+        message: "Enter a strong password",
+        success: false
+      });
+      return;
+    }
+    const passwordHash = await bcrypt.hash(newPassword, 10);
+    await prisma.user.update({
+      where: { email },
+      data: {
+        password: passwordHash,
+        verificationCode: null,
+        verificationExpires: null
+      }
+    });
+    res.status(200).json({
+      success: true,
+      message: "password updated successfully"
+    });
+    return;
+  } catch (err) {
+    res.status(500).json({
+      message: "Internal server error, please try again later",
       success: false
     });
   }
