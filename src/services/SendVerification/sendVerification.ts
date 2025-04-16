@@ -4,14 +4,21 @@ import { resend } from "../../lib/resend";
 export const SendVerification = async (
   email: string,
   name: string,
-  verifyCode: string
+  verifyCode: string,
+  serviceFor: string
 ) => {
   try {
     const response = await resend.emails.send({
-      from: "CCSTura <onboarding@resend.dev>",
+      from:
+        serviceFor === "emailService"
+          ? "CCSTura <onboarding@resend.dev>"
+          : "CCSTura : Reset your password <onboarding@resend.dev>",
       to: [email],
-      subject: "CCSTura: Verify your email address",
-      react: VerificationEmail({ name, code: verifyCode })
+      subject:
+        serviceFor === "emailService"
+          ? "CCSTura: Verify your email address"
+          : "CCSTura: Your Password Reset Code",
+      react: VerificationEmail({ name, code: verifyCode, serviceFor })
     });
 
     // Optional: Log/send response for monitoring
@@ -22,7 +29,10 @@ export const SendVerification = async (
     return {
       success: true,
       status: 200,
-      message: "Verification email sent successfully"
+      message:
+        serviceFor === "emailService"
+          ? "Verification email sent successfully"
+          : "Verfication code sent to you"
     };
   } catch (error: any) {
     // Log detailed error for internal monitoring

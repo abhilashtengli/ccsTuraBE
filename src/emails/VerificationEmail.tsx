@@ -2,10 +2,12 @@ import * as React from "react";
 
 export const VerificationEmail = ({
   name,
-  code
+  code,
+  serviceFor
 }: {
   name: string;
   code: string;
+  serviceFor: string;
 }) => (
   <div
     style={{
@@ -26,13 +28,17 @@ export const VerificationEmail = ({
       }}
     >
       <h2 style={{ color: "#2c3e50", marginBottom: "10px" }}>
-        Verify your email address
+        {serviceFor === "emailService"
+          ? "Verify your email address"
+          : "Reset your password"}
       </h2>
       <p style={{ fontSize: "16px", margin: "10px 0" }}>
         Hello <strong>{name}</strong>,
       </p>
       <p style={{ fontSize: "16px", margin: "10px 0" }}>
-        Use the following verification code to complete your sign up:
+        {serviceFor === "emailService"
+          ? "Use the following verification code to complete your sign up:"
+          : "Use the following verification code to reset your password:"}
       </p>
       <div
         style={{

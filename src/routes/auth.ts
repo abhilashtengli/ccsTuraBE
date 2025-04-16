@@ -47,7 +47,13 @@ authRouter.post("/signup", async (req: Request, res: Response) => {
         createdAt: true
       }
     });
-    const emailResult = await SendVerification(email, name, verificationCode);
+    const serviceFor = "emailService";
+    const emailResult = await SendVerification(
+      email,
+      name,
+      verificationCode,
+      serviceFor
+    );
 
     if (!emailResult.success) {
       res.status(500).json({
@@ -243,11 +249,12 @@ authRouter.post("/forgot-password", async (req: Request, res: Response) => {
         verificationExpires: new Date(Date.now() + 10 * 60 * 1000)
       }
     });
-
+    const serviceFor = "passwordService";
     const emailResult = await SendVerification(
       email,
       user.name,
-      verificationCode
+      verificationCode,
+      serviceFor
     );
 
     if (!emailResult.success) {
