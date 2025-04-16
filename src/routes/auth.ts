@@ -153,7 +153,7 @@ authRouter.post("/verify-email", async (req: Request, res: Response) => {
         message: "User not found"
       });
       return;
-    } 
+    }
     if (user.isVerified) {
       res.status(200).json({
         message: "Email is already verified"
