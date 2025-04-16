@@ -44,7 +44,7 @@ export const generatePresignedUrl = async (
 
 export const getPublicUrl = (key: string) => {
   //   return `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
-  return `https://${process.env.PUBLIC_URL}/${process.env.CLOUDFLARE_BUCKET_NAME}/${key}`;
+  return `https://${process.env.PUBLIC_URL}/${key}`;
 };
 
 export const deleteContent = async (key: string) => {
@@ -63,7 +63,8 @@ export const deleteContent = async (key: string) => {
       }
       return {
         success: false,
-        error: "Failed to delete content from storage"
+        error: "Failed to delete content from storage",
+        err
       };
     }
     return {

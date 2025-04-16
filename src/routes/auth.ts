@@ -348,3 +348,22 @@ authRouter.post("/verify-code", async (req: Request, res: Response) => {
   }
 });
 export default authRouter;
+
+//Testing
+// authRouter.delete("/delete-image", async (req: Request, res: Response) => {
+//   const { key } = req.body;
+
+//   const deletionResult = await deleteContent(key);
+
+//   if (!deletionResult.success) {
+//     res.status(500).json({
+//       message: "Something went wrong",
+//       error: deletionResult.error
+//     });
+//   }
+
+//   res.status(200).json({
+//     message: "Delete successfull",
+//     success: deletionResult.success
+//   });
+// });
