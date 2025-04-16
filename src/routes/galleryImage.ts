@@ -88,7 +88,7 @@ imageRouter.delete(
       }
       const image = await prisma.galleryImage.findUnique({
         where: { id: id },
-        select: { imageKey: true, imageUrl: true }
+        select: { imageKey: true, imageUrl: true, category: true }
       });
       if (!image) {
         res.status(404).json({

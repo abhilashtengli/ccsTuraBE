@@ -26,8 +26,10 @@ export const facultyValidation = z.object({
     .string()
     .min(10, { message: "Contact number must be 10 digits" })
     .max(10, { message: "Contact number must be 10 digits" }),
-  profileImageUrl: z.string({ message: "Profile image is required" }),
-  imageKey: z.string(),
+  profileImageUrl: z
+    .string({ message: "Profile image is required" })
+    .optional(),
+  imageKey: z.string().optional(),
   designation: z.string({ message: "Designation is required" }),
   isHod: z.boolean(),
   facultyType: z.enum(["Teaching", "Non_Teaching"], {
@@ -55,8 +57,8 @@ export const facultyValidation = z.object({
 export const noticeValidation = z.object({
   category: z.string(),
   title: z.string(),
-  pdfUrl: z.string(),
-  pdfKey: z.string(),
+  pdfUrl: z.string().optional(),
+  pdfKey: z.string().optional(),
   isActive: z.boolean()
 });
 
@@ -92,8 +94,8 @@ export const tenderValidation = z.object({
     .string()
     .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
   category: z.string().optional(),
-  pdfUrl: z.string(),
-  pdfKey: z.string(),
+  pdfUrl: z.string().optional(),
+  pdfKey: z.string().optional(),
   status: z.enum(["Open", "Closed"])
 });
 

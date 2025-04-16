@@ -93,23 +93,6 @@ facultyRouter.post(
   }
 );
 
-facultyRouter.post(
-  "/getSigned-url",
-  //   authRouter,
-  async (req: Request, res: Response) => {
-    const { fileName, contentType } = req.body;
-    console.log("BODY : ", req.body);
-    const { signedUrl, key, publicUrl } = await generatePresignedUrl(
-      fileName,
-      contentType
-    );
-    console.log("RESPONSE sUrl : ", signedUrl);
-    console.log("RESPONSE pUrl : ", publicUrl);
-    res.json({ signedUrl, publicUrl, key });
-    return;
-  }
-);
-
 facultyRouter.get("/getAll", async (req: Request, res: Response) => {
   try {
     const facultyData = await prisma.facultyMember.findMany();
@@ -146,7 +129,7 @@ facultyRouter.delete(
 
       const faKeys = await prisma.facultyMember.findUnique({
         where: { id: id },
-        select: { imageKey: true, pdfKey: true }
+        select: { imageKey: true, pdfKey: true, id: true, firstName: true }
       });
 
       if (!faKeys) {
@@ -199,6 +182,6 @@ const attemptDelete = async (key: string | null, label: string) => {
       );
     }
   } else {
-    console.info(`No ${label} key provided; skipping deletion.`);
+    console.info(`No ${label} key provided`);
   }
 };

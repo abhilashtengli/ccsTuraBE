@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import { videoValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
+import { deleteContent } from "../services/Cloudflare/cloudflare";
 const videoRouter = express.Router();
 
 videoRouter.post(
@@ -85,6 +86,23 @@ videoRouter.delete(
       if (!id) {
         res.status(400).json({ message: "Video Id is required" });
         return;
+      }
+      const video = await prisma.galleryVideo.findUnique({
+        where: { id: id },
+        select: { youtubeKey: true, youtubeUrl: true, category: true }
+      });
+      if (!video) {
+        res.status(404).json({
+          message: "Video not found"
+        });
+        return;
+      }
+      const deletionResult = await deleteContent(video.youtubeKey);
+      if (!deletionResult?.success) {
+        console.warn(
+          `Video deletion failed for ${video.youtubeKey}:`,
+          deletionResult.error
+        );
       }
       await prisma.galleryVideo.delete({
         where: { id: id }

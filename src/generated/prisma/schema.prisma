@@ -53,23 +53,12 @@ model User {
   @@map("user")
 }
 
-// model Department {
-//   id          String          @id @default(uuid())
-//   name        String          @db.VarChar(100)
-//   description String?
-//   createdAt   DateTime        @default(now()) @map("created_at")
-//   updatedAt   DateTime        @default(now()) @updatedAt @map("updated_at")
-//   faculty     FacultyMember[]
-
-//   @@map("department")
-// }
-
 model Notice {
   id        String   @id @default(uuid())
   category  String   @db.VarChar(100)
   title     String   @db.VarChar(255)
-  pdfUrl    String   @map("pdf_url") @db.VarChar(512)
-  pdfKey    String   @map("pdf_key")
+  pdfUrl    String?  @map("pdf_url") @db.VarChar(512)
+  pdfKey    String?  @map("pdf_key")
   isActive  Boolean  @default(true) @map("is_active")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
@@ -77,17 +66,17 @@ model Notice {
   @@map("notices")
 }
 
-model Bulletin {
-  id        String   @id @default(uuid())
-  title     String   @db.VarChar(255)
-  content   String?
-  pdfUrl    String?  @map("pdf_url") @db.VarChar(512)
-  isActive  Boolean  @default(true) @map("is_active")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+// model Bulletin {
+//   id        String   @id @default(uuid())
+//   title     String   @db.VarChar(255)
+//   content   String?
+//   pdfUrl    String?  @map("pdf_url") @db.VarChar(512)
+//   isActive  Boolean  @default(true) @map("is_active")
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
-  @@map("bulletin")
-}
+//   @@map("bulletin")
+// }
 
 model FacultyMember {
   id              String      @id @default(uuid())
@@ -145,7 +134,7 @@ model Tender {
   publishedDate DateTime   @map("published_date")
   closingDate   DateTime   @map("closing_date")
   category      String?    @db.VarChar(100)
-  pdfUrl        String     @map("pdf_url") @db.VarChar(512)
+  pdfUrl        String?    @map("pdf_url") @db.VarChar(512)
   pdfKey        String?    @map("pdf_key")
   status        StatusType
   createdAt     DateTime   @default(now()) @map("created_at")
@@ -160,7 +149,7 @@ model StaffForm {
   formType    String   @map("form_type") @db.VarChar(50)
   updatedDate DateTime @map("updated_date")
   pdfUrl      String   @map("pdf_url") @db.VarChar(512)
-  pdfKey      String?  @map("pdf_key")
+  pdfKey      String   @map("pdf_key")
   isActive    Boolean  @default(true) @map("is_active")
   createdAt   DateTime @default(now()) @map("created_at")
 

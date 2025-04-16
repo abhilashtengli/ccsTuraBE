@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import { tenderValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
+import { deleteContent } from "../services/Cloudflare/cloudflare";
 const tenderRouter = express.Router();
 
 tenderRouter.post(
@@ -94,6 +95,26 @@ tenderRouter.delete(
       if (!id) {
         res.status(400).json({ message: "Tender Id is required" });
         return;
+      }
+      const tender = await prisma.tender.findUnique({
+        where: { id: id },
+        select: { pdfKey: true, id: true, title: true, category: true }
+      });
+      if (!tender) {
+        res.status(404).json({
+          message: "Tender not found"
+        });
+        return;
+      }
+
+      if (tender.pdfKey !== null) {
+        const deletionResult = await deleteContent(tender.pdfKey);
+        if (!deletionResult?.success) {
+          console.warn(
+            `Tender deletion failed for ${tender.pdfKey}:`,
+            deletionResult.error
+          );
+        }
       }
       await prisma.tender.delete({
         where: { id: id }

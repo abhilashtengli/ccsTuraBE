@@ -140,16 +140,6 @@ exports.Prisma.NoticeScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.BulletinScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  content: 'content',
-  pdfUrl: 'pdfUrl',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.FacultyMemberScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -287,7 +277,6 @@ exports.GalleryCategory = exports.$Enums.GalleryCategory = {
 exports.Prisma.ModelName = {
   User: 'User',
   Notice: 'Notice',
-  Bulletin: 'Bulletin',
   FacultyMember: 'FacultyMember',
   NewsUpdate: 'NewsUpdate',
   Advertisement: 'Advertisement',

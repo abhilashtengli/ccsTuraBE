@@ -34,7 +34,7 @@ export const generatePresignedUrl = async (
     ContentType: contentType
   });
 
-  const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 }); // 1 hour expiry
+  const signedUrl = await getSignedUrl(s3, command, { expiresIn: 600 }); // 1 hour expiry
   return {
     signedUrl,
     key,
@@ -66,9 +66,9 @@ export const deleteContent = async (key: string) => {
         error: "Failed to delete content from storage"
       };
     }
-    return { 
-      success: false, 
-      error: 'Unexpected error during deletion' 
+    return {
+      success: false,
+      error: "Unexpected error during deletion"
     };
   }
 };

@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import { staffFormValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
+import { deleteContent } from "../services/Cloudflare/cloudflare";
 const staffFormRouter = express.Router();
 
 staffFormRouter.post(
@@ -84,6 +85,26 @@ staffFormRouter.delete(
       if (!id) {
         res.status(400).json({ message: "Staff form Id is required" });
         return;
+      }
+      const staffForm = await prisma.staffForm.findUnique({
+        where: { id: id },
+        select: { pdfKey: true, id: true, title: true, formType: true }
+      });
+      if (!staffForm) {
+        res.status(404).json({
+          message: "Staff form not found"
+        });
+        return;
+      }
+
+      if (staffForm.pdfKey !== null) {
+        const deletionResult = await deleteContent(staffForm.pdfKey);
+        if (!deletionResult?.success) {
+          console.warn(
+            `Staff form deletion failed for ${staffForm.pdfKey}:`,
+            deletionResult.error
+          );
+        }
       }
       await prisma.staffForm.delete({
         where: { id: id }

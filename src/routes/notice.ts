@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import { noticeValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
+import { deleteContent } from "../services/Cloudflare/cloudflare";
 const noticeRouter = express.Router();
 
 noticeRouter.post(
@@ -80,6 +81,26 @@ noticeRouter.delete(
         res.status(404).json({
           message: "Notice Id is required"
         });
+      }
+
+      const notice = await prisma.notice.findUnique({
+        where: { id: id },
+        select: { pdfKey: true, pdfUrl: true, title: true, category: true }
+      });
+      if (!notice) {
+        res.status(404).json({
+          message: "Notice not found"
+        });
+        return;
+      }
+      if (notice.pdfKey !== null) {
+        const deletionResult = await deleteContent(notice.pdfKey);
+        if (!deletionResult?.success) {
+          console.warn(
+            `Notice deletion failed for ${notice.pdfKey}:`,
+            deletionResult.error
+          );
+        }
       }
 
       await prisma.notice.delete({

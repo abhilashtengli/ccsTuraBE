@@ -96,9 +96,9 @@ advertismentRouter.delete(
       }
       const ad = await prisma.advertisement.findUnique({
         where: { id: id },
-        select: { pdfKey: true }
+        select: { pdfKey: true, id: true, title: true }
       });
-      if (!ad || ad.pdfKey) {
+      if (!ad) {
         res.status(404).json({
           message: "Advertisment not found"
         });
@@ -113,9 +113,6 @@ advertismentRouter.delete(
             deletionResult.error
           );
         }
-      } else {
-        // Handle the null case appropriately
-        console.warn("No PDF key provided; skipping deletion.");
       }
 
       await prisma.advertisement.delete({

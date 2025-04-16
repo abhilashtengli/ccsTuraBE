@@ -4,6 +4,7 @@ import authRouter from "./routes/auth";
 import { prisma } from "./lib/prisma";
 import facultyRouter from "./routes/faculty";
 import noticeRouter from "./routes/notice";
+import signedUrlRouter from "./routes/signedUrl";
 dotenv.config();
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use("/", authRouter);
 app.use("/", facultyRouter);
 app.use("/", noticeRouter);
+app.use("/", signedUrlRouter);
 app.listen(process.env.PORT, async () => {
   console.log("Server running on the port : ", process.env.PORT);
 });
