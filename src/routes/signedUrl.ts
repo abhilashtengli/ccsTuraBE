@@ -1,11 +1,12 @@
 import express, { Request, Response } from "express";
 import { generatePresignedUrl } from "../services/Cloudflare/cloudflare";
+import authRouter from "./auth";
 
 const signedUrlRouter = express.Router();
 
 signedUrlRouter.post(
   "/getSigned-url",
-  //   authRouter,
+    authRouter,
   async (req: Request, res: Response) => {
     const { fileName, contentType } = req.body;
     console.log("BODY : ", req.body);
