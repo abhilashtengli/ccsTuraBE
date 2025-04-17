@@ -1,6 +1,10 @@
 import express, { Request, Response } from "express";
 import authRouter from "./auth";
-import { newsValidation, noticeValidation } from "../utils/validation";
+import {
+  newsUpdateValidation,
+  newsValidation,
+  noticeValidation
+} from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 const newsRouter = express.Router();
@@ -41,6 +45,74 @@ newsRouter.post(
         res.status(400).json({
           code: "DATABASE_ERROR",
           message: "Failed to create news article due to database constraints"
+        });
+        return;
+      }
+      res.status(500).json({
+        message: "Something went wrong, please try again later"
+      });
+      return;
+    }
+  }
+);
+
+newsRouter.put(
+  "/update-news/:id",
+  authRouter,
+  async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const result = newsUpdateValidation.safeParse(body);
+
+      if (!result.success) {
+        res.status(400).json({
+          message: "Invalid Input",
+          error: result.error.errors
+        });
+        return;
+      }
+
+      // Check if news exists
+      const existingNews = await prisma.newsUpdate.findUnique({
+        where: { id }
+      });
+
+      if (!existingNews) {
+        res.status(404).json({
+          message: "News article not found"
+        });
+        return;
+      }
+
+      // Update only provided fields (using nullish coalescing ??)
+      const updatedNews = await prisma.newsUpdate.update({
+        where: { id },
+        data: {
+          title: result.data.title ?? existingNews.title,
+          description: result.data.description ?? existingNews.description,
+          publishDate: result.data.publishDate ?? existingNews.publishDate,
+          isActive: result.data.isActive ?? existingNews.isActive
+        }
+      });
+
+      res.status(200).json({
+        message: "success",
+        data: updatedNews
+      });
+      return;
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === "P2025") {
+          res.status(404).json({
+            code: "NOT_FOUND",
+            message: "News article not found"
+          });
+          return;
+        }
+        res.status(400).json({
+          code: "DATABASE_ERROR",
+          message: "Failed to update news due to database constraints"
         });
         return;
       }

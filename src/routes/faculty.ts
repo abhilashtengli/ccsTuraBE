@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import authRouter from "./auth";
-import { facultyValidation } from "../utils/validation";
+import {
+  facultyUpdateValidation,
+  facultyValidation
+} from "../utils/validation";
 import {
   deleteContent,
   generatePresignedUrl
@@ -88,6 +91,99 @@ facultyRouter.post(
       res
         .status(500)
         .json({ message: "Something went wrong please try again later" });
+      return;
+    }
+  }
+);
+
+facultyRouter.put(
+  "/update-faculty/:id",
+  authRouter,
+  async (req: Request, res: Response) => {
+    try {
+      const user = (req as Request & { user?: any }).user;
+      if (!user) {
+        res
+          .status(401)
+          .send({ message: "Please sign in to update faculty members" });
+        return;
+      }
+
+      const { id } = req.params;
+      const body = req.body;
+      const result = facultyUpdateValidation.safeParse(body);
+
+      if (!result.success) {
+        res.status(400).json({
+          message: "Invalid Input",
+          error: result.error.errors
+        });
+        return;
+      }
+
+      // Check if faculty exists
+      const existingFaculty = await prisma.facultyMember.findUnique({
+        where: { id }
+      });
+
+      if (!existingFaculty) {
+        res.status(404).json({ message: "Faculty member not found" });
+        return;
+      }
+
+      // Format socialLinks (only include if not empty)
+      const formattedSocialLinks =
+        result.data.socialLinks &&
+        Object.keys(result.data.socialLinks).length > 0
+          ? (result.data.socialLinks as Prisma.InputJsonValue)
+          : Prisma.JsonNull;
+
+      // Update only provided fields
+      const updatedFaculty = await prisma.facultyMember.update({
+        where: { id },
+        data: {
+          firstName: result.data.firstName ?? existingFaculty.firstName,
+          lastName: result.data.lastName ?? existingFaculty.lastName,
+          email: result.data.email ?? existingFaculty.email,
+          contactNumber: result.data.contactNumber ?? existingFaculty.contactNumber,
+          profileImageUrl: result.data.profileImageUrl ?? existingFaculty.profileImageUrl,
+          designation: result.data.designation ?? existingFaculty.designation,
+          isHod: result.data.isHod ?? existingFaculty.isHod,
+          facultyType: result.data.facultyType ?? existingFaculty.facultyType,
+          cvUrl: result.data.cvUrl ?? existingFaculty.cvUrl,
+          socialLinks: formattedSocialLinks ?? existingFaculty.socialLinks,
+          department: result.data.department ?? existingFaculty.department,
+          imageKey: result.data.imageKey ?? existingFaculty.imageKey,
+          pdfKey: result.data.pdfKey ?? existingFaculty.pdfKey
+        }
+      });
+
+      res.status(200).json({
+        message: "success",
+        data: updatedFaculty
+      });
+      return;
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === "P2002") {
+          res.status(409).json({
+            message: "Faculty member with this email already exists"
+          });
+          return;
+        } else if (err.code === "P2025") {
+          res.status(404).json({
+            message: "Faculty member not found"
+          });
+          return;
+        }
+        res.status(400).json({
+          message: "Failed to update faculty due to database constraints"
+        });
+        return;
+      }
+      res
+        .status(500)
+        .json({ message: "Something went wrong, please try again later" });
       return;
     }
   }

@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import authRouter from "./auth";
-import { advertismentValidation } from "../utils/validation";
+import {
+  advertismentUpdateValidation,
+  advertismentValidation
+} from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
@@ -53,6 +56,77 @@ advertismentRouter.post(
           code: "DATABASE_ERROR",
           message: "Failed to create advertisement due to database constraints"
         });
+        return;
+      }
+      res.status(500).json({
+        message: "Something went wrong, please try again later"
+      });
+      return;
+    }
+  }
+);
+
+advertismentRouter.put(
+  "/update-advertisment/:id",
+  authRouter,
+  async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const result = advertismentUpdateValidation.safeParse(body);
+
+      if (!result.success) {
+        res.status(400).json({
+          message: "Invalid Input",
+          error: result.error.errors
+        });
+        return;
+      }
+
+      // Check if advertisement exists
+      const existingAd = await prisma.advertisement.findUnique({
+        where: { id }
+      });
+
+      if (!existingAd) {
+        res.status(404).json({
+          message: "Advertisement not found"
+        });
+        return;
+      }
+
+      const updatedAdvertisement = await prisma.advertisement.update({
+        where: { id },
+        data: {
+          title: result.data.title ?? existingAd.title,
+          description: result.data.description ?? existingAd.description,
+          department: result.data.department ?? existingAd.department,
+          isActive: result.data.isActive ?? existingAd.isActive,
+          deadlineDate: result.data.deadlineDate ?? existingAd.deadlineDate,
+          pdfUrl: result.data.pdfUrl ?? existingAd.pdfUrl,
+          pdfKey: result.data.pdfKey ?? existingAd.pdfKey
+        }
+      });
+
+      res.status(200).json({
+        message: "success",
+        data: updatedAdvertisement
+      });
+      return;
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === "P2025") {
+          res.status(404).json({
+            code: "NOT_FOUND",
+            message: "Advertisement not found"
+          });
+        } else {
+          res.status(400).json({
+            code: "DATABASE_ERROR",
+            message:
+              "Failed to update advertisement due to database constraints"
+          });
+        }
         return;
       }
       res.status(500).json({

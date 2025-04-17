@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import authRouter from "./auth";
-import { staffFormValidation } from "../utils/validation";
+import {
+  staffFormUpdateValidation,
+  staffFormValidation
+} from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
@@ -44,6 +47,76 @@ staffFormRouter.post(
         res.status(400).json({
           code: "DATABASE_ERROR",
           message: "Failed to create Staff form due to database constraints"
+        });
+        return;
+      }
+      res.status(500).json({
+        message: "Something went wrong, please try again later"
+      });
+      return;
+    }
+  }
+);
+
+staffFormRouter.put(
+  "/update-staff-form/:id",
+  authRouter,
+  async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const result = staffFormUpdateValidation.safeParse(body);
+
+      if (!result.success) {
+        res.status(400).json({
+          message: "Invalid Input",
+          error: result.error.errors
+        });
+        return;
+      }
+
+      // Check if form exists
+      const existingForm = await prisma.staffForm.findUnique({
+        where: { id }
+      });
+
+      if (!existingForm) {
+        res.status(404).json({
+          message: "Staff form not found"
+        });
+        return;
+      }
+
+      // Update only provided fields
+      const updatedForm = await prisma.staffForm.update({
+        where: { id },
+        data: {
+          title: result.data.title ?? existingForm.title,
+          formType: result.data.formType ?? existingForm.formType,
+          updatedDate: result.data.updatedDate ?? existingForm.updatedDate,
+          pdfUrl: result.data.pdfUrl ?? existingForm.pdfUrl,
+          pdfKey: result.data.pdfKey ?? existingForm.pdfKey,
+          isActive: result.data.isActive ?? existingForm.isActive
+        }
+      });
+
+      res.status(200).json({
+        message: "success",
+        data: updatedForm
+      });
+      return;
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === "P2025") {
+          res.status(404).json({
+            code: "NOT_FOUND",
+            message: "Staff form not found"
+          });
+          return;
+        }
+        res.status(400).json({
+          code: "DATABASE_ERROR",
+          message: "Failed to update staff form due to database constraints"
         });
         return;
       }

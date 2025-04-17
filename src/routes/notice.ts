@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import authRouter from "./auth";
-import { noticeValidation } from "../utils/validation";
+import { noticeUpdateValidation, noticeValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
@@ -48,6 +48,77 @@ noticeRouter.post(
         message: "Failed to upload notice",
         error: err instanceof Error ? err.message : "Unknown error"
       });
+    }
+  }
+);
+noticeRouter.put(
+  "/update-notice/:id",
+  authRouter,
+  async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const result = noticeUpdateValidation.safeParse(body);
+
+      if (!result.success) {
+        res.status(400).json({
+          message: "Invalid Inputs",
+          error: result.error.errors
+        });
+        return;
+      }
+
+      // Check if notice exists
+      const existingNotice = await prisma.notice.findUnique({
+        where: { id }
+      });
+
+      if (!existingNotice) {
+        res.status(404).json({
+          message: "Notice not found"
+        });
+        return;
+      }
+
+      // Update only provided fields
+      const updatedNotice = await prisma.notice.update({
+        where: { id },
+        data: {
+          category: result.data.category ?? existingNotice.category,
+          title: result.data.title ?? existingNotice.title,
+          pdfUrl: result.data.pdfUrl ?? existingNotice.pdfUrl,
+          pdfKey: result.data.pdfKey ?? existingNotice.pdfKey,
+          isActive: result.data.isActive ?? existingNotice.isActive
+        }
+      });
+
+      res.status(200).json({
+        message: "success",
+        data: updatedNotice
+      });
+      return;
+
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === "P2025") {
+          res.status(404).json({
+            message: "Notice not found",
+            code: "NOT_FOUND"
+          });
+          return;
+        }
+        res.status(400).json({
+          message: "Database error",
+          code: "DATABASE_ERROR",
+          error: err.message
+        });
+        return;
+      }
+      res.status(500).json({
+        message: "Failed to update notice",
+        error: err instanceof Error ? err.message : "Unknown error"
+      });
+      return;
     }
   }
 );
