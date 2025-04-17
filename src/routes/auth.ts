@@ -5,10 +5,12 @@ import validator from "validator";
 import TokenService from "../services/tonkenService";
 import { SendVerification } from "../services/SendVerification/sendVerification";
 import { prisma } from "../lib/prisma";
+import { userAuth } from "../middleware/auth";
 
 const authRouter = express.Router();
 
-authRouter.post("/signup", async (req: Request, res: Response) => {
+// authorised user only can create a new account
+authRouter.post("/signup", userAuth, async (req: Request, res: Response) => {
   try {
     await signupValidation(req);
     const { name, email, password } = req.body;
@@ -123,7 +125,7 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
     }
     if (isValidPassword) {
       const token = TokenService.generateToken({ id: user.id });
-      console.log("Token : ", token);
+      // console.log("Token : ", token);
       res.cookie("token", token, {
         maxAge: 12 * 60 * 60 * 1000,
         httpOnly: true,

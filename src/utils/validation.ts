@@ -28,15 +28,28 @@ export const facultyValidation = z.object({
     .max(10, { message: "Contact number must be 10 digits" }),
   profileImageUrl: z
     .string({ message: "Profile image is required" })
+    .min(3, { message: "Profile cannot be empty" })
+    .trim()
     .optional(),
-  imageKey: z.string().optional(),
-  designation: z.string({ message: "Designation is required" }),
+  imageKey: z
+    .string()
+    .min(3, { message: "Image key cannot be empty" })
+    .trim()
+    .optional(),
+  designation: z
+    .string({ message: "Designation is required" })
+    .min(2, { message: "Designation cannot be empty" })
+    .trim(),
   isHod: z.boolean(),
   facultyType: z.enum(["Teaching", "Non_Teaching"], {
     message: "Faculty type must be either Teaching or Non_Teaching"
   }),
-  cvUrl: z.string().optional(),
-  pdfKey: z.string().optional(),
+  cvUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+  pdfKey: z
+    .string()
+    .min(3, { message: "Pdf key cannot be empty" })
+    .trim()
+    .optional(),
   socialLinks: z
     .object({
       key: z.enum([
@@ -46,7 +59,7 @@ export const facultyValidation = z.object({
         "facebook",
         "research_gate"
       ]),
-      value: z.string().url()
+      value: z.string().url({ message: "Invalid URL format" })
     })
     .optional(),
   department: z.enum(["dept_a", "dept_b", "dept_c", "dept_d"], {
@@ -55,72 +68,107 @@ export const facultyValidation = z.object({
 });
 
 export const noticeValidation = z.object({
-  category: z.string(),
-  title: z.string(),
-  pdfUrl: z.string().optional(),
-  pdfKey: z.string().optional(),
+  category: z.string().min(2, { message: "Category cannot be empty" }).trim(),
+  title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
+  pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+  pdfKey: z
+    .string()
+    .min(3, { message: "Pdf key cannot be empty" })
+    .trim()
+    .optional(),
   isActive: z.boolean()
 });
 
 export const newsValidation = z.object({
-  title: z.string().max(80),
-  description: z.string(),
+  title: z.string().min(3, { message: "Title cannot be empty" }).trim().max(80),
+  description: z
+    .string()
+    .min(5, { message: "Description cannot be empty" })
+    .trim(),
   publishDate: z
     .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+    .transform((date) => new Date(date)),
   isActive: z.boolean().default(true)
   // publishDate: z.coerce.date(),
 });
 
 export const advertismentValidation = z.object({
-  title: z.string(),
-  description: z.string().optional(),
-  department: z.string(),
+  title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
+  description: z
+    .string()
+    .min(5, { message: "description cannot be empty" })
+    .trim()
+    .optional(), // Ensures non-empty string
+  department: z
+    .string()
+    .min(2, { message: "department cannot be empty" })
+    .trim(),
   deadlineDate: z
     .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+    .transform((date) => new Date(date)),
   isActive: z.boolean().default(true),
-  pdfUrl: z.string().optional(),
-  pdfKey: z.string().optional()
+  pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+  pdfKey: z.string().min(3, { message: "PDF key cannot be empty" }).optional()
 });
 
 export const tenderValidation = z.object({
-  title: z.string(),
-  reference: z.string().optional(),
+  title: z.string().min(2, { message: "Title cannot be empty" }).trim(),
+  reference: z
+    .string()
+    .min(2, { message: "Reference cannot be empty" })
+    .trim()
+    .optional(),
   publishedDate: z
     .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+    .transform((date) => new Date(date)),
   closingDate: z
     .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-  category: z.string().optional(),
-  pdfUrl: z.string().optional(),
-  pdfKey: z.string().optional(),
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+    .transform((date) => new Date(date)),
+  category: z
+    .string()
+    .min(3, { message: "Category cannot be empty" })
+    .trim()
+    .optional(),
+  pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+  pdfKey: z
+    .string()
+    .min(2, { message: "Pdf key cannot be empty" })
+    .trim()
+    .optional(),
   status: z.enum(["Open", "Closed"])
 });
 
 export const staffFormValidation = z.object({
-  title: z.string(),
-  formType: z.string(),
+  title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
+  formType: z.string().min(2, { message: "Title cannot be empty" }).trim(),
   updatedDate: z
     .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-  pdfUrl: z.string(),
-  pdfKey: z.string(),
+    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+    .transform((date) => new Date(date)),
+  pdfUrl: z.string().url({ message: "Invalid URL format" }),
+  pdfKey: z.string().min(3, { message: "Pdf key cannot be empty" }).trim(),
   isActive: z.boolean().default(true)
 });
 
 export const imageValidation = z.object({
-  imageUrl: z.string(),
-  imageKey: z.string(),
+  imageUrl: z.string().url({ message: "Invalid URL format" }),
+  imageKey: z.string().min(3, { message: "Image key cannot be empty" }).trim(),
   category: z.enum(["Campus", "Events", "Students", "Faculty", "Sports"])
 });
 
 export const videoValidation = z.object({
-  youtubeUrl: z.string(),
-  youtubeKey: z.string(),
-  category: z.string(),
-  title: z.string().optional()
+  youtubeUrl: z.string().url({ message: "Invalid URL format" }),
+  youtubeKey: z.string().min(3, { message: "Key cannot be empty" }).trim(),
+  category: z.string().min(3, { message: "Category cannot be empty" }).trim(),
+  title: z
+    .string()
+    .min(3, { message: "Title cannot be empty" })
+    .trim()
+    .optional()
 });
 
 //---------------------------------------------------------------------------------

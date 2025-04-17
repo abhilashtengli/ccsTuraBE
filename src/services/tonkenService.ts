@@ -12,7 +12,7 @@ class TokenService {
       throw new Error("JWT_SECRET is not configured in environment variables");
     }
     const token = jwt.sign(
-      { userId: payload.id, iat: Math.floor(Date.now() / 1000) },
+      { id: payload.id, iat: Math.floor(Date.now() / 1000) },
       secret,
       { expiresIn: this.token_expiry }
     );

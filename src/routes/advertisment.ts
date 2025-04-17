@@ -8,12 +8,21 @@ import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
 import { userAuth } from "../middleware/auth";
 const advertismentRouter = express.Router();
+interface RequestWithUser extends Request {
+  user?: {
+    id: string;
+    email: string;
+    name: string;
+  } | null;
+}
 
 advertismentRouter.post(
   "/add-advertisment",
   userAuth,
   async (req: Request, res: Response) => {
     try {
+      const user = (req as RequestWithUser).user;
+      //   console.log("User in ad : ", user);
       const body = req.body;
       const result = advertismentValidation.safeParse(body);
 
@@ -34,6 +43,8 @@ advertismentRouter.post(
         pdfKey
       } = result.data;
 
+      //   console.log("Result data : ", result.data);
+
       const advertisement = await prisma.advertisement.create({
         data: {
           title: title,
@@ -45,6 +56,7 @@ advertismentRouter.post(
           pdfKey: pdfKey
         }
       });
+      console.log("Ad : ", advertisement);
       res.status(201).json({
         message: "success",
         data: advertisement
@@ -59,7 +71,8 @@ advertismentRouter.post(
         return;
       }
       res.status(500).json({
-        message: "Something went wrong, please try again later"
+        message: "Something went wrong, please try again later : ",
+        err
       });
       return;
     }
