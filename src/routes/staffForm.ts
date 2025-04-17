@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import authRouter from "./auth";
 import {
   staffFormUpdateValidation,
   staffFormValidation
@@ -7,11 +6,12 @@ import {
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
+import { userAuth } from "../middleware/auth";
 const staffFormRouter = express.Router();
 
 staffFormRouter.post(
   "/add-staff-form",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -60,7 +60,7 @@ staffFormRouter.post(
 
 staffFormRouter.put(
   "/update-staff-form/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -128,7 +128,7 @@ staffFormRouter.put(
   }
 );
 
-staffFormRouter.get("/getAll", async (req: Request, res: Response) => {
+staffFormRouter.get("/st/getAll", async (req: Request, res: Response) => {
   try {
     const staffForm = await prisma.staffForm.findMany({
       orderBy: {
@@ -141,6 +141,10 @@ staffFormRouter.get("/getAll", async (req: Request, res: Response) => {
       });
       return;
     }
+    res.status(200).json({
+      success: true,
+      data: staffForm
+    });
   } catch (err) {
     res.status(500).json({
       message: "Could not fetch the Staff forms, please try again later"
@@ -151,7 +155,7 @@ staffFormRouter.get("/getAll", async (req: Request, res: Response) => {
 
 staffFormRouter.delete(
   "/delete-staff-form/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -206,3 +210,5 @@ staffFormRouter.delete(
     }
   }
 );
+
+export default staffFormRouter;

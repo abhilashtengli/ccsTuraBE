@@ -1,14 +1,14 @@
 import express, { Request, Response } from "express";
-import authRouter from "./auth";
 import { tenderUpdateValidation, tenderValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
+import { userAuth } from "../middleware/auth";
 const tenderRouter = express.Router();
 
 tenderRouter.post(
   "/add-tender",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -67,7 +67,7 @@ tenderRouter.post(
 
 tenderRouter.put(
   "/update-tender/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -100,7 +100,8 @@ tenderRouter.put(
         data: {
           title: result.data.title ?? existingTender.title,
           reference: result.data.reference ?? existingTender.reference,
-          publishedDate: result.data.publishedDate ?? existingTender.publishedDate,
+          publishedDate:
+            result.data.publishedDate ?? existingTender.publishedDate,
           closingDate: result.data.closingDate ?? existingTender.closingDate,
           category: result.data.category ?? existingTender.category,
           pdfUrl: result.data.pdfUrl ?? existingTender.pdfUrl,
@@ -114,7 +115,6 @@ tenderRouter.put(
         data: updatedTender
       });
       return;
-
     } catch (err) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         if (err.code === "P2025") {
@@ -138,7 +138,7 @@ tenderRouter.put(
   }
 );
 
-tenderRouter.get("/getAll", async (req: Request, res: Response) => {
+tenderRouter.get("/te/getAll", async (req: Request, res: Response) => {
   try {
     const tender = await prisma.tender.findMany({
       orderBy: {
@@ -151,6 +151,10 @@ tenderRouter.get("/getAll", async (req: Request, res: Response) => {
       });
       return;
     }
+    res.status(200).json({
+      success: true,
+      data: tender
+    });
   } catch (err) {
     res.status(500).json({
       message: "Could not fetch the tender, please try again later"
@@ -161,7 +165,7 @@ tenderRouter.get("/getAll", async (req: Request, res: Response) => {
 
 tenderRouter.delete(
   "/delete-tender/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -216,3 +220,5 @@ tenderRouter.delete(
     }
   }
 );
+
+export default tenderRouter;

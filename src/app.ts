@@ -5,6 +5,12 @@ import { prisma } from "./lib/prisma";
 import facultyRouter from "./routes/faculty";
 import noticeRouter from "./routes/notice";
 import signedUrlRouter from "./routes/signedUrl";
+import advertismentRouter from "./routes/advertisment";
+import imageRouter from "./routes/galleryImage";
+import videoRouter from "./routes/galleryVideo";
+import newsRouter from "./routes/newupdate";
+import staffFormRouter from "./routes/staffForm";
+import tenderRouter from "./routes/tender";
 dotenv.config();
 
 const app = express();
@@ -13,6 +19,12 @@ app.use("/", authRouter);
 app.use("/", facultyRouter);
 app.use("/", noticeRouter);
 app.use("/", signedUrlRouter);
+app.use("/", advertismentRouter);
+app.use("/", imageRouter);
+app.use("/", videoRouter);
+app.use("/", newsRouter);
+app.use("/", staffFormRouter);
+app.use("/", tenderRouter);
 app.listen(process.env.PORT, async () => {
   console.log("Server running on the port : ", process.env.PORT);
 });

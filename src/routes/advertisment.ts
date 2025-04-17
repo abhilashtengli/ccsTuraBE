@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import authRouter from "./auth";
 import {
   advertismentUpdateValidation,
   advertismentValidation
@@ -7,11 +6,12 @@ import {
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
+import { userAuth } from "../middleware/auth";
 const advertismentRouter = express.Router();
 
 advertismentRouter.post(
   "/add-advertisment",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -68,7 +68,7 @@ advertismentRouter.post(
 
 advertismentRouter.put(
   "/update-advertisment/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -137,7 +137,7 @@ advertismentRouter.put(
   }
 );
 
-advertismentRouter.get("/getAll", async (req: Request, res: Response) => {
+advertismentRouter.get("/ad/getAll", async (req: Request, res: Response) => {
   try {
     const advertisement = await prisma.advertisement.findMany({
       orderBy: {
@@ -150,6 +150,11 @@ advertismentRouter.get("/getAll", async (req: Request, res: Response) => {
       });
       return;
     }
+    res.status(200).json({
+      success: true,
+      data: advertisement
+    });
+    return;
   } catch (err) {
     res.status(500).json({
       message: "Could not fetch the advertisement, please try again later"
@@ -160,7 +165,7 @@ advertismentRouter.get("/getAll", async (req: Request, res: Response) => {
 
 advertismentRouter.delete(
   "/delete-advertisement/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -211,3 +216,5 @@ advertismentRouter.delete(
     }
   }
 );
+
+export default advertismentRouter;

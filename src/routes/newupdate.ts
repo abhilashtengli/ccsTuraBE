@@ -1,64 +1,56 @@
 import express, { Request, Response } from "express";
-import authRouter from "./auth";
-import {
-  newsUpdateValidation,
-  newsValidation,
-  noticeValidation
-} from "../utils/validation";
+import { newsUpdateValidation, newsValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
+import { userAuth } from "../middleware/auth";
 const newsRouter = express.Router();
 
-newsRouter.post(
-  "/add-news",
-  authRouter,
-  async (req: Request, res: Response) => {
-    try {
-      const body = req.body;
-      const result = newsValidation.safeParse(body);
+newsRouter.post("/add-news", userAuth, async (req: Request, res: Response) => {
+  try {
+    const body = req.body;
+    const result = newsValidation.safeParse(body);
 
-      if (!result.success) {
-        res.json({
-          message: "Invalid Input",
-          error: result.error.errors
-        });
-        return;
-      }
-      const { title, description, publishDate, isActive } = result.data;
-
-      const news = await prisma.newsUpdate.create({
-        data: {
-          title: title,
-          description: description,
-          publishDate: publishDate,
-          isActive: isActive
-        }
-      });
-
-      res.status(201).json({
-        message: "success",
-        data: news
-      });
-      return;
-    } catch (err) {
-      if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        res.status(400).json({
-          code: "DATABASE_ERROR",
-          message: "Failed to create news article due to database constraints"
-        });
-        return;
-      }
-      res.status(500).json({
-        message: "Something went wrong, please try again later"
+    if (!result.success) {
+      res.json({
+        message: "Invalid Input",
+        error: result.error.errors
       });
       return;
     }
+    const { title, description, publishDate, isActive } = result.data;
+
+    const news = await prisma.newsUpdate.create({
+      data: {
+        title: title,
+        description: description,
+        publishDate: publishDate,
+        isActive: isActive
+      }
+    });
+
+    res.status(201).json({
+      message: "success",
+      data: news
+    });
+    return;
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      res.status(400).json({
+        code: "DATABASE_ERROR",
+        message: "Failed to create news article due to database constraints"
+      });
+      return;
+    }
+    res.status(500).json({
+      message: "Something went wrong, please try again later"
+    });
+    return;
   }
-);
+});
 
 newsRouter.put(
   "/update-news/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -124,7 +116,7 @@ newsRouter.put(
   }
 );
 
-newsRouter.get("/getAll", async (req: Request, res: Response) => {
+newsRouter.get("/ne/getAll", async (req: Request, res: Response) => {
   try {
     const news = await prisma.newsUpdate.findMany({
       orderBy: {
@@ -138,7 +130,7 @@ newsRouter.get("/getAll", async (req: Request, res: Response) => {
       return;
     }
     res.status(200).json({
-      message: "success",
+      success: true,
       data: news
     });
   } catch (err) {
@@ -151,7 +143,7 @@ newsRouter.get("/getAll", async (req: Request, res: Response) => {
 
 newsRouter.delete(
   "/delete-news/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -186,3 +178,5 @@ newsRouter.delete(
     }
   }
 );
+
+export default newsRouter;

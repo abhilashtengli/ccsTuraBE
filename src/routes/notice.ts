@@ -1,14 +1,14 @@
 import express, { Request, Response } from "express";
-import authRouter from "./auth";
 import { noticeUpdateValidation, noticeValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
+import { userAuth } from "../middleware/auth";
 const noticeRouter = express.Router();
 
 noticeRouter.post(
   "/add-notice",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -51,9 +51,10 @@ noticeRouter.post(
     }
   }
 );
+
 noticeRouter.put(
   "/update-notice/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -97,7 +98,6 @@ noticeRouter.put(
         data: updatedNotice
       });
       return;
-
     } catch (err) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         if (err.code === "P2025") {
@@ -123,14 +123,14 @@ noticeRouter.put(
   }
 );
 
-noticeRouter.get("/getAll", async (req: Request, res: Response) => {
+noticeRouter.get("/no/getAll", async (req: Request, res: Response) => {
   try {
     const notices = await prisma.notice.findMany();
     if (!notices) {
       throw new Error("Failed to fetch all notice");
     }
     res.status(200).json({
-      message: "success",
+      success: true,
       data: notices
     });
   } catch (err) {
@@ -143,7 +143,7 @@ noticeRouter.get("/getAll", async (req: Request, res: Response) => {
 
 noticeRouter.delete(
   "/delete-notice/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
 

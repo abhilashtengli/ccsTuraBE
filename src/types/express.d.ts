@@ -1,15 +1,13 @@
-import { User } from "generated/prisma"; // Import your Prisma User type
-
-interface UserData {
-  id: string;
-  name: string;
-  email: string;
-}
+import "express";
 
 declare global {
   namespace Express {
     interface Request {
-      user?: UserData | null; // Only include fields you need
+      user?: {
+        id: string;
+        email: string;
+        name: string;
+      } | null;
     }
   }
 }

@@ -1,20 +1,17 @@
 import express, { Request, Response } from "express";
-import authRouter from "./auth";
 import {
   facultyUpdateValidation,
   facultyValidation
 } from "../utils/validation";
-import {
-  deleteContent,
-  generatePresignedUrl
-} from "../services/Cloudflare/cloudflare";
+import { deleteContent } from "../services/Cloudflare/cloudflare";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
+import { userAuth } from "../middleware/auth";
 const facultyRouter = express.Router();
 
 facultyRouter.post(
   "/add-faculty",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const user = (req as Request & { user?: any }).user;
@@ -98,7 +95,7 @@ facultyRouter.post(
 
 facultyRouter.put(
   "/update-faculty/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const user = (req as Request & { user?: any }).user;
@@ -145,8 +142,10 @@ facultyRouter.put(
           firstName: result.data.firstName ?? existingFaculty.firstName,
           lastName: result.data.lastName ?? existingFaculty.lastName,
           email: result.data.email ?? existingFaculty.email,
-          contactNumber: result.data.contactNumber ?? existingFaculty.contactNumber,
-          profileImageUrl: result.data.profileImageUrl ?? existingFaculty.profileImageUrl,
+          contactNumber:
+            result.data.contactNumber ?? existingFaculty.contactNumber,
+          profileImageUrl:
+            result.data.profileImageUrl ?? existingFaculty.profileImageUrl,
           designation: result.data.designation ?? existingFaculty.designation,
           isHod: result.data.isHod ?? existingFaculty.isHod,
           facultyType: result.data.facultyType ?? existingFaculty.facultyType,
@@ -189,7 +188,7 @@ facultyRouter.put(
   }
 );
 
-facultyRouter.get("/getAll", async (req: Request, res: Response) => {
+facultyRouter.get("/fa/getAll", async (req: Request, res: Response) => {
   try {
     const facultyData = await prisma.facultyMember.findMany();
     if (!facultyData) {
@@ -199,7 +198,7 @@ facultyRouter.get("/getAll", async (req: Request, res: Response) => {
       return;
     }
     res.status(200).json({
-      message: "success",
+      success: true,
       data: facultyData
     });
     return;
@@ -213,7 +212,7 @@ facultyRouter.get("/getAll", async (req: Request, res: Response) => {
 
 facultyRouter.delete(
   "/delete-faculty/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
 

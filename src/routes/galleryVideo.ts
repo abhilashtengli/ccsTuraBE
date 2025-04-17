@@ -1,14 +1,14 @@
 import express, { Request, Response } from "express";
-import authRouter from "./auth";
 import { videoUpdateValidation, videoValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
+import { userAuth } from "../middleware/auth";
 const videoRouter = express.Router();
 
 videoRouter.post(
   "/add-video",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -54,7 +54,7 @@ videoRouter.post(
 
 videoRouter.put(
   "/update-video/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -120,7 +120,7 @@ videoRouter.put(
   }
 );
 
-videoRouter.get("/getAll", async (req: Request, res: Response) => {
+videoRouter.get("/vi/getAll", async (req: Request, res: Response) => {
   try {
     const videos = await prisma.galleryVideo.findMany({
       orderBy: {
@@ -134,7 +134,7 @@ videoRouter.get("/getAll", async (req: Request, res: Response) => {
       return;
     }
     res.status(200).json({
-      message: "success",
+      success: true,
       data: videos
     });
   } catch (err) {
@@ -147,7 +147,7 @@ videoRouter.get("/getAll", async (req: Request, res: Response) => {
 
 videoRouter.delete(
   "/delete-video/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -199,3 +199,6 @@ videoRouter.delete(
     }
   }
 );
+
+
+export default videoRouter;

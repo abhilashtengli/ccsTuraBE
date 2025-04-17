@@ -8,9 +8,22 @@ interface JwtPayload {
   id: string;
 }
 
+interface RequestWithUser extends Request {
+  user?: {
+    id: string;
+    email: string;
+    name: string;
+  } | null;
+}
+
 export const userAuth = async (req: Request, res: Response, next: any) => {
   try {
     const cookie = req.cookies;
+    if (!cookie) {
+      res.status(404).json({
+        message: "Please login to make changes"
+      });
+    }
     const { token } = cookie;
 
     if (!token) {
@@ -34,9 +47,10 @@ export const userAuth = async (req: Request, res: Response, next: any) => {
     });
     if (!user) {
       res.status(404).json({ message: "User not Found" });
+      return;
     }
 
-    req.user = user;
+    (req as RequestWithUser).user = user || null;
     next();
   } catch (err) {
     res.status(400).send("ERROR : " + err);

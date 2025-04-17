@@ -1,14 +1,14 @@
 import express, { Request, Response } from "express";
-import authRouter from "./auth";
 import { imageUpdateValidation, imageValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
+import { userAuth } from "../middleware/auth";
 const imageRouter = express.Router();
 
 imageRouter.post(
   "/add-image",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -53,7 +53,7 @@ imageRouter.post(
 
 imageRouter.put(
   "/update-image/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -118,7 +118,7 @@ imageRouter.put(
   }
 );
 
-imageRouter.get("/getAll", async (req: Request, res: Response) => {
+imageRouter.get("/im/getAll", async (req: Request, res: Response) => {
   try {
     const images = await prisma.galleryImage.findMany({
       orderBy: {
@@ -132,7 +132,7 @@ imageRouter.get("/getAll", async (req: Request, res: Response) => {
       return;
     }
     res.status(200).json({
-      message: "success",
+      success: true,
       data: images
     });
   } catch (err) {
@@ -145,7 +145,7 @@ imageRouter.get("/getAll", async (req: Request, res: Response) => {
 
 imageRouter.delete(
   "/delete-image/:id",
-  authRouter,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -202,3 +202,5 @@ imageRouter.delete(
     }
   }
 );
+
+export default imageRouter;
