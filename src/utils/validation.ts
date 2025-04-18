@@ -16,68 +16,82 @@ export const signupValidation = (req: { body: User }) => {
   }
 };
 
-export const facultyValidation = z.object({
-  firstName: z
-    .string()
-    .min(2, { message: "First name must be at least 2 characters" }),
-  lastName: z.string().optional(),
-  email: z.string().email({ message: "Invalid email address" }),
-  contactNumber: z
-    .string()
-    .min(10, { message: "Contact number must be 10 digits" })
-    .max(10, { message: "Contact number must be 10 digits" }),
-  profileImageUrl: z
-    .string({ message: "Profile image is required" })
-    .min(3, { message: "Profile cannot be empty" })
-    .trim()
-    .optional(),
-  imageKey: z
-    .string()
-    .min(3, { message: "Image key cannot be empty" })
-    .trim()
-    .optional(),
-  designation: z
-    .string({ message: "Designation is required" })
-    .min(2, { message: "Designation cannot be empty" })
-    .trim(),
-  isHod: z.boolean(),
-  facultyType: z.enum(["Teaching", "Non_Teaching"], {
-    message: "Faculty type must be either Teaching or Non_Teaching"
-  }),
-  cvUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-  pdfKey: z
-    .string()
-    .min(3, { message: "Pdf key cannot be empty" })
-    .trim()
-    .optional(),
-  socialLinks: z
-    .object({
-      key: z.enum([
-        "linkedin",
-        "twitter",
-        "instagram",
-        "facebook",
-        "research_gate"
-      ]),
-      value: z.string().url({ message: "Invalid URL format" })
+export const facultyValidation = z
+  .object({
+    firstName: z
+      .string()
+      .min(2, { message: "First name must be at least 2 characters" }),
+    lastName: z.string().optional(),
+    email: z.string().email({ message: "Invalid email address" }),
+    contactNumber: z
+      .string()
+      .min(10, { message: "Contact number must be 10 digits" })
+      .max(10, { message: "Contact number must be 10 digits" }),
+    profileImageUrl: z
+      .string({ message: "Profile image is required" })
+      .min(3, { message: "Profile cannot be empty" })
+      .trim()
+      .optional(),
+    imageKey: z
+      .string()
+      .min(3, { message: "Image key cannot be empty" })
+      .trim()
+      .optional(),
+    designation: z
+      .string({ message: "Designation is required" })
+      .min(2, { message: "Designation cannot be empty" })
+      .trim(),
+    isHod: z.boolean(),
+    facultyType: z.enum(["Teaching", "Non_Teaching"], {
+      message: "Faculty type must be either Teaching or Non_Teaching"
+    }),
+    cvUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+    pdfKey: z
+      .string()
+      .min(3, { message: "Pdf key cannot be empty" })
+      .trim()
+      .optional(),
+    socialLinks: z
+      .object({
+        key: z.enum([
+          "linkedin",
+          "twitter",
+          "instagram",
+          "facebook",
+          "research_gate"
+        ]),
+        value: z.string().url({ message: "Invalid URL format" })
+      })
+      .optional(),
+    department: z.enum(["dept_a", "dept_b", "dept_c", "dept_d"], {
+      message: "Invalid department"
     })
-    .optional(),
-  department: z.enum(["dept_a", "dept_b", "dept_c", "dept_d"], {
-    message: "Department is required"
   })
-});
+  .refine((data) => !(data.cvUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  })
+  .refine((data) => !(data.profileImageUrl && !data.imageKey), {
+    message: "Image Key is required when Image URL is provided",
+    path: ["imageKey"]
+  });
 
-export const noticeValidation = z.object({
-  category: z.string().min(2, { message: "Category cannot be empty" }).trim(),
-  title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
-  pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-  pdfKey: z
-    .string()
-    .min(3, { message: "Pdf key cannot be empty" })
-    .trim()
-    .optional(),
-  isActive: z.boolean()
-});
+export const noticeValidation = z
+  .object({
+    category: z.string().min(2, { message: "Category cannot be empty" }).trim(),
+    title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
+    pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+    pdfKey: z
+      .string()
+      .min(3, { message: "Pdf key cannot be empty" })
+      .trim()
+      .optional(),
+    isActive: z.boolean()
+  })
+  .refine((data) => !(data.pdfUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
 
 export const newsValidation = z.object({
   title: z.string().min(3, { message: "Title cannot be empty" }).trim().max(80),
@@ -93,156 +107,228 @@ export const newsValidation = z.object({
   // publishDate: z.coerce.date(),
 });
 
-export const advertismentValidation = z.object({
-  title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
-  description: z
-    .string()
-    .min(5, { message: "description cannot be empty" })
-    .trim()
-    .optional(), // Ensures non-empty string
-  department: z
-    .string()
-    .min(2, { message: "department cannot be empty" })
-    .trim(),
-  deadlineDate: z
-    .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
-    .transform((date) => new Date(date)),
-  isActive: z.boolean().default(true),
-  pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-  pdfKey: z.string().min(3, { message: "PDF key cannot be empty" }).optional()
-});
+export const advertismentValidation = z
+  .object({
+    title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
+    description: z
+      .string()
+      .min(5, { message: "description cannot be empty" })
+      .trim()
+      .optional(), // Ensures non-empty string
+    department: z
+      .string()
+      .min(2, { message: "department cannot be empty" })
+      .trim(),
+    deadlineDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+      .transform((date) => new Date(date)),
+    isActive: z.boolean().default(true),
+    pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+    pdfKey: z.string().min(3, { message: "PDF key cannot be empty" }).optional()
+  })
+  .refine((data) => !(data.pdfUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
 
-export const tenderValidation = z.object({
-  title: z.string().min(2, { message: "Title cannot be empty" }).trim(),
-  reference: z
-    .string()
-    .min(2, { message: "Reference cannot be empty" })
-    .trim()
-    .optional(),
-  publishedDate: z
-    .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
-    .transform((date) => new Date(date)),
-  closingDate: z
-    .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
-    .transform((date) => new Date(date)),
-  category: z
-    .string()
-    .min(3, { message: "Category cannot be empty" })
-    .trim()
-    .optional(),
-  pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-  pdfKey: z
-    .string()
-    .min(2, { message: "Pdf key cannot be empty" })
-    .trim()
-    .optional(),
-  status: z.enum(["Open", "Closed"])
-});
+export const tenderValidation = z
+  .object({
+    title: z.string().min(2, { message: "Title cannot be empty" }).trim(),
+    reference: z
+      .string()
+      .min(2, { message: "Reference cannot be empty" })
+      .trim()
+      .optional(),
+    publishedDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+      .transform((date) => new Date(date)),
+    closingDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+      .transform((date) => new Date(date)),
+    category: z
+      .string()
+      .min(3, { message: "Category cannot be empty" })
+      .trim()
+      .optional(),
+    pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+    pdfKey: z
+      .string()
+      .min(2, { message: "Pdf key cannot be empty" })
+      .trim()
+      .optional(),
+    status: z.enum(["Open", "Closed"])
+  })
+  .refine((data) => !(data.pdfUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
 
-export const staffFormValidation = z.object({
-  title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
-  formType: z.string().min(2, { message: "Title cannot be empty" }).trim(),
-  updatedDate: z
-    .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
-    .transform((date) => new Date(date)),
-  pdfUrl: z.string().url({ message: "Invalid URL format" }),
-  pdfKey: z.string().min(3, { message: "Pdf key cannot be empty" }).trim(),
-  isActive: z.boolean().default(true)
-});
+export const staffFormValidation = z
+  .object({
+    title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
+    formType: z.string().min(2, { message: "Title cannot be empty" }).trim(),
+    updatedDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+      .transform((date) => new Date(date)),
+    pdfUrl: z.string().url({ message: "Invalid URL format" }),
+    pdfKey: z.string().min(3, { message: "Pdf key cannot be empty" }).trim(),
+    isActive: z.boolean().default(true)
+  })
+  .refine((data) => !(data.pdfUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
 
-export const imageValidation = z.object({
-  imageUrl: z.string().url({ message: "Invalid URL format" }),
-  imageKey: z.string().min(3, { message: "Image key cannot be empty" }).trim(),
-  category: z.enum(["Campus", "Events", "Students", "Faculty", "Sports"])
-});
+export const imageValidation = z
+  .object({
+    imageUrl: z.string().url({ message: "Invalid URL format" }),
+    imageKey: z
+      .string()
+      .min(3, { message: "Image key cannot be empty" })
+      .trim(),
+    category: z.enum(["Campus", "Events", "Students", "Faculty", "Sports"])
+  })
+  .refine((data) => !(data.imageUrl && !data.imageKey), {
+    message: "Image key is required when Image URL is provided",
+    path: ["imageKey"] // Points to the pdfKey field in error
+  });
 
-export const videoValidation = z.object({
-  youtubeUrl: z.string().url({ message: "Invalid URL format" }),
-  youtubeKey: z.string().min(3, { message: "Key cannot be empty" }).trim(),
-  category: z.string().min(3, { message: "Category cannot be empty" }).trim(),
-  title: z
-    .string()
-    .min(3, { message: "Title cannot be empty" })
-    .trim()
-    .optional()
-});
+export const videoValidation = z
+  .object({
+    youtubeUrl: z.string().url({ message: "Invalid URL format" }),
+    youtubeKey: z.string().min(3, { message: "Key cannot be empty" }).trim(),
+    category: z.string().min(3, { message: "Category cannot be empty" }).trim(),
+    title: z
+      .string()
+      .min(3, { message: "Title cannot be empty" })
+      .trim()
+      .optional()
+  })
+  .refine((data) => !(data.youtubeUrl && !data.youtubeKey), {
+    message: "key is required when URL is provided",
+    path: ["youtubeKey"] // Points to the pdfKey field in error
+  });
 
 //---------------------------------------------------------------------------------
 //Update Validations
 
-export const advertismentUpdateValidation = z.object({
-  title: z.string().optional(),
-  description: z.string().optional(),
-  department: z.string().optional(),
-  deadlineDate: z
-    .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
-    .optional(),
-  isActive: z.boolean().optional(),
-  pdfUrl: z.string().optional(),
-  pdfKey: z.string().optional()
-});
+export const advertismentUpdateValidation = z
+  .object({
+    title: z
+      .string()
+      .min(3, { message: "Title cannot be empty" })
+      .trim()
+      .optional(),
+    description: z
+      .string()
+      .min(3, { message: "Description cannot be empty" })
+      .trim()
+      .optional(),
+    department: z
+      .string()
+      .min(3, { message: "Department cannot be empty" })
+      .trim()
+      .optional(),
+    deadlineDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+      .transform((date) => new Date(date))
+      .optional(),
+    isActive: z.boolean().optional(),
+    pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+    pdfKey: z
+      .string()
+      .min(3, { message: "Pdf key cannot be empty" })
+      .trim()
+      .optional()
+  })
+  .refine((data) => !(data.pdfUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
 
-export const facultyUpdateValidation = z.object({
-  firstName: z
-    .string()
-    .min(2, { message: "First name must be at least 2 characters" })
-    .optional(),
-  lastName: z.string().optional(),
-  email: z.string().email({ message: "Invalid email address" }).optional(),
-  contactNumber: z
-    .string()
-    .min(10, { message: "Contact number must be 10 digits" })
-    .max(10, { message: "Contact number must be 10 digits" })
-    .optional(),
-  profileImageUrl: z.string().optional(),
-  imageKey: z.string().optional(),
-  designation: z.string().optional(),
-  isHod: z.boolean().optional(),
-  facultyType: z
-    .enum(["Teaching", "Non_Teaching"], {
-      message: "Faculty type must be either Teaching or Non_Teaching"
-    })
-    .optional(),
-  cvUrl: z.string().optional(),
-  pdfKey: z.string().optional(),
-  socialLinks: z
-    .object({
-      key: z.enum([
-        "linkedin",
-        "twitter",
-        "instagram",
-        "facebook",
-        "research_gate"
-      ]),
-      value: z.string().url()
-    })
-    .optional(),
-  department: z
-    .enum(["dept_a", "dept_b", "dept_c", "dept_d"], {
-      message: "Department is required"
-    })
-    .optional()
-});
+export const facultyUpdateValidation = z
+  .object({
+    firstName: z
+      .string()
+      .min(2, { message: "First name must be at least 2 characters" })
+      .optional(),
+    lastName: z.string().optional(),
+    email: z.string().email({ message: "Invalid email address" }).optional(),
+    contactNumber: z
+      .string()
+      .min(10, { message: "Contact number must be 10 digits" })
+      .max(10, { message: "Contact number must be 10 digits" })
+      .optional(),
+    profileImageUrl: z
+      .string()
+      .url({ message: "Invalid URL format" })
+      .optional(),
+    imageKey: z
+      .string()
+      .min(3, { message: "Image cannot be empty" })
+      .trim()
+      .optional(),
+    designation: z.string().optional(),
+    isHod: z.boolean().optional(),
+    facultyType: z
+      .enum(["Teaching", "Non_Teaching"], {
+        message: "Faculty type must be either Teaching or Non_Teaching"
+      })
+      .optional(),
+    cvUrl: z.string().optional(),
+    pdfKey: z.string().optional(),
+    socialLinks: z
+      .object({
+        key: z.enum([
+          "linkedin",
+          "twitter",
+          "instagram",
+          "facebook",
+          "research_gate"
+        ]),
+        value: z.string().url()
+      })
+      .optional(),
+    department: z
+      .enum(["dept_a", "dept_b", "dept_c", "dept_d"], {
+        message: "Department is required"
+      })
+      .optional()
+  })
+  .refine((data) => !(data.cvUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
 
-export const imageUpdateValidation = z.object({
-  imageUrl: z.string().optional(),
-  imageKey: z.string().optional(),
-  category: z
-    .enum(["Campus", "Events", "Students", "Faculty", "Sports"])
-    .optional()
-});
+export const imageUpdateValidation = z
+  .object({
+    imageUrl: z.string().optional(),
+    imageKey: z.string().optional(),
+    category: z
+      .enum(["Campus", "Events", "Students", "Faculty", "Sports"])
+      .optional()
+  })
+  .refine((data) => !(data.imageUrl && !data.imageKey), {
+    message: "Image key is required when Image URL is provided",
+    path: ["imageKey"] // Points to the pdfKey field in error
+  });
 
-export const videoUpdateValidation = z.object({
-  youtubeUrl: z.string().optional(),
-  youtubeKey: z.string().optional(),
-  category: z.string().optional(),
-  title: z.string().optional()
-});
+export const videoUpdateValidation = z
+  .object({
+    youtubeUrl: z.string().optional(),
+    youtubeKey: z.string().optional(),
+    category: z.string().optional(),
+    title: z.string().optional()
+  })
+  .refine((data) => !(data.youtubeUrl && !data.youtubeKey), {
+    message: "key is required when URL is provided",
+    path: ["youtubeKey"] // Points to the pdfKey field in error
+  });
 
 export const newsUpdateValidation = z.object({
   title: z.string().max(80).optional(),
@@ -254,39 +340,54 @@ export const newsUpdateValidation = z.object({
   isActive: z.boolean().optional()
 });
 
-export const noticeUpdateValidation = z.object({
-  category: z.string().optional(),
-  title: z.string().optional(),
-  pdfUrl: z.string().optional(),
-  pdfKey: z.string().optional(),
-  isActive: z.boolean().optional()
-});
+export const noticeUpdateValidation = z
+  .object({
+    category: z.string().optional(),
+    title: z.string().optional(),
+    pdfUrl: z.string().optional(),
+    pdfKey: z.string().optional(),
+    isActive: z.boolean().optional()
+  })
+  .refine((data) => !(data.pdfUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
 
-export const staffFormUpdateValidation = z.object({
-  title: z.string().optional(),
-  formType: z.string().optional(),
-  updatedDate: z
-    .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
-    .optional(),
-  pdfUrl: z.string().optional(),
-  pdfKey: z.string().optional(),
-  isActive: z.boolean().optional()
-});
+export const staffFormUpdateValidation = z
+  .object({
+    title: z.string().optional(),
+    formType: z.string().optional(),
+    updatedDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+      .optional(),
+    pdfUrl: z.string().optional(),
+    pdfKey: z.string().optional(),
+    isActive: z.boolean().optional()
+  })
+  .refine((data) => !(data.pdfUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
 
-export const tenderUpdateValidation = z.object({
-  title: z.string().optional(),
-  reference: z.string().optional(),
-  publishedDate: z
-    .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
-    .optional(),
-  closingDate: z
-    .string()
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
-    .optional(),
-  category: z.string().optional(),
-  pdfUrl: z.string().optional(),
-  pdfKey: z.string().optional(),
-  status: z.enum(["Open", "Closed"]).optional()
-});
+export const tenderUpdateValidation = z
+  .object({
+    title: z.string().optional(),
+    reference: z.string().optional(),
+    publishedDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+      .optional(),
+    closingDate: z
+      .string()
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
+      .optional(),
+    category: z.string().optional(),
+    pdfUrl: z.string().optional(),
+    pdfKey: z.string().optional(),
+    status: z.enum(["Open", "Closed"]).optional()
+  })
+  .refine((data) => !(data.pdfUrl && !data.pdfKey), {
+    message: "PDF key is required when PDF URL is provided",
+    path: ["pdfKey"] // Points to the pdfKey field in error
+  });
