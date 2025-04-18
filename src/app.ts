@@ -12,10 +12,16 @@ import newsRouter from "./routes/newupdate";
 import staffFormRouter from "./routes/staffForm";
 import tenderRouter from "./routes/tender";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
-app.use(cookieParser());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));app.use(cookieParser());
 app.use(express.json());
 app.use("/", authRouter);
 app.use("/", facultyRouter);

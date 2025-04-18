@@ -349,6 +349,7 @@ authRouter.post("/verify-code", async (req: Request, res: Response) => {
     });
   }
 });
+
 export default authRouter;
 
 //Testing
