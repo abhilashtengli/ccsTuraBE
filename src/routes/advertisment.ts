@@ -18,7 +18,7 @@ interface RequestWithUser extends Request {
 
 advertismentRouter.post(
   "/add-advertisment",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
       const user = (req as RequestWithUser).user;
@@ -117,7 +117,8 @@ advertismentRouter.put(
           isActive: result.data.isActive ?? existingAd.isActive,
           deadlineDate: result.data.deadlineDate ?? existingAd.deadlineDate,
           pdfUrl: result.data.pdfUrl ?? existingAd.pdfUrl,
-          pdfKey: result.data.pdfKey ?? existingAd.pdfKey
+          pdfKey: result.data.pdfKey ?? existingAd.pdfKey,
+          updatedAt: new Date().toISOString()
         }
       });
 

@@ -153,7 +153,8 @@ facultyRouter.put(
           socialLinks: formattedSocialLinks ?? existingFaculty.socialLinks,
           department: result.data.department ?? existingFaculty.department,
           imageKey: result.data.imageKey ?? existingFaculty.imageKey,
-          pdfKey: result.data.pdfKey ?? existingFaculty.pdfKey
+          pdfKey: result.data.pdfKey ?? existingFaculty.pdfKey,
+          updatedAt : new Date().toISOString()
         }
       });
 

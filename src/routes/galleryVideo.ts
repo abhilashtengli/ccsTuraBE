@@ -88,7 +88,8 @@ videoRouter.put(
           youtubeUrl: result.data.youtubeUrl ?? existingVideo.youtubeUrl,
           youtubeKey: result.data.youtubeKey ?? existingVideo.youtubeKey,
           category: result.data.category ?? existingVideo.category,
-          title: result.data.title ?? existingVideo.title
+          title: result.data.title ?? existingVideo.title,
+          updatedAt: new Date().toISOString()
         }
       });
 
@@ -199,6 +200,5 @@ videoRouter.delete(
     }
   }
 );
-
 
 export default videoRouter;

@@ -204,7 +204,8 @@ exports.Prisma.StaffFormScalarFieldEnum = {
   pdfUrl: 'pdfUrl',
   pdfKey: 'pdfKey',
   isActive: 'isActive',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.GalleryImageScalarFieldEnum = {
@@ -212,7 +213,8 @@ exports.Prisma.GalleryImageScalarFieldEnum = {
   imageUrl: 'imageUrl',
   category: 'category',
   imageKey: 'imageKey',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.GalleryVideoScalarFieldEnum = {
@@ -221,7 +223,8 @@ exports.Prisma.GalleryVideoScalarFieldEnum = {
   youtubeKey: 'youtubeKey',
   category: 'category',
   title: 'title',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -255,10 +258,13 @@ exports.FacultyType = exports.$Enums.FacultyType = {
 };
 
 exports.Departments = exports.$Enums.Departments = {
-  dept_a: 'dept_a',
-  dept_b: 'dept_b',
-  dept_c: 'dept_c',
-  dept_d: 'dept_d'
+  Department_of_Food_Science_and_Nutrition: 'Department_of_Food_Science_and_Nutrition',
+  Department_of_Basic_Science_and_Humanities: 'Department_of_Basic_Science_and_Humanities',
+  Department_of_Family_Resouces_Management: 'Department_of_Family_Resouces_Management',
+  Department_of_Housing_Development_and_Family_Studies: 'Department_of_Housing_Development_and_Family_Studies',
+  Department_of_Extension_Education_and_Communication_Management: 'Department_of_Extension_Education_and_Communication_Management',
+  Department_of_Textiles_and_Apparel_Designing: 'Department_of_Textiles_and_Apparel_Designing',
+  Multi_Technology_Testing_Centre_and_Vocational_Training_Centre: 'Multi_Technology_Testing_Centre_and_Vocational_Training_Centre'
 };
 
 exports.StatusType = exports.$Enums.StatusType = {

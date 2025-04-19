@@ -86,7 +86,8 @@ imageRouter.put(
         data: {
           imageUrl: result.data.imageUrl ?? existingImage.imageUrl,
           imageKey: result.data.imageKey ?? existingImage.imageKey,
-          category: result.data.category ?? existingImage.category
+          category: result.data.category ?? existingImage.category,
+          updatedAt: new Date().toISOString()
         }
       });
 

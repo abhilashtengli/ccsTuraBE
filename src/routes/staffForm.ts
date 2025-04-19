@@ -96,7 +96,8 @@ staffFormRouter.put(
           updatedDate: result.data.updatedDate ?? existingForm.updatedDate,
           pdfUrl: result.data.pdfUrl ?? existingForm.pdfUrl,
           pdfKey: result.data.pdfKey ?? existingForm.pdfKey,
-          isActive: result.data.isActive ?? existingForm.isActive
+          isActive: result.data.isActive ?? existingForm.isActive,
+          updatedAt: new Date().toISOString()
         }
       });
 

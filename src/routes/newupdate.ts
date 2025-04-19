@@ -84,7 +84,8 @@ newsRouter.put(
           title: result.data.title ?? existingNews.title,
           description: result.data.description ?? existingNews.description,
           publishDate: result.data.publishDate ?? existingNews.publishDate,
-          isActive: result.data.isActive ?? existingNews.isActive
+          isActive: result.data.isActive ?? existingNews.isActive,
+          updatedAt: new Date().toISOString()
         }
       });
 

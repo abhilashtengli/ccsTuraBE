@@ -89,7 +89,8 @@ noticeRouter.put(
           title: result.data.title ?? existingNotice.title,
           pdfUrl: result.data.pdfUrl ?? existingNotice.pdfUrl,
           pdfKey: result.data.pdfKey ?? existingNotice.pdfKey,
-          isActive: result.data.isActive ?? existingNotice.isActive
+          isActive: result.data.isActive ?? existingNotice.isActive,
+          updatedAt: new Date().toISOString()
         }
       });
 

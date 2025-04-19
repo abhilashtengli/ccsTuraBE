@@ -91,10 +91,13 @@ export type GalleryCategory = (typeof GalleryCategory)[keyof typeof GalleryCateg
 
 
 export const Departments: {
-  dept_a: 'dept_a',
-  dept_b: 'dept_b',
-  dept_c: 'dept_c',
-  dept_d: 'dept_d'
+  Department_of_Food_Science_and_Nutrition: 'Department_of_Food_Science_and_Nutrition',
+  Department_of_Basic_Science_and_Humanities: 'Department_of_Basic_Science_and_Humanities',
+  Department_of_Family_Resouces_Management: 'Department_of_Family_Resouces_Management',
+  Department_of_Housing_Development_and_Family_Studies: 'Department_of_Housing_Development_and_Family_Studies',
+  Department_of_Extension_Education_and_Communication_Management: 'Department_of_Extension_Education_and_Communication_Management',
+  Department_of_Textiles_and_Apparel_Designing: 'Department_of_Textiles_and_Apparel_Designing',
+  Multi_Technology_Testing_Centre_and_Vocational_Training_Centre: 'Multi_Technology_Testing_Centre_and_Vocational_Training_Centre'
 };
 
 export type Departments = (typeof Departments)[keyof typeof Departments]
@@ -8043,6 +8046,7 @@ export namespace Prisma {
     pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type StaffFormMaxAggregateOutputType = {
@@ -8054,6 +8058,7 @@ export namespace Prisma {
     pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type StaffFormCountAggregateOutputType = {
@@ -8065,6 +8070,7 @@ export namespace Prisma {
     pdfKey: number
     isActive: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -8078,6 +8084,7 @@ export namespace Prisma {
     pdfKey?: true
     isActive?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type StaffFormMaxAggregateInputType = {
@@ -8089,6 +8096,7 @@ export namespace Prisma {
     pdfKey?: true
     isActive?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type StaffFormCountAggregateInputType = {
@@ -8100,6 +8108,7 @@ export namespace Prisma {
     pdfKey?: true
     isActive?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -8184,6 +8193,7 @@ export namespace Prisma {
     pdfKey: string
     isActive: boolean
     createdAt: Date
+    updatedAt: Date
     _count: StaffFormCountAggregateOutputType | null
     _min: StaffFormMinAggregateOutputType | null
     _max: StaffFormMaxAggregateOutputType | null
@@ -8212,6 +8222,7 @@ export namespace Prisma {
     pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
 
   export type StaffFormSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8223,6 +8234,7 @@ export namespace Prisma {
     pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
 
   export type StaffFormSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8234,6 +8246,7 @@ export namespace Prisma {
     pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
 
   export type StaffFormSelectScalar = {
@@ -8245,9 +8258,10 @@ export namespace Prisma {
     pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type StaffFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "formType" | "updatedDate" | "pdfUrl" | "pdfKey" | "isActive" | "createdAt", ExtArgs["result"]["staffForm"]>
+  export type StaffFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "formType" | "updatedDate" | "pdfUrl" | "pdfKey" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["staffForm"]>
 
   export type $StaffFormPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StaffForm"
@@ -8261,6 +8275,7 @@ export namespace Prisma {
       pdfKey: string
       isActive: boolean
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["staffForm"]>
     composites: {}
   }
@@ -8692,6 +8707,7 @@ export namespace Prisma {
     readonly pdfKey: FieldRef<"StaffForm", 'String'>
     readonly isActive: FieldRef<"StaffForm", 'Boolean'>
     readonly createdAt: FieldRef<"StaffForm", 'DateTime'>
+    readonly updatedAt: FieldRef<"StaffForm", 'DateTime'>
   }
     
 
@@ -9074,6 +9090,7 @@ export namespace Prisma {
     category: $Enums.GalleryCategory | null
     imageKey: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type GalleryImageMaxAggregateOutputType = {
@@ -9082,6 +9099,7 @@ export namespace Prisma {
     category: $Enums.GalleryCategory | null
     imageKey: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type GalleryImageCountAggregateOutputType = {
@@ -9090,6 +9108,7 @@ export namespace Prisma {
     category: number
     imageKey: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -9100,6 +9119,7 @@ export namespace Prisma {
     category?: true
     imageKey?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type GalleryImageMaxAggregateInputType = {
@@ -9108,6 +9128,7 @@ export namespace Prisma {
     category?: true
     imageKey?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type GalleryImageCountAggregateInputType = {
@@ -9116,6 +9137,7 @@ export namespace Prisma {
     category?: true
     imageKey?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -9197,6 +9219,7 @@ export namespace Prisma {
     category: $Enums.GalleryCategory
     imageKey: string
     createdAt: Date
+    updatedAt: Date
     _count: GalleryImageCountAggregateOutputType | null
     _min: GalleryImageMinAggregateOutputType | null
     _max: GalleryImageMaxAggregateOutputType | null
@@ -9222,6 +9245,7 @@ export namespace Prisma {
     category?: boolean
     imageKey?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
   export type GalleryImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9230,6 +9254,7 @@ export namespace Prisma {
     category?: boolean
     imageKey?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
   export type GalleryImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9238,6 +9263,7 @@ export namespace Prisma {
     category?: boolean
     imageKey?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
   export type GalleryImageSelectScalar = {
@@ -9246,9 +9272,10 @@ export namespace Prisma {
     category?: boolean
     imageKey?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type GalleryImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "category" | "imageKey" | "createdAt", ExtArgs["result"]["galleryImage"]>
+  export type GalleryImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "category" | "imageKey" | "createdAt" | "updatedAt", ExtArgs["result"]["galleryImage"]>
 
   export type $GalleryImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GalleryImage"
@@ -9259,6 +9286,7 @@ export namespace Prisma {
       category: $Enums.GalleryCategory
       imageKey: string
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["galleryImage"]>
     composites: {}
   }
@@ -9687,6 +9715,7 @@ export namespace Prisma {
     readonly category: FieldRef<"GalleryImage", 'GalleryCategory'>
     readonly imageKey: FieldRef<"GalleryImage", 'String'>
     readonly createdAt: FieldRef<"GalleryImage", 'DateTime'>
+    readonly updatedAt: FieldRef<"GalleryImage", 'DateTime'>
   }
     
 
@@ -10070,6 +10099,7 @@ export namespace Prisma {
     category: string | null
     title: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type GalleryVideoMaxAggregateOutputType = {
@@ -10079,6 +10109,7 @@ export namespace Prisma {
     category: string | null
     title: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type GalleryVideoCountAggregateOutputType = {
@@ -10088,6 +10119,7 @@ export namespace Prisma {
     category: number
     title: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -10099,6 +10131,7 @@ export namespace Prisma {
     category?: true
     title?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type GalleryVideoMaxAggregateInputType = {
@@ -10108,6 +10141,7 @@ export namespace Prisma {
     category?: true
     title?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type GalleryVideoCountAggregateInputType = {
@@ -10117,6 +10151,7 @@ export namespace Prisma {
     category?: true
     title?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -10199,6 +10234,7 @@ export namespace Prisma {
     category: string
     title: string | null
     createdAt: Date
+    updatedAt: Date
     _count: GalleryVideoCountAggregateOutputType | null
     _min: GalleryVideoMinAggregateOutputType | null
     _max: GalleryVideoMaxAggregateOutputType | null
@@ -10225,6 +10261,7 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10234,6 +10271,7 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10243,6 +10281,7 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectScalar = {
@@ -10252,9 +10291,10 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type GalleryVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "youtubeUrl" | "youtubeKey" | "category" | "title" | "createdAt", ExtArgs["result"]["galleryVideo"]>
+  export type GalleryVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "youtubeUrl" | "youtubeKey" | "category" | "title" | "createdAt" | "updatedAt", ExtArgs["result"]["galleryVideo"]>
 
   export type $GalleryVideoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GalleryVideo"
@@ -10266,6 +10306,7 @@ export namespace Prisma {
       category: string
       title: string | null
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["galleryVideo"]>
     composites: {}
   }
@@ -10695,6 +10736,7 @@ export namespace Prisma {
     readonly category: FieldRef<"GalleryVideo", 'String'>
     readonly title: FieldRef<"GalleryVideo", 'String'>
     readonly createdAt: FieldRef<"GalleryVideo", 'DateTime'>
+    readonly updatedAt: FieldRef<"GalleryVideo", 'DateTime'>
   }
     
 
@@ -11180,7 +11222,8 @@ export namespace Prisma {
     pdfUrl: 'pdfUrl',
     pdfKey: 'pdfKey',
     isActive: 'isActive',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type StaffFormScalarFieldEnum = (typeof StaffFormScalarFieldEnum)[keyof typeof StaffFormScalarFieldEnum]
@@ -11191,7 +11234,8 @@ export namespace Prisma {
     imageUrl: 'imageUrl',
     category: 'category',
     imageKey: 'imageKey',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type GalleryImageScalarFieldEnum = (typeof GalleryImageScalarFieldEnum)[keyof typeof GalleryImageScalarFieldEnum]
@@ -11203,7 +11247,8 @@ export namespace Prisma {
     youtubeKey: 'youtubeKey',
     category: 'category',
     title: 'title',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type GalleryVideoScalarFieldEnum = (typeof GalleryVideoScalarFieldEnum)[keyof typeof GalleryVideoScalarFieldEnum]
@@ -11856,6 +11901,7 @@ export namespace Prisma {
     pdfKey?: StringFilter<"StaffForm"> | string
     isActive?: BoolFilter<"StaffForm"> | boolean
     createdAt?: DateTimeFilter<"StaffForm"> | Date | string
+    updatedAt?: DateTimeFilter<"StaffForm"> | Date | string
   }
 
   export type StaffFormOrderByWithRelationInput = {
@@ -11867,6 +11913,7 @@ export namespace Prisma {
     pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StaffFormWhereUniqueInput = Prisma.AtLeast<{
@@ -11881,6 +11928,7 @@ export namespace Prisma {
     pdfKey?: StringFilter<"StaffForm"> | string
     isActive?: BoolFilter<"StaffForm"> | boolean
     createdAt?: DateTimeFilter<"StaffForm"> | Date | string
+    updatedAt?: DateTimeFilter<"StaffForm"> | Date | string
   }, "id">
 
   export type StaffFormOrderByWithAggregationInput = {
@@ -11892,6 +11940,7 @@ export namespace Prisma {
     pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: StaffFormCountOrderByAggregateInput
     _max?: StaffFormMaxOrderByAggregateInput
     _min?: StaffFormMinOrderByAggregateInput
@@ -11909,6 +11958,7 @@ export namespace Prisma {
     pdfKey?: StringWithAggregatesFilter<"StaffForm"> | string
     isActive?: BoolWithAggregatesFilter<"StaffForm"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"StaffForm"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"StaffForm"> | Date | string
   }
 
   export type GalleryImageWhereInput = {
@@ -11920,6 +11970,7 @@ export namespace Prisma {
     category?: EnumGalleryCategoryFilter<"GalleryImage"> | $Enums.GalleryCategory
     imageKey?: StringFilter<"GalleryImage"> | string
     createdAt?: DateTimeFilter<"GalleryImage"> | Date | string
+    updatedAt?: DateTimeFilter<"GalleryImage"> | Date | string
   }
 
   export type GalleryImageOrderByWithRelationInput = {
@@ -11928,6 +11979,7 @@ export namespace Prisma {
     category?: SortOrder
     imageKey?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GalleryImageWhereUniqueInput = Prisma.AtLeast<{
@@ -11939,6 +11991,7 @@ export namespace Prisma {
     category?: EnumGalleryCategoryFilter<"GalleryImage"> | $Enums.GalleryCategory
     imageKey?: StringFilter<"GalleryImage"> | string
     createdAt?: DateTimeFilter<"GalleryImage"> | Date | string
+    updatedAt?: DateTimeFilter<"GalleryImage"> | Date | string
   }, "id">
 
   export type GalleryImageOrderByWithAggregationInput = {
@@ -11947,6 +12000,7 @@ export namespace Prisma {
     category?: SortOrder
     imageKey?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: GalleryImageCountOrderByAggregateInput
     _max?: GalleryImageMaxOrderByAggregateInput
     _min?: GalleryImageMinOrderByAggregateInput
@@ -11961,6 +12015,7 @@ export namespace Prisma {
     category?: EnumGalleryCategoryWithAggregatesFilter<"GalleryImage"> | $Enums.GalleryCategory
     imageKey?: StringWithAggregatesFilter<"GalleryImage"> | string
     createdAt?: DateTimeWithAggregatesFilter<"GalleryImage"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GalleryImage"> | Date | string
   }
 
   export type GalleryVideoWhereInput = {
@@ -11973,6 +12028,7 @@ export namespace Prisma {
     category?: StringFilter<"GalleryVideo"> | string
     title?: StringNullableFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
+    updatedAt?: DateTimeFilter<"GalleryVideo"> | Date | string
   }
 
   export type GalleryVideoOrderByWithRelationInput = {
@@ -11982,6 +12038,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GalleryVideoWhereUniqueInput = Prisma.AtLeast<{
@@ -11994,6 +12051,7 @@ export namespace Prisma {
     category?: StringFilter<"GalleryVideo"> | string
     title?: StringNullableFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
+    updatedAt?: DateTimeFilter<"GalleryVideo"> | Date | string
   }, "id">
 
   export type GalleryVideoOrderByWithAggregationInput = {
@@ -12003,6 +12061,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: GalleryVideoCountOrderByAggregateInput
     _max?: GalleryVideoMaxOrderByAggregateInput
     _min?: GalleryVideoMinOrderByAggregateInput
@@ -12018,6 +12077,7 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"GalleryVideo"> | string
     title?: StringNullableWithAggregatesFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"GalleryVideo"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GalleryVideo"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -12582,6 +12642,7 @@ export namespace Prisma {
     pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type StaffFormUncheckedCreateInput = {
@@ -12593,6 +12654,7 @@ export namespace Prisma {
     pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type StaffFormUpdateInput = {
@@ -12604,6 +12666,7 @@ export namespace Prisma {
     pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StaffFormUncheckedUpdateInput = {
@@ -12615,6 +12678,7 @@ export namespace Prisma {
     pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StaffFormCreateManyInput = {
@@ -12626,6 +12690,7 @@ export namespace Prisma {
     pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type StaffFormUpdateManyMutationInput = {
@@ -12637,6 +12702,7 @@ export namespace Prisma {
     pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StaffFormUncheckedUpdateManyInput = {
@@ -12648,6 +12714,7 @@ export namespace Prisma {
     pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryImageCreateInput = {
@@ -12656,6 +12723,7 @@ export namespace Prisma {
     category: $Enums.GalleryCategory
     imageKey: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GalleryImageUncheckedCreateInput = {
@@ -12664,6 +12732,7 @@ export namespace Prisma {
     category: $Enums.GalleryCategory
     imageKey: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GalleryImageUpdateInput = {
@@ -12672,6 +12741,7 @@ export namespace Prisma {
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryImageUncheckedUpdateInput = {
@@ -12680,6 +12750,7 @@ export namespace Prisma {
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryImageCreateManyInput = {
@@ -12688,6 +12759,7 @@ export namespace Prisma {
     category: $Enums.GalleryCategory
     imageKey: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GalleryImageUpdateManyMutationInput = {
@@ -12696,6 +12768,7 @@ export namespace Prisma {
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryImageUncheckedUpdateManyInput = {
@@ -12704,6 +12777,7 @@ export namespace Prisma {
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoCreateInput = {
@@ -12713,6 +12787,7 @@ export namespace Prisma {
     category: string
     title?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GalleryVideoUncheckedCreateInput = {
@@ -12722,6 +12797,7 @@ export namespace Prisma {
     category: string
     title?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GalleryVideoUpdateInput = {
@@ -12731,6 +12807,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoUncheckedUpdateInput = {
@@ -12740,6 +12817,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoCreateManyInput = {
@@ -12749,6 +12827,7 @@ export namespace Prisma {
     category: string
     title?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GalleryVideoUpdateManyMutationInput = {
@@ -12758,6 +12837,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoUncheckedUpdateManyInput = {
@@ -12767,6 +12847,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -13247,6 +13328,7 @@ export namespace Prisma {
     pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StaffFormMaxOrderByAggregateInput = {
@@ -13258,6 +13340,7 @@ export namespace Prisma {
     pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StaffFormMinOrderByAggregateInput = {
@@ -13269,6 +13352,7 @@ export namespace Prisma {
     pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumGalleryCategoryFilter<$PrismaModel = never> = {
@@ -13284,6 +13368,7 @@ export namespace Prisma {
     category?: SortOrder
     imageKey?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GalleryImageMaxOrderByAggregateInput = {
@@ -13292,6 +13377,7 @@ export namespace Prisma {
     category?: SortOrder
     imageKey?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GalleryImageMinOrderByAggregateInput = {
@@ -13300,6 +13386,7 @@ export namespace Prisma {
     category?: SortOrder
     imageKey?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumGalleryCategoryWithAggregatesFilter<$PrismaModel = never> = {
@@ -13319,6 +13406,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GalleryVideoMaxOrderByAggregateInput = {
@@ -13328,6 +13416,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type GalleryVideoMinOrderByAggregateInput = {
@@ -13337,6 +13426,7 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

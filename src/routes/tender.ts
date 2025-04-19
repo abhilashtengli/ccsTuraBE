@@ -106,7 +106,8 @@ tenderRouter.put(
           category: result.data.category ?? existingTender.category,
           pdfUrl: result.data.pdfUrl ?? existingTender.pdfUrl,
           pdfKey: result.data.pdfKey ?? existingTender.pdfKey,
-          status: result.data.status ?? existingTender.status
+          status: result.data.status ?? existingTender.status,
+          updatedAt: new Date().toISOString()
         }
       });
 
