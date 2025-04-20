@@ -81,7 +81,7 @@ advertismentRouter.post(
 
 advertismentRouter.put(
   "/update-advertisment/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -179,7 +179,7 @@ advertismentRouter.get("/ad/getAll", async (req: Request, res: Response) => {
 
 advertismentRouter.delete(
   "/delete-advertisement/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -218,7 +218,6 @@ advertismentRouter.delete(
     } catch (err: unknown) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         res.status(404).json({
-          code: "NOT_FOUND",
           message: "Image record not found"
         });
         return;
