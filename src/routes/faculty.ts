@@ -11,16 +11,16 @@ const facultyRouter = express.Router();
 
 facultyRouter.post(
   "/add-faculty",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
-      const user = (req as Request & { user?: any }).user;
-      if (!user) {
-        res
-          .status(401)
-          .send({ message: "Please Sign In to add Faculty members" });
-        return;
-      }
+      // const user = (req as Request & { user?: any }).user;
+      // if (!user) {
+      //   res
+      //     .status(401)
+      //     .send({ message: "Please Sign In to add Faculty members" });
+      //   return;
+      // }
       const body = req.body;
       const result = await facultyValidation.safeParse(body);
       if (!result.success) {
@@ -154,7 +154,7 @@ facultyRouter.put(
           department: result.data.department ?? existingFaculty.department,
           imageKey: result.data.imageKey ?? existingFaculty.imageKey,
           pdfKey: result.data.pdfKey ?? existingFaculty.pdfKey,
-          updatedAt : new Date().toISOString()
+          updatedAt: new Date().toISOString()
         }
       });
 
@@ -164,26 +164,9 @@ facultyRouter.put(
       });
       return;
     } catch (err) {
-      if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        if (err.code === "P2002") {
-          res.status(409).json({
-            message: "Faculty member with this email already exists"
-          });
-          return;
-        } else if (err.code === "P2025") {
-          res.status(404).json({
-            message: "Faculty member not found"
-          });
-          return;
-        }
-        res.status(400).json({
-          message: "Failed to update faculty due to database constraints"
-        });
-        return;
-      }
       res
         .status(500)
-        .json({ message: "Something went wrong, please try again later" });
+        .json({ message: "Failed to update : Something went wrong, please try again later", err });
       return;
     }
   }

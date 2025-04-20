@@ -171,7 +171,7 @@ advertismentRouter.get("/ad/getAll", async (req: Request, res: Response) => {
     return;
   } catch (err) {
     res.status(500).json({
-      message: "Could not fetch the advertisement, please try again later"
+      message: "Could not fetch the advertisements, please try again later"
     });
     return;
   }

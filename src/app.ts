@@ -13,6 +13,7 @@ import staffFormRouter from "./routes/staffForm";
 import tenderRouter from "./routes/tender";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import cloudflareRouter from "./routes/cloudflare";
 dotenv.config();
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use("/", authRouter);
+app.use("/", cloudflareRouter);
 app.use("/", facultyRouter);
 app.use("/", noticeRouter);
 app.use("/", signedUrlRouter);
