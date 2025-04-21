@@ -10095,7 +10095,6 @@ export namespace Prisma {
   export type GalleryVideoMinAggregateOutputType = {
     id: string | null
     youtubeUrl: string | null
-    youtubeKey: string | null
     category: string | null
     title: string | null
     createdAt: Date | null
@@ -10105,7 +10104,6 @@ export namespace Prisma {
   export type GalleryVideoMaxAggregateOutputType = {
     id: string | null
     youtubeUrl: string | null
-    youtubeKey: string | null
     category: string | null
     title: string | null
     createdAt: Date | null
@@ -10115,7 +10113,6 @@ export namespace Prisma {
   export type GalleryVideoCountAggregateOutputType = {
     id: number
     youtubeUrl: number
-    youtubeKey: number
     category: number
     title: number
     createdAt: number
@@ -10127,7 +10124,6 @@ export namespace Prisma {
   export type GalleryVideoMinAggregateInputType = {
     id?: true
     youtubeUrl?: true
-    youtubeKey?: true
     category?: true
     title?: true
     createdAt?: true
@@ -10137,7 +10133,6 @@ export namespace Prisma {
   export type GalleryVideoMaxAggregateInputType = {
     id?: true
     youtubeUrl?: true
-    youtubeKey?: true
     category?: true
     title?: true
     createdAt?: true
@@ -10147,7 +10142,6 @@ export namespace Prisma {
   export type GalleryVideoCountAggregateInputType = {
     id?: true
     youtubeUrl?: true
-    youtubeKey?: true
     category?: true
     title?: true
     createdAt?: true
@@ -10230,7 +10224,6 @@ export namespace Prisma {
   export type GalleryVideoGroupByOutputType = {
     id: string
     youtubeUrl: string
-    youtubeKey: string
     category: string
     title: string | null
     createdAt: Date
@@ -10257,7 +10250,6 @@ export namespace Prisma {
   export type GalleryVideoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
-    youtubeKey?: boolean
     category?: boolean
     title?: boolean
     createdAt?: boolean
@@ -10267,7 +10259,6 @@ export namespace Prisma {
   export type GalleryVideoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
-    youtubeKey?: boolean
     category?: boolean
     title?: boolean
     createdAt?: boolean
@@ -10277,7 +10268,6 @@ export namespace Prisma {
   export type GalleryVideoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
-    youtubeKey?: boolean
     category?: boolean
     title?: boolean
     createdAt?: boolean
@@ -10287,14 +10277,13 @@ export namespace Prisma {
   export type GalleryVideoSelectScalar = {
     id?: boolean
     youtubeUrl?: boolean
-    youtubeKey?: boolean
     category?: boolean
     title?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type GalleryVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "youtubeUrl" | "youtubeKey" | "category" | "title" | "createdAt" | "updatedAt", ExtArgs["result"]["galleryVideo"]>
+  export type GalleryVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "youtubeUrl" | "category" | "title" | "createdAt" | "updatedAt", ExtArgs["result"]["galleryVideo"]>
 
   export type $GalleryVideoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GalleryVideo"
@@ -10302,7 +10291,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       youtubeUrl: string
-      youtubeKey: string
       category: string
       title: string | null
       createdAt: Date
@@ -10732,7 +10720,6 @@ export namespace Prisma {
   interface GalleryVideoFieldRefs {
     readonly id: FieldRef<"GalleryVideo", 'String'>
     readonly youtubeUrl: FieldRef<"GalleryVideo", 'String'>
-    readonly youtubeKey: FieldRef<"GalleryVideo", 'String'>
     readonly category: FieldRef<"GalleryVideo", 'String'>
     readonly title: FieldRef<"GalleryVideo", 'String'>
     readonly createdAt: FieldRef<"GalleryVideo", 'DateTime'>
@@ -11244,7 +11231,6 @@ export namespace Prisma {
   export const GalleryVideoScalarFieldEnum: {
     id: 'id',
     youtubeUrl: 'youtubeUrl',
-    youtubeKey: 'youtubeKey',
     category: 'category',
     title: 'title',
     createdAt: 'createdAt',
@@ -12024,7 +12010,6 @@ export namespace Prisma {
     NOT?: GalleryVideoWhereInput | GalleryVideoWhereInput[]
     id?: StringFilter<"GalleryVideo"> | string
     youtubeUrl?: StringFilter<"GalleryVideo"> | string
-    youtubeKey?: StringFilter<"GalleryVideo"> | string
     category?: StringFilter<"GalleryVideo"> | string
     title?: StringNullableFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
@@ -12034,7 +12019,6 @@ export namespace Prisma {
   export type GalleryVideoOrderByWithRelationInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -12047,7 +12031,6 @@ export namespace Prisma {
     OR?: GalleryVideoWhereInput[]
     NOT?: GalleryVideoWhereInput | GalleryVideoWhereInput[]
     youtubeUrl?: StringFilter<"GalleryVideo"> | string
-    youtubeKey?: StringFilter<"GalleryVideo"> | string
     category?: StringFilter<"GalleryVideo"> | string
     title?: StringNullableFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
@@ -12057,7 +12040,6 @@ export namespace Prisma {
   export type GalleryVideoOrderByWithAggregationInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -12073,7 +12055,6 @@ export namespace Prisma {
     NOT?: GalleryVideoScalarWhereWithAggregatesInput | GalleryVideoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"GalleryVideo"> | string
     youtubeUrl?: StringWithAggregatesFilter<"GalleryVideo"> | string
-    youtubeKey?: StringWithAggregatesFilter<"GalleryVideo"> | string
     category?: StringWithAggregatesFilter<"GalleryVideo"> | string
     title?: StringNullableWithAggregatesFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"GalleryVideo"> | Date | string
@@ -12783,7 +12764,6 @@ export namespace Prisma {
   export type GalleryVideoCreateInput = {
     id?: string
     youtubeUrl: string
-    youtubeKey: string
     category: string
     title?: string | null
     createdAt?: Date | string
@@ -12793,7 +12773,6 @@ export namespace Prisma {
   export type GalleryVideoUncheckedCreateInput = {
     id?: string
     youtubeUrl: string
-    youtubeKey: string
     category: string
     title?: string | null
     createdAt?: Date | string
@@ -12803,7 +12782,6 @@ export namespace Prisma {
   export type GalleryVideoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    youtubeKey?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12813,7 +12791,6 @@ export namespace Prisma {
   export type GalleryVideoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    youtubeKey?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12823,7 +12800,6 @@ export namespace Prisma {
   export type GalleryVideoCreateManyInput = {
     id?: string
     youtubeUrl: string
-    youtubeKey: string
     category: string
     title?: string | null
     createdAt?: Date | string
@@ -12833,7 +12809,6 @@ export namespace Prisma {
   export type GalleryVideoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    youtubeKey?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12843,7 +12818,6 @@ export namespace Prisma {
   export type GalleryVideoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    youtubeKey?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13402,7 +13376,6 @@ export namespace Prisma {
   export type GalleryVideoCountOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
@@ -13412,7 +13385,6 @@ export namespace Prisma {
   export type GalleryVideoMaxOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
@@ -13422,7 +13394,6 @@ export namespace Prisma {
   export type GalleryVideoMinOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    youtubeKey?: SortOrder
     category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder

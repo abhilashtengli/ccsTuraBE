@@ -208,21 +208,15 @@ export const imageValidation = z
     path: ["imageKey"] // Points to the pdfKey field in error
   });
 
-export const videoValidation = z
-  .object({
-    youtubeUrl: z.string().url({ message: "Invalid URL format" }),
-    youtubeKey: z.string().min(3, { message: "Key cannot be empty" }).trim(),
-    category: z.string().min(3, { message: "Category cannot be empty" }).trim(),
-    title: z
-      .string()
-      .min(3, { message: "Title cannot be empty" })
-      .trim()
-      .optional()
-  })
-  .refine((data) => !(data.youtubeUrl && !data.youtubeKey), {
-    message: "key is required when URL is provided",
-    path: ["youtubeKey"] // Points to the pdfKey field in error
-  });
+export const videoValidation = z.object({
+  youtubeUrl: z.string().url({ message: "Invalid URL format" }),
+  category: z.string().min(3, { message: "Category cannot be empty" }).trim(),
+  title: z
+    .string()
+    .min(3, { message: "Title cannot be empty" })
+    .trim()
+    .optional()
+});
 
 //---------------------------------------------------------------------------------
 //Update Validations
@@ -343,23 +337,15 @@ export const imageUpdateValidation = z
     path: ["imageKey"] // Points to the pdfKey field in error
   });
 
-export const videoUpdateValidation = z
-  .object({
-    youtubeUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-    youtubeKey: z
-      .string()
-      .min(3, { message: "Key cannot be empty" })
-      .optional(),
-    category: z
-      .string()
-      .min(3, { message: "Category cannot be empty" })
-      .optional(),
-    title: z.string().min(3, { message: "Title cannot be empty" }).optional()
-  })
-  .refine((data) => !(data.youtubeUrl && !data.youtubeKey), {
-    message: "key is required when URL is provided",
-    path: ["youtubeKey"] // Points to the pdfKey field in error
-  });
+export const videoUpdateValidation = z.object({
+  youtubeUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+
+  category: z
+    .string()
+    .min(3, { message: "Category cannot be empty" })
+    .optional(),
+  title: z.string().min(3, { message: "Title cannot be empty" }).optional()
+});
 
 export const newsUpdateValidation = z.object({
   title: z.string().max(80).optional(),

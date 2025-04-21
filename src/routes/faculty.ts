@@ -22,6 +22,7 @@ facultyRouter.post(
       //   return;
       // }
       const body = req.body;
+      console.log("Body : ", body);
       const result = await facultyValidation.safeParse(body);
       if (!result.success) {
         res.json({
@@ -98,13 +99,13 @@ facultyRouter.put(
   // userAuth,
   async (req: Request, res: Response) => {
     try {
-      const user = (req as Request & { user?: any }).user;
-      if (!user) {
-        res
-          .status(401)
-          .send({ message: "Please sign in to update faculty members" });
-        return;
-      }
+      // const user = (req as Request & { user?: any }).user;
+      // if (!user) {
+      //   res
+      //     .status(401)
+      //     .send({ message: "Please sign in to update faculty members" });
+      //   return;
+      // }
 
       const { id } = req.params;
       const body = req.body;
@@ -198,9 +199,10 @@ facultyRouter.get("/fa/getAll", async (req: Request, res: Response) => {
 
 facultyRouter.delete(
   "/delete-faculty/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
+    console.log("Id : ", id);
 
     try {
       if (!id) {
@@ -212,14 +214,18 @@ facultyRouter.delete(
         where: { id: id },
         select: { imageKey: true, pdfKey: true, id: true, firstName: true }
       });
+      console.log("FaKeys : ", faKeys);
 
       if (!faKeys) {
         console.warn(`Faculty member with id ${id} not found.`);
         return;
       }
-
-      await attemptDelete(faKeys.pdfKey, "PDF");
-      await attemptDelete(faKeys.imageKey, "Image");
+      if (faKeys.imageKey) {
+        await attemptDelete(faKeys.imageKey, "Image");
+      }
+      if (faKeys.pdfKey) {
+        await attemptDelete(faKeys.pdfKey, "PDF");
+      }
 
       await prisma.facultyMember.delete({
         where: { id: id }
@@ -230,21 +236,10 @@ facultyRouter.delete(
       });
       return;
     } catch (err: unknown) {
-      if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        if (err.code === "P2025") {
-          res.status(404).json({
-            message: "faculty not found" // Fixed message consistency
-          });
-          return;
-        }
-
-        res.status(400).json({
-          message: "Database operation failed"
-        });
-        return;
-      }
+      console.log(err);
       res.status(500).json({
-        message: "Something went wrong, Please try again later!"
+        message: "Something went wrong, Please try again later!",
+        error: err
       });
       return;
     }

@@ -220,7 +220,6 @@ exports.Prisma.GalleryImageScalarFieldEnum = {
 exports.Prisma.GalleryVideoScalarFieldEnum = {
   id: 'id',
   youtubeUrl: 'youtubeUrl',
-  youtubeKey: 'youtubeKey',
   category: 'category',
   title: 'title',
   createdAt: 'createdAt',

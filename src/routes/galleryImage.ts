@@ -8,7 +8,7 @@ const imageRouter = express.Router();
 
 imageRouter.post(
   "/add-image",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -97,20 +97,6 @@ imageRouter.put(
       });
       return;
     } catch (err) {
-      if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        if (err.code === "P2025") {
-          res.status(404).json({
-            code: "NOT_FOUND",
-            message: "Image not found"
-          });
-          return;
-        }
-        res.status(400).json({
-          code: "DATABASE_ERROR",
-          message: "Failed to update image due to database constraints"
-        });
-        return;
-      }
       res.status(500).json({
         message: "Something went wrong, please try again later"
       });
@@ -146,7 +132,7 @@ imageRouter.get("/im/getAll", async (req: Request, res: Response) => {
 
 imageRouter.delete(
   "/delete-image/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {

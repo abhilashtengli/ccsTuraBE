@@ -8,7 +8,7 @@ const videoRouter = express.Router();
 
 videoRouter.post(
   "/add-video",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -21,14 +21,13 @@ videoRouter.post(
         });
         return;
       }
-      const { category, title, youtubeUrl, youtubeKey } = result.data;
+      const { category, title, youtubeUrl } = result.data;
 
       const video = await prisma.galleryVideo.create({
         data: {
           category: category,
           title: title,
-          youtubeUrl: youtubeUrl,
-          youtubeKey: youtubeKey
+          youtubeUrl: youtubeUrl
         }
       });
       res.status(201).json({
@@ -54,7 +53,7 @@ videoRouter.post(
 
 videoRouter.put(
   "/update-video/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -86,7 +85,6 @@ videoRouter.put(
         where: { id },
         data: {
           youtubeUrl: result.data.youtubeUrl ?? existingVideo.youtubeUrl,
-          youtubeKey: result.data.youtubeKey ?? existingVideo.youtubeKey,
           category: result.data.category ?? existingVideo.category,
           title: result.data.title ?? existingVideo.title,
           updatedAt: new Date().toISOString()
@@ -148,7 +146,7 @@ videoRouter.get("/vi/getAll", async (req: Request, res: Response) => {
 
 videoRouter.delete(
   "/delete-video/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -158,7 +156,7 @@ videoRouter.delete(
       }
       const video = await prisma.galleryVideo.findUnique({
         where: { id: id },
-        select: { youtubeKey: true, youtubeUrl: true, category: true }
+        select: { youtubeUrl: true, category: true }
       });
       if (!video) {
         res.status(404).json({
@@ -166,13 +164,7 @@ videoRouter.delete(
         });
         return;
       }
-      const deletionResult = await deleteContent(video.youtubeKey);
-      if (!deletionResult?.success) {
-        console.warn(
-          `Video deletion failed for ${video.youtubeKey}:`,
-          deletionResult.error
-        );
-      }
+
       await prisma.galleryVideo.delete({
         where: { id: id }
       });
@@ -187,11 +179,6 @@ videoRouter.delete(
           });
           return;
         }
-
-        res.status(400).json({
-          message: "Database operation failed"
-        });
-        return;
       }
       res.status(500).json({
         message: "Something went wrong, Please try again later!"

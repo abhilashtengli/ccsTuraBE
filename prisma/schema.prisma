@@ -174,7 +174,6 @@ model GalleryImage {
 model GalleryVideo {
   id         String   @id @default(uuid())
   youtubeUrl String   @map("youtube_url") @db.VarChar(512)
-  youtubeKey String   @map("youtube_key")
   category   String   @db.VarChar(50)
   title      String?  @db.VarChar(255)
   createdAt  DateTime @default(now()) @map("created_at")
