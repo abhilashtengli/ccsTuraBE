@@ -95,7 +95,7 @@ facultyRouter.post(
 
 facultyRouter.put(
   "/update-faculty/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
       const user = (req as Request & { user?: any }).user;
@@ -164,9 +164,11 @@ facultyRouter.put(
       });
       return;
     } catch (err) {
-      res
-        .status(500)
-        .json({ message: "Failed to update : Something went wrong, please try again later", err });
+      res.status(500).json({
+        message:
+          "Failed to update : Something went wrong, please try again later",
+        err
+      });
       return;
     }
   }
