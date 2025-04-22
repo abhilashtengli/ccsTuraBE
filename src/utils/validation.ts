@@ -210,7 +210,7 @@ export const imageValidation = z
 
 export const videoValidation = z.object({
   youtubeUrl: z.string().url({ message: "Invalid URL format" }),
-  category: z.string().min(3, { message: "Category cannot be empty" }).trim(),
+  category: z.enum(["Campus", "Events", "Students", "Faculty", "Sports"]),
   title: z
     .string()
     .min(3, { message: "Title cannot be empty" })
@@ -340,10 +340,7 @@ export const imageUpdateValidation = z
 export const videoUpdateValidation = z.object({
   youtubeUrl: z.string().url({ message: "Invalid URL format" }).optional(),
 
-  category: z
-    .string()
-    .min(3, { message: "Category cannot be empty" })
-    .optional(),
+  category: z.enum(["Campus", "Events", "Students", "Faculty", "Sports"]),
   title: z.string().min(3, { message: "Title cannot be empty" }).optional()
 });
 

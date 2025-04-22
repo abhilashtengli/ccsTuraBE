@@ -172,12 +172,12 @@ model GalleryImage {
 }
 
 model GalleryVideo {
-  id         String   @id @default(uuid())
-  youtubeUrl String   @map("youtube_url") @db.VarChar(512)
-  category   String   @db.VarChar(50)
-  title      String?  @db.VarChar(255)
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+  id         String          @id @default(uuid())
+  youtubeUrl String          @map("youtube_url") @db.VarChar(512)
+  category   GalleryCategory
+  title      String?         @db.VarChar(255)
+  createdAt  DateTime        @default(now()) @map("created_at")
+  updatedAt  DateTime        @default(now()) @updatedAt @map("updated_at")
 
   @@map("gallery_videos")
 }

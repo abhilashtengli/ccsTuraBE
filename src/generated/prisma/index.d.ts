@@ -10095,7 +10095,7 @@ export namespace Prisma {
   export type GalleryVideoMinAggregateOutputType = {
     id: string | null
     youtubeUrl: string | null
-    category: string | null
+    category: $Enums.GalleryCategory | null
     title: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -10104,7 +10104,7 @@ export namespace Prisma {
   export type GalleryVideoMaxAggregateOutputType = {
     id: string | null
     youtubeUrl: string | null
-    category: string | null
+    category: $Enums.GalleryCategory | null
     title: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -10224,7 +10224,7 @@ export namespace Prisma {
   export type GalleryVideoGroupByOutputType = {
     id: string
     youtubeUrl: string
-    category: string
+    category: $Enums.GalleryCategory
     title: string | null
     createdAt: Date
     updatedAt: Date
@@ -10291,7 +10291,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       youtubeUrl: string
-      category: string
+      category: $Enums.GalleryCategory
       title: string | null
       createdAt: Date
       updatedAt: Date
@@ -10720,7 +10720,7 @@ export namespace Prisma {
   interface GalleryVideoFieldRefs {
     readonly id: FieldRef<"GalleryVideo", 'String'>
     readonly youtubeUrl: FieldRef<"GalleryVideo", 'String'>
-    readonly category: FieldRef<"GalleryVideo", 'String'>
+    readonly category: FieldRef<"GalleryVideo", 'GalleryCategory'>
     readonly title: FieldRef<"GalleryVideo", 'String'>
     readonly createdAt: FieldRef<"GalleryVideo", 'DateTime'>
     readonly updatedAt: FieldRef<"GalleryVideo", 'DateTime'>
@@ -12010,7 +12010,7 @@ export namespace Prisma {
     NOT?: GalleryVideoWhereInput | GalleryVideoWhereInput[]
     id?: StringFilter<"GalleryVideo"> | string
     youtubeUrl?: StringFilter<"GalleryVideo"> | string
-    category?: StringFilter<"GalleryVideo"> | string
+    category?: EnumGalleryCategoryFilter<"GalleryVideo"> | $Enums.GalleryCategory
     title?: StringNullableFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
     updatedAt?: DateTimeFilter<"GalleryVideo"> | Date | string
@@ -12031,7 +12031,7 @@ export namespace Prisma {
     OR?: GalleryVideoWhereInput[]
     NOT?: GalleryVideoWhereInput | GalleryVideoWhereInput[]
     youtubeUrl?: StringFilter<"GalleryVideo"> | string
-    category?: StringFilter<"GalleryVideo"> | string
+    category?: EnumGalleryCategoryFilter<"GalleryVideo"> | $Enums.GalleryCategory
     title?: StringNullableFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
     updatedAt?: DateTimeFilter<"GalleryVideo"> | Date | string
@@ -12055,7 +12055,7 @@ export namespace Prisma {
     NOT?: GalleryVideoScalarWhereWithAggregatesInput | GalleryVideoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"GalleryVideo"> | string
     youtubeUrl?: StringWithAggregatesFilter<"GalleryVideo"> | string
-    category?: StringWithAggregatesFilter<"GalleryVideo"> | string
+    category?: EnumGalleryCategoryWithAggregatesFilter<"GalleryVideo"> | $Enums.GalleryCategory
     title?: StringNullableWithAggregatesFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"GalleryVideo"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"GalleryVideo"> | Date | string
@@ -12764,7 +12764,7 @@ export namespace Prisma {
   export type GalleryVideoCreateInput = {
     id?: string
     youtubeUrl: string
-    category: string
+    category: $Enums.GalleryCategory
     title?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12773,7 +12773,7 @@ export namespace Prisma {
   export type GalleryVideoUncheckedCreateInput = {
     id?: string
     youtubeUrl: string
-    category: string
+    category: $Enums.GalleryCategory
     title?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12782,7 +12782,7 @@ export namespace Prisma {
   export type GalleryVideoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12791,7 +12791,7 @@ export namespace Prisma {
   export type GalleryVideoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12800,7 +12800,7 @@ export namespace Prisma {
   export type GalleryVideoCreateManyInput = {
     id?: string
     youtubeUrl: string
-    category: string
+    category: $Enums.GalleryCategory
     title?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12809,7 +12809,7 @@ export namespace Prisma {
   export type GalleryVideoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12818,7 +12818,7 @@ export namespace Prisma {
   export type GalleryVideoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
+    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
