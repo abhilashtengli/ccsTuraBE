@@ -115,7 +115,6 @@ export const newsValidation = z.object({
     .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
     .transform((date) => new Date(date)),
   isActive: z.boolean().default(true)
-  // publishDate: z.coerce.date(),
 });
 
 export const advertismentValidation = z
