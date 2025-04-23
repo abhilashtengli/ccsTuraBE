@@ -25,18 +25,21 @@ export const facultyValidation = z
     email: z.string().email({ message: "Invalid email address" }),
     contactNumber: z
       .string()
-      .min(10, { message: "Contact number must be 10 digits" })
-      .max(10, { message: "Contact number must be 10 digits" })
-      .optional(),
+      .transform((val) => (val === "" ? undefined : val))
+      .optional()
+      .refine((val) => !val || /^\d{10}$/.test(val), {
+        message: "Contact number must be 10 digits"
+      }),
     profileImageUrl: z
-      .string({ message: "Profile image is required" })
-      .min(3, { message: "Profile cannot be empty" })
-      .trim()
-      .optional(),
+      .string()
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine((val) => !val || z.string().url().safeParse(val).success, {
+        message: "Invalid URL format"
+      }),
     imageKey: z
       .string()
-      .min(3, { message: "Image key cannot be empty" })
-      .trim()
+      .transform((val) => (val === "" ? undefined : val))
       .optional(),
     designation: z
       .string({ message: "Designation is required" })
@@ -46,12 +49,17 @@ export const facultyValidation = z
     facultyType: z.enum(["Teaching", "Non_Teaching"], {
       message: "Faculty type must be either Teaching or Non_Teaching"
     }),
-    cvUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+    // Fix for cvUrl - allow null
+    cvUrl: z
+      .string()
+      .nullable() // Allow null explicitly
+      .optional(),
+    // Fix for pdfKey - allow null
     pdfKey: z
       .string()
-      .min(3, { message: "Pdf key cannot be empty" })
-      .trim()
+      .nullable() // Allow null explicitly
       .optional(),
+    // Fix for socialLinks - allow null
     socialLinks: z
       .object({
         key: z.enum([
@@ -63,6 +71,7 @@ export const facultyValidation = z
         ]),
         value: z.string().url({ message: "Invalid URL format" })
       })
+      .nullable() // Allow null explicitly
       .optional(),
     department: z.enum(
       [
@@ -72,21 +81,31 @@ export const facultyValidation = z
         "Department_of_Housing_Development_and_Family_Studies",
         "Department_of_Extension_Education_and_Communication_Management",
         "Department_of_Textiles_and_Apparel_Designing",
-        "Multi_Technology_Testing_Centre_and_Vocational_Training_Centre"
+        "Multi_Technology_Testing_Centre_and_Vocational_Training_Centre",
+        "Other"
       ],
       {
         message: "Invalid department"
       }
     )
   })
-  .refine((data) => !(data.cvUrl && !data.pdfKey), {
+  // Update refinements to handle null values
+  .refine((data) => !(data.cvUrl && !data.pdfKey && data.cvUrl !== null), {
     message: "PDF key is required when PDF URL is provided",
-    path: ["pdfKey"] // Points to the pdfKey field in error
+    path: ["pdfKey"]
   })
-  .refine((data) => !(data.profileImageUrl && !data.imageKey), {
-    message: "Image Key is required when Image URL is provided",
-    path: ["imageKey"]
-  });
+  .refine(
+    (data) =>
+      !(
+        data.profileImageUrl &&
+        !data.imageKey &&
+        data.profileImageUrl !== null
+      ),
+    {
+      message: "Image Key is required when Image URL is provided",
+      path: ["imageKey"]
+    }
+  );
 
 export const noticeValidation = z
   .object({
@@ -266,17 +285,23 @@ export const facultyUpdateValidation = z
     email: z.string().email({ message: "Invalid email address" }).optional(),
     contactNumber: z
       .string()
-      .min(10, { message: "Contact number must be 10 digits" })
-      .max(10, { message: "Contact number must be 10 digits" })
-      .optional(),
+      .transform((val) => (val === "" ? undefined : val))
+      .optional()
+      .refine((val) => !val || /^\d{10}$/.test(val), {
+        message: "Contact number must be 10 digits"
+      }),
+
     profileImageUrl: z
       .string()
-      .url({ message: "Invalid URL format" })
-      .optional(),
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine((val) => !val || z.string().url().safeParse(val).success, {
+        message: "Invalid URL format"
+      }),
     imageKey: z
       .string()
-      .min(3, { message: "Image cannot be empty" })
-      .trim()
+      .transform((val) => (val === "" ? undefined : val))
+      .optional()
       .optional(),
     designation: z.string().optional(),
     isHod: z.boolean().optional(),
@@ -285,8 +310,17 @@ export const facultyUpdateValidation = z
         message: "Faculty type must be either Teaching or Non_Teaching"
       })
       .optional(),
-    cvUrl: z.string().optional(),
-    pdfKey: z.string().optional(),
+    cvUrl: z
+      .string()
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine((val) => !val || z.string().url().safeParse(val).success, {
+        message: "Invalid URL format"
+      }),
+    pdfKey: z
+      .string()
+      .transform((val) => (val === "" ? undefined : val))
+      .optional(),
     socialLinks: z
       .object({
         key: z.enum([
@@ -308,7 +342,8 @@ export const facultyUpdateValidation = z
           "Department_of_Housing_Development_and_Family_Studies",
           "Department_of_Extension_Education_and_Communication_Management",
           "Department_of_Textiles_and_Apparel_Designing",
-          "Multi_Technology_Testing_Centre_and_Vocational_Training_Centre"
+          "Multi_Technology_Testing_Centre_and_Vocational_Training_Centre",
+          "Other"
         ],
         {
           message: "Department is required"

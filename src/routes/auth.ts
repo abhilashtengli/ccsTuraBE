@@ -8,7 +8,13 @@ import { prisma } from "../lib/prisma";
 import { userAuth } from "../middleware/auth";
 
 const authRouter = express.Router();
-
+interface RequestWithUser extends Request {
+  user?: {
+    id: string;
+    email: string;
+    name: string;
+  } | null;
+}
 // authorised user only can create a new account
 authRouter.post("/signup", userAuth, async (req: Request, res: Response) => {
   try {
@@ -125,16 +131,16 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
     }
     if (isValidPassword) {
       const token = TokenService.generateToken({ id: user.id });
-      // console.log("Token : ", token);
+      console.log("Token : ", token);
       res.cookie("token", token, {
         maxAge: 12 * 60 * 60 * 1000,
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict"
+        secure: false,
+        sameSite: "lax"
       });
 
       res.status(200).json({
-        user: {
+        data: {
           id: user.id,
           name: user.name,
           email: user.email
@@ -144,7 +150,7 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
       return;
     }
   } catch (err) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Sign In Failed, Internal server error" });
   }
 });
 
@@ -348,6 +354,35 @@ authRouter.post("/verify-code", async (req: Request, res: Response) => {
       success: false
     });
   }
+});
+
+authRouter.get("/getUser", userAuth, async (req: Request, res: Response) => {
+  const user = (req as RequestWithUser).user;
+
+  try {
+    const loggedInUser = await prisma.user.findUnique({
+      where: { id: user?.id },
+      select: { id: true, name: true, email: true }
+    });
+
+    res.status(200).json({
+      success: true,
+      data: loggedInUser
+    });
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "Failed to fetch user, Try to signout and signin or contact support"
+    });
+  }
+});
+
+authRouter.post("/signout", async (req: Request, res: Response) => {
+  res.clearCookie("token");
+  res.cookie("token", null, {
+    expires: new Date(Date.now())
+  });
+  res.send(" You've been logged out");
 });
 
 export default authRouter;

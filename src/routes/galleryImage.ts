@@ -8,7 +8,7 @@ const imageRouter = express.Router();
 
 imageRouter.post(
   "/add-image",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -132,7 +132,7 @@ imageRouter.get("/im/getAll", async (req: Request, res: Response) => {
 
 imageRouter.delete(
   "/delete-image/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {

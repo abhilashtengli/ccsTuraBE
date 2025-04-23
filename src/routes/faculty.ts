@@ -11,9 +11,10 @@ const facultyRouter = express.Router();
 
 facultyRouter.post(
   "/add-faculty",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
+      console.log("Entered..");
       // const user = (req as Request & { user?: any }).user;
       // if (!user) {
       //   res
@@ -96,7 +97,7 @@ facultyRouter.post(
 
 facultyRouter.put(
   "/update-faculty/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       // const user = (req as Request & { user?: any }).user;
@@ -109,12 +110,15 @@ facultyRouter.put(
 
       const { id } = req.params;
       const body = req.body;
+      console.log("Body : ", body);
       const result = facultyUpdateValidation.safeParse(body);
 
       if (!result.success) {
+        console.log("Validation error:", result.error.format());
+
         res.status(400).json({
           message: "Invalid Input",
-          error: result.error.errors
+          error: result.error.format()
         });
         return;
       }
@@ -196,10 +200,67 @@ facultyRouter.get("/fa/getAll", async (req: Request, res: Response) => {
     return;
   }
 });
+facultyRouter.get(
+  "/fa/nonteaching/getAll",
+  async (req: Request, res: Response) => {
+    try {
+      const facultyData = await prisma.facultyMember.findMany({
+        where: {
+          facultyType: "Non_Teaching"
+        }
+      });
+      if (!facultyData) {
+        res.status(404).json({
+          message: "No Faculty data Found"
+        });
+        return;
+      }
+      res.status(200).json({
+        success: true,
+        data: facultyData
+      });
+      return;
+    } catch (err) {
+      res.status(500).json({
+        message: "Could not fetch the Faculty data, please try again later"
+      });
+      return;
+    }
+  }
+);
+
+facultyRouter.get(
+  "/fa/teaching/getAll",
+  async (req: Request, res: Response) => {
+    try {
+      const facultyData = await prisma.facultyMember.findMany({
+        where: {
+          facultyType: "Teaching"
+        }
+      });
+      if (!facultyData) {
+        res.status(404).json({
+          message: "No Faculty data Found"
+        });
+        return;
+      }
+      res.status(200).json({
+        success: true,
+        data: facultyData
+      });
+      return;
+    } catch (err) {
+      res.status(500).json({
+        message: "Could not fetch the Faculty data, please try again later"
+      });
+      return;
+    }
+  }
+);
 
 facultyRouter.delete(
   "/delete-faculty/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     console.log("Id : ", id);

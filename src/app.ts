@@ -17,10 +17,11 @@ import cloudflareRouter from "./routes/cloudflare";
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 app.use(
   cors({
     origin: "http://localhost:5173",
-    credentials: false,
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
   })

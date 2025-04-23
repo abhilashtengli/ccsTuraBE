@@ -8,7 +8,7 @@ const videoRouter = express.Router();
 
 videoRouter.post(
   "/add-video",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -53,7 +53,7 @@ videoRouter.post(
 
 videoRouter.put(
   "/update-video/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -146,7 +146,7 @@ videoRouter.get("/vi/getAll", async (req: Request, res: Response) => {
 
 videoRouter.delete(
   "/delete-video/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {

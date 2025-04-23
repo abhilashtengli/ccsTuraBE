@@ -11,7 +11,7 @@ const staffFormRouter = express.Router();
 
 staffFormRouter.post(
   "/add-staff-form",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -60,7 +60,7 @@ staffFormRouter.post(
 
 staffFormRouter.put(
   "/update-staff-form/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -156,7 +156,7 @@ staffFormRouter.get("/st/getAll", async (req: Request, res: Response) => {
 
 staffFormRouter.delete(
   "/delete-staff-form/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {

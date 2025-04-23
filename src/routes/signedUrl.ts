@@ -7,7 +7,7 @@ const signedUrlRouter = express.Router();
 
 signedUrlRouter.post(
   "/getSigned-url",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     const { fileName, contentType } = req.body;
     // console.log("BODY : ", req.body);

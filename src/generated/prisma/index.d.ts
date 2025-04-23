@@ -97,7 +97,8 @@ export const Departments: {
   Department_of_Housing_Development_and_Family_Studies: 'Department_of_Housing_Development_and_Family_Studies',
   Department_of_Extension_Education_and_Communication_Management: 'Department_of_Extension_Education_and_Communication_Management',
   Department_of_Textiles_and_Apparel_Designing: 'Department_of_Textiles_and_Apparel_Designing',
-  Multi_Technology_Testing_Centre_and_Vocational_Training_Centre: 'Multi_Technology_Testing_Centre_and_Vocational_Training_Centre'
+  Multi_Technology_Testing_Centre_and_Vocational_Training_Centre: 'Multi_Technology_Testing_Centre_and_Vocational_Training_Centre',
+  Other: 'Other'
 };
 
 export type Departments = (typeof Departments)[keyof typeof Departments]

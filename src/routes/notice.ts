@@ -8,7 +8,7 @@ const noticeRouter = express.Router();
 
 noticeRouter.post(
   "/add-notice",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -54,7 +54,7 @@ noticeRouter.post(
 
 noticeRouter.put(
   "/update-notice/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -144,7 +144,7 @@ noticeRouter.get("/no/getAll", async (req: Request, res: Response) => {
 
 noticeRouter.delete(
   "/delete-notice/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
 

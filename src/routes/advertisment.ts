@@ -18,7 +18,7 @@ interface RequestWithUser extends Request {
 
 advertismentRouter.post(
   "/add-advertisment",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const user = (req as RequestWithUser).user;
@@ -81,7 +81,7 @@ advertismentRouter.post(
 
 advertismentRouter.put(
   "/update-advertisment/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -179,7 +179,7 @@ advertismentRouter.get("/ad/getAll", async (req: Request, res: Response) => {
 
 advertismentRouter.delete(
   "/delete-advertisement/:id",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
