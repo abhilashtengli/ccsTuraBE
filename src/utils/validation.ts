@@ -26,7 +26,8 @@ export const facultyValidation = z
     contactNumber: z
       .string()
       .min(10, { message: "Contact number must be 10 digits" })
-      .max(10, { message: "Contact number must be 10 digits" }),
+      .max(10, { message: "Contact number must be 10 digits" })
+      .optional(),
     profileImageUrl: z
       .string({ message: "Profile image is required" })
       .min(3, { message: "Profile cannot be empty" })

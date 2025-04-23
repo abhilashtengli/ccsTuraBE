@@ -8,7 +8,7 @@ const tenderRouter = express.Router();
 
 tenderRouter.post(
   "/add-tender",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
       const body = req.body;
@@ -67,7 +67,7 @@ tenderRouter.post(
 
 tenderRouter.put(
   "/update-tender/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -166,7 +166,7 @@ tenderRouter.get("/te/getAll", async (req: Request, res: Response) => {
 
 tenderRouter.delete(
   "/delete-tender/:id",
-  userAuth,
+  // userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
