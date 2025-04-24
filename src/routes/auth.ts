@@ -16,7 +16,7 @@ interface RequestWithUser extends Request {
   } | null;
 }
 // authorised user only can create a new account
-authRouter.post("/signup", async (req: Request, res: Response) => {
+authRouter.post("/signup", userAuth, async (req: Request, res: Response) => {
   try {
     await signupValidation(req);
     const { name, email, password } = req.body;
@@ -156,7 +156,7 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
 
 authRouter.post(
   "/verify-email",
-  // userAuth,
+  userAuth,
   async (req: Request, res: Response) => {
     const { email, code } = req.body;
 
@@ -487,22 +487,3 @@ authRouter.post("/signout", async (req: Request, res: Response) => {
 });
 
 export default authRouter;
-
-//Testing
-// authRouter.delete("/delete-image", async (req: Request, res: Response) => {
-//   const { key } = req.body;
-
-//   const deletionResult = await deleteContent(key);
-
-//   if (!deletionResult.success) {
-//     res.status(500).json({
-//       message: "Something went wrong",
-//       error: deletionResult.error
-//     });
-//   }
-
-//   res.status(200).json({
-//     message: "Delete successfull",
-//     success: deletionResult.success
-//   });
-// });
