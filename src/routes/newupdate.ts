@@ -181,4 +181,48 @@ newsRouter.delete(
   }
 );
 
+newsRouter.get(
+  "/get/admin-count",
+  userAuth,
+  async (req: Request, res: Response) => {
+    try {
+      // Initialize all counts to 0
+      let facultyCount = 0;
+      let imageCount = 0;
+      let videoCount = 0;
+      let tendersCount = 0;
+      let newsCount = 0;
+
+      // Fetch counts
+      facultyCount = await prisma.facultyMember.count();
+      imageCount = await prisma.galleryImage.count();
+      videoCount = await prisma.galleryVideo.count();
+      tendersCount = await prisma.tender.count({
+        where: { status: "Open" }
+      });
+      newsCount = await prisma.newsUpdate.count();
+
+      // Combine media counts
+      const mediaCount = (imageCount || 0) + (videoCount || 0);
+
+      // Return the counts in response
+      res.status(200).json({
+        data: {
+          success: true,
+          facultyCount,
+          mediaCount,
+          tendersCount,
+          newsCount
+        }
+      });
+    } catch (err) {
+      console.error("Error in /get/admin-count:", err);
+      res.status(500).json({
+        success: false,
+        message: "Something went wrong, could not fetch data"
+      });
+    }
+  }
+);
+
 export default newsRouter;
