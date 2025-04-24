@@ -14,6 +14,7 @@ import tenderRouter from "./routes/tender";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import cloudflareRouter from "./routes/cloudflare";
+import getDataRouter from "./routes/getData";
 dotenv.config();
 
 const app = express();
@@ -37,6 +38,7 @@ app.use("/", advertismentRouter);
 app.use("/", imageRouter);
 app.use("/", videoRouter);
 app.use("/", newsRouter);
+app.use("/", getDataRouter);
 app.use("/", staffFormRouter);
 app.use("/", tenderRouter);
 app.listen(process.env.PORT, async () => {

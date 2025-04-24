@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import {
   advertismentUpdateValidation,
-  advertismentValidation
+  advertismentValidation,
 } from "../utils/validation";
 import { prisma } from "../lib/prisma";
 import { Prisma } from "../generated/prisma";
@@ -29,7 +29,7 @@ advertismentRouter.post(
       if (!result.success) {
         res.json({
           message: "Invalid Input",
-          error: result.error.errors
+          error: result.error.errors,
         });
         return;
       }
@@ -40,7 +40,7 @@ advertismentRouter.post(
         isActive,
         deadlineDate,
         pdfUrl,
-        pdfKey
+        pdfKey,
       } = result.data;
 
       //   console.log("Result data : ", result.data);
@@ -53,26 +53,26 @@ advertismentRouter.post(
           department: department,
           isActive: isActive,
           pdfUrl: pdfUrl,
-          pdfKey: pdfKey
-        }
+          pdfKey: pdfKey,
+        },
       });
       console.log("Ad : ", advertisement);
       res.status(201).json({
         message: "success",
-        data: advertisement
+        data: advertisement,
       });
       return;
     } catch (err) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         res.status(400).json({
           code: "DATABASE_ERROR",
-          message: "Failed to create advertisement due to database constraints"
+          message: "Failed to create advertisement due to database constraints",
         });
         return;
       }
       res.status(500).json({
         message: "Something went wrong, please try again later : ",
-        err
+        err,
       });
       return;
     }
@@ -91,19 +91,19 @@ advertismentRouter.put(
       if (!result.success) {
         res.status(400).json({
           message: "Invalid Input",
-          error: result.error.errors
+          error: result.error.errors,
         });
         return;
       }
 
       // Check if advertisement exists
       const existingAd = await prisma.advertisement.findUnique({
-        where: { id }
+        where: { id },
       });
 
       if (!existingAd) {
         res.status(404).json({
-          message: "Advertisement not found"
+          message: "Advertisement not found",
         });
         return;
       }
@@ -118,13 +118,13 @@ advertismentRouter.put(
           deadlineDate: result.data.deadlineDate ?? existingAd.deadlineDate,
           pdfUrl: result.data.pdfUrl ?? existingAd.pdfUrl,
           pdfKey: result.data.pdfKey ?? existingAd.pdfKey,
-          updatedAt: new Date().toISOString()
-        }
+          updatedAt: new Date().toISOString(),
+        },
       });
 
       res.status(200).json({
         message: "success",
-        data: updatedAdvertisement
+        data: updatedAdvertisement,
       });
       return;
     } catch (err) {
@@ -132,19 +132,19 @@ advertismentRouter.put(
         if (err.code === "P2025") {
           res.status(404).json({
             code: "NOT_FOUND",
-            message: "Advertisement not found"
+            message: "Advertisement not found",
           });
         } else {
           res.status(400).json({
             code: "DATABASE_ERROR",
             message:
-              "Failed to update advertisement due to database constraints"
+              "Failed to update advertisement due to database constraints",
           });
         }
         return;
       }
       res.status(500).json({
-        message: "Something went wrong, please try again later"
+        message: "Something went wrong, please try again later",
       });
       return;
     }
@@ -155,23 +155,23 @@ advertismentRouter.get("/ad/getAll", async (req: Request, res: Response) => {
   try {
     const advertisement = await prisma.advertisement.findMany({
       orderBy: {
-        createdAt: "desc"
-      }
+        createdAt: "desc",
+      },
     });
     if (!advertisement) {
       res.status(404).json({
-        message: "No advertisement Found"
+        message: "No advertisement Found",
       });
       return;
     }
     res.status(200).json({
       success: true,
-      data: advertisement
+      data: advertisement,
     });
     return;
   } catch (err) {
     res.status(500).json({
-      message: "Could not fetch the advertisements, please try again later"
+      message: "Could not fetch the advertisements, please try again later",
     });
     return;
   }
@@ -189,11 +189,11 @@ advertismentRouter.delete(
       }
       const ad = await prisma.advertisement.findUnique({
         where: { id: id },
-        select: { pdfKey: true, id: true, title: true }
+        select: { pdfKey: true, id: true, title: true },
       });
       if (!ad) {
         res.status(404).json({
-          message: "Advertisment not found"
+          message: "Advertisment not found",
         });
         return;
       }
@@ -209,21 +209,21 @@ advertismentRouter.delete(
       }
 
       await prisma.advertisement.delete({
-        where: { id: id }
+        where: { id: id },
       });
       res.status(200).json({
-        message: "Advertisement deleted successfully"
+        message: "Advertisement deleted successfully",
       });
       return;
     } catch (err: unknown) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         res.status(404).json({
-          message: "Image record not found"
+          message: "Image record not found",
         });
         return;
       }
       res.status(500).json({
-        message: err instanceof Error ? err.message : "Deletion failed"
+        message: err instanceof Error ? err.message : "Deletion failed",
       });
       return;
     }

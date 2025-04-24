@@ -17,7 +17,7 @@ noticeRouter.post(
       if (!result.success) {
         res.json({
           message: "Invalid Inputs",
-          error: result.error.errors
+          error: result.error.errors,
         });
         return;
       }
@@ -29,24 +29,24 @@ noticeRouter.post(
           title: title,
           pdfUrl: pdfUrl,
           isActive: isActive,
-          pdfKey: pdfKey
-        }
+          pdfKey: pdfKey,
+        },
       });
 
       if (!notice) {
         res.status(500).json({
-          message: "Failed to upload notice. Please try again."
+          message: "Failed to upload notice. Please try again.",
         });
       }
 
       res.status(201).json({
         message: "success",
-        data: notice
+        data: notice,
       });
     } catch (err) {
       res.status(500).json({
         message: "Failed to upload notice",
-        error: err instanceof Error ? err.message : "Unknown error"
+        error: err instanceof Error ? err.message : "Unknown error",
       });
     }
   }
@@ -64,19 +64,19 @@ noticeRouter.put(
       if (!result.success) {
         res.status(400).json({
           message: "Invalid Inputs",
-          error: result.error.errors
+          error: result.error.errors,
         });
         return;
       }
 
       // Check if notice exists
       const existingNotice = await prisma.notice.findUnique({
-        where: { id }
+        where: { id },
       });
 
       if (!existingNotice) {
         res.status(404).json({
-          message: "Notice not found"
+          message: "Notice not found",
         });
         return;
       }
@@ -90,13 +90,13 @@ noticeRouter.put(
           pdfUrl: result.data.pdfUrl ?? existingNotice.pdfUrl,
           pdfKey: result.data.pdfKey ?? existingNotice.pdfKey,
           isActive: result.data.isActive ?? existingNotice.isActive,
-          updatedAt: new Date().toISOString()
-        }
+          updatedAt: new Date().toISOString(),
+        },
       });
 
       res.status(200).json({
         message: "success",
-        data: updatedNotice
+        data: updatedNotice,
       });
       return;
     } catch (err) {
@@ -104,20 +104,20 @@ noticeRouter.put(
         if (err.code === "P2025") {
           res.status(404).json({
             message: "Notice not found",
-            code: "NOT_FOUND"
+            code: "NOT_FOUND",
           });
           return;
         }
         res.status(400).json({
           message: "Database error",
           code: "DATABASE_ERROR",
-          error: err.message
+          error: err.message,
         });
         return;
       }
       res.status(500).json({
         message: "Failed to update notice",
-        error: err instanceof Error ? err.message : "Unknown error"
+        error: err instanceof Error ? err.message : "Unknown error",
       });
       return;
     }
@@ -126,18 +126,22 @@ noticeRouter.put(
 
 noticeRouter.get("/no/getAll", async (req: Request, res: Response) => {
   try {
-    const notices = await prisma.notice.findMany();
+    const notices = await prisma.notice.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
     if (!notices) {
       throw new Error("Failed to fetch all notice");
     }
     res.status(200).json({
       success: true,
-      data: notices
+      data: notices,
     });
   } catch (err) {
     res.status(500).json({
       message: "Failed to fetch All notice",
-      error: err instanceof Error ? err.message : "Unknown error"
+      error: err instanceof Error ? err.message : "Unknown error",
     });
   }
 });
@@ -151,17 +155,17 @@ noticeRouter.delete(
     try {
       if (!id) {
         res.status(404).json({
-          message: "Notice Id is required"
+          message: "Notice Id is required",
         });
       }
 
       const notice = await prisma.notice.findUnique({
         where: { id: id },
-        select: { pdfKey: true, pdfUrl: true, title: true, category: true }
+        select: { pdfKey: true, pdfUrl: true, title: true, category: true },
       });
       if (!notice) {
         res.status(404).json({
-          message: "Notice not found"
+          message: "Notice not found",
         });
         return;
       }
@@ -176,27 +180,27 @@ noticeRouter.delete(
       }
 
       await prisma.notice.delete({
-        where: { id: id }
+        where: { id: id },
       });
       res.status(200).json({
-        message: "Notice deleted successfully"
+        message: "Notice deleted successfully",
       });
     } catch (err: unknown) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         if (err.code === "P2025") {
           res.status(404).json({
-            message: "Notice not found" // Fixed message consistency
+            message: "Notice not found", // Fixed message consistency
           });
           return;
         }
 
         res.status(400).json({
-          message: "Database operation failed"
+          message: "Database operation failed",
         });
         return;
       }
       res.status(500).json({
-        message: "Something went wrong, Please try again later!"
+        message: "Something went wrong, Please try again later!",
       });
       return;
     }
