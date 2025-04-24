@@ -154,76 +154,72 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
   }
 });
 
-authRouter.post(
-  "/verify-email",
-  userAuth,
-  async (req: Request, res: Response) => {
-    const { email, code } = req.body;
+authRouter.post("/verify-email", async (req: Request, res: Response) => {
+  const { email, code } = req.body;
 
-    if (!email || !code) {
-      res.status(400).json({ message: "Email and code are required" });
-      return;
-    }
-
-    try {
-      const user = await prisma.user.findUnique({
-        where: { email },
-        select: {
-          id: true,
-          isVerified: true,
-          verificationCode: true,
-          verificationExpires: true,
-          name: true
-        }
-      });
-
-      if (!user) {
-        res.status(404).json({
-          message: "User not found"
-        });
-        return;
-      }
-      if (user.isVerified) {
-        res.status(200).json({
-          message: "Email is already verified"
-        });
-        return;
-      }
-      if (
-        !user.verificationCode ||
-        !user.verificationExpires ||
-        user.verificationExpires < new Date()
-      ) {
-        res.status(400).json({
-          message: "Invalid or expired verification code"
-        });
-        return;
-      }
-      if (user.verificationCode !== code) {
-        res.status(400).json({
-          message: "Invalid verification code"
-        });
-        return;
-      }
-      await prisma.user.update({
-        where: { email },
-        data: {
-          isVerified: true,
-          verificationCode: null,
-          verificationExpires: null
-        }
-      });
-      res.status(200).json({ message: "Email verified successfully" });
-      return;
-    } catch (err) {
-      console.log("Verification err : ", err);
-      res.status(500).json({
-        message: "Email Verification Failed due to internal server error",
-        success: false
-      });
-    }
+  if (!email || !code) {
+    res.status(400).json({ message: "Email and code are required" });
+    return;
   }
-);
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        isVerified: true,
+        verificationCode: true,
+        verificationExpires: true,
+        name: true
+      }
+    });
+
+    if (!user) {
+      res.status(404).json({
+        message: "User not found"
+      });
+      return;
+    }
+    if (user.isVerified) {
+      res.status(200).json({
+        message: "Email is already verified"
+      });
+      return;
+    }
+    if (
+      !user.verificationCode ||
+      !user.verificationExpires ||
+      user.verificationExpires < new Date()
+    ) {
+      res.status(400).json({
+        message: "Invalid or expired verification code"
+      });
+      return;
+    }
+    if (user.verificationCode !== code) {
+      res.status(400).json({
+        message: "Invalid verification code"
+      });
+      return;
+    }
+    await prisma.user.update({
+      where: { email },
+      data: {
+        isVerified: true,
+        verificationCode: null,
+        verificationExpires: null
+      }
+    });
+    res.status(200).json({ message: "Email verified successfully" });
+    return;
+  } catch (err) {
+    console.log("Verification err : ", err);
+    res.status(500).json({
+      message: "Email Verification Failed due to internal server error",
+      success: false
+    });
+  }
+});
 authRouter.post(
   "/resend-code",
   userAuth,
