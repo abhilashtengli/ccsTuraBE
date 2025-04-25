@@ -26,7 +26,7 @@ export const generatePresignedUrl = async (
   const uniqueFileName = `${uuidv4()}-${Date.now()}-${fileName}`;
   const key = `ccstura/${uniqueFileName}`;
 
-  console.log("KEY : ", key);
+  // console.log("KEY : ", key);
 
   const command = new PutObjectCommand({
     Bucket: process.env.CLOUDFLARE_BUCKET_NAME,

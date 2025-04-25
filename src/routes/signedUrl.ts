@@ -10,13 +10,11 @@ signedUrlRouter.post(
   userAuth,
   async (req: Request, res: Response) => {
     const { fileName, contentType } = req.body;
-    // console.log("BODY : ", req.body);
     const { signedUrl, key, publicUrl } = await generatePresignedUrl(
       fileName,
       contentType
     );
-    // console.log("RESPONSE sUrl : ", signedUrl);
-    // console.log("RESPONSE pUrl : ", publicUrl);
+
     res.json({ signedUrl, publicUrl, key });
     return;
   }

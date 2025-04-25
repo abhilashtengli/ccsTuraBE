@@ -14,16 +14,10 @@ facultyRouter.post(
   userAuth,
   async (req: Request, res: Response) => {
     try {
-      console.log("Entered..");
-      // const user = (req as Request & { user?: any }).user;
-      // if (!user) {
-      //   res
-      //     .status(401)
-      //     .send({ message: "Please Sign In to add Faculty members" });
-      //   return;
-      // }
+      // console.log("Entered..");
+    
       const body = req.body;
-      console.log("Body : ", body);
+      // console.log("Body : ", body);
       const result = await facultyValidation.safeParse(body);
       if (!result.success) {
         res.json({
@@ -110,11 +104,11 @@ facultyRouter.put(
 
       const { id } = req.params;
       const body = req.body;
-      console.log("Body : ", body);
+      // console.log("Body : ", body);
       const result = facultyUpdateValidation.safeParse(body);
 
       if (!result.success) {
-        console.log("Validation error:", result.error.format());
+        // console.log("Validation error:", result.error.format());
 
         res.status(400).json({
           message: "Invalid Input",
@@ -263,7 +257,7 @@ facultyRouter.delete(
   userAuth,
   async (req: Request, res: Response) => {
     const { id } = req.params;
-    console.log("Id : ", id);
+    // console.log("Id : ", id);
 
     try {
       if (!id) {
@@ -275,7 +269,7 @@ facultyRouter.delete(
         where: { id: id },
         select: { imageKey: true, pdfKey: true, id: true, firstName: true },
       });
-      console.log("FaKeys : ", faKeys);
+      // console.log("FaKeys : ", faKeys);
 
       if (!faKeys) {
         console.warn(`Faculty member with id ${id} not found.`);
@@ -297,7 +291,7 @@ facultyRouter.delete(
       });
       return;
     } catch (err: unknown) {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({
         message: "Something went wrong, Please try again later!",
         error: err,

@@ -21,7 +21,7 @@ export const userAuth = async (req: Request, res: Response, next: any) => {
     const token =
       req.cookies?.token || req.headers.authorization?.split(" ")[1];
 
-    console.log("Token : ", token);
+    // console.log("Token : ", token);
     if (!token) {
       res.status(401).json({
         message: "Invalid token or missing authentication"
@@ -41,7 +41,7 @@ export const userAuth = async (req: Request, res: Response, next: any) => {
       where: { id },
       select: { id: true, email: true, name: true }
     });
-    console.log("User : ", user)
+    // console.log("User : ", user)
     if (!user) {
       res.status(404).json({ message: "User not Found" });
       return;

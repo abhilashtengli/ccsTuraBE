@@ -56,7 +56,7 @@ advertismentRouter.post(
           pdfKey: pdfKey,
         },
       });
-      console.log("Ad : ", advertisement);
+      // console.log("Ad : ", advertisement);
       res.status(201).json({
         message: "success",
         data: advertisement,
