@@ -11,14 +11,14 @@ export const SendVerification = async (
     const response = await resend.emails.send({
       from:
         serviceFor === "emailService"
-          ? "CCSTura <onboarding@resend.dev>"
-          : "CCSTura : Reset your password <onboarding@resend.dev>",
+          ? "CCSTura  <no-reply@searchyourworkflow.com>"
+          : "CCSTura : Reset your password <no-reply@searchyourworkflow.com>",
       to: [email],
       subject:
         serviceFor === "emailService"
           ? "CCSTura: Verify your email address"
           : "CCSTura: Your Password Reset Code",
-      react: VerificationEmail({ name, code: verifyCode, serviceFor })
+      react: VerificationEmail({ name, code: verifyCode, serviceFor }),
     });
 
     // Optional: Log/send response for monitoring
@@ -32,7 +32,7 @@ export const SendVerification = async (
       message:
         serviceFor === "emailService"
           ? "Verification email sent successfully"
-          : "Verfication code sent to you"
+          : "Verfication code sent to you",
     };
   } catch (error: any) {
     // Log detailed error for internal monitoring
@@ -41,7 +41,7 @@ export const SendVerification = async (
     return {
       success: false,
       status: 500,
-      message: "Failed to send verification email"
+      message: "Failed to send verification email",
     };
   }
 };

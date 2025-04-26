@@ -2,7 +2,7 @@ import {
   S3Client,
   PutObjectCommand,
   DeleteObjectCommand,
-  S3ServiceException
+  S3ServiceException,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import dotenv from "dotenv";
@@ -15,8 +15,8 @@ const s3 = new S3Client({
   endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
     accessKeyId: process.env.CLOUDFLARE_ACCESS_KEY!,
-    secretAccessKey: process.env.CLOUDFLARE_SECRET_KEY!
-  }
+    secretAccessKey: process.env.CLOUDFLARE_SECRET_KEY!,
+  },
 });
 
 export const generatePresignedUrl = async (
@@ -31,14 +31,14 @@ export const generatePresignedUrl = async (
   const command = new PutObjectCommand({
     Bucket: process.env.CLOUDFLARE_BUCKET_NAME,
     Key: key,
-    ContentType: contentType
+    ContentType: contentType,
   });
 
   const signedUrl = await getSignedUrl(s3, command, { expiresIn: 600 }); // 1 hour expiry
   return {
     signedUrl,
     key,
-    publicUrl: getPublicUrl(key)
+    publicUrl: getPublicUrl(key),
   };
 };
 
@@ -51,7 +51,7 @@ export const deleteContent = async (key: string) => {
   try {
     const deleteCommand = new DeleteObjectCommand({
       Bucket: process.env.CLOUDFLARE_BUCKET_NAME,
-      Key: key
+      Key: key,
     });
     await s3.send(deleteCommand);
     return { success: true };
@@ -64,12 +64,12 @@ export const deleteContent = async (key: string) => {
       return {
         success: false,
         error: "Failed to delete content from storage",
-        err
+        err,
       };
     }
     return {
       success: false,
-      error: "Unexpected error during deletion"
+      error: "Unexpected error during deletion",
     };
   }
 };
