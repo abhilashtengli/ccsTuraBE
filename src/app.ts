@@ -21,10 +21,10 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://ccstura.ac.in",
+    origin: "http://localhost:5174",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
   })
 );
 app.use(cookieParser());
