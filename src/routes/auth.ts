@@ -24,13 +24,13 @@ authRouter.post("/signup", userAuth, async (req: Request, res: Response) => {
 
     const existingUser = await prisma.user.findUnique({
       where: { email },
-      select: { id: true },
+      select: { id: true }
     });
     if (existingUser) {
       res.status(409).json({
         // Use return to prevent further execution
         message: "User already exists",
-        code: "USER_EXISTS", // Standardized error code
+        code: "USER_EXISTS" // Standardized error code
       });
       return;
     }
@@ -45,15 +45,15 @@ authRouter.post("/signup", userAuth, async (req: Request, res: Response) => {
         password: passwordHash,
         email,
         verificationCode,
-        verificationExpires: new Date(Date.now() + 10 * 60 * 1000),
+        verificationExpires: new Date(Date.now() + 10 * 60 * 1000)
       },
       select: {
         // Add select to return only needed fields
         id: true,
         name: true,
         email: true,
-        createdAt: true,
-      },
+        createdAt: true
+      }
     });
     const serviceFor = "emailService";
     const emailResult = await SendVerification(
@@ -66,7 +66,7 @@ authRouter.post("/signup", userAuth, async (req: Request, res: Response) => {
     if (!emailResult.success) {
       res.status(500).json({
         message: "User created, but failed to send verification email",
-        error: emailResult.message,
+        error: emailResult.message
       });
     }
     res.status(201).json({
@@ -74,7 +74,7 @@ authRouter.post("/signup", userAuth, async (req: Request, res: Response) => {
         "Please verify your account by entering the code sent to you email : " +
         email,
       success: true,
-      data: user,
+      data: user
     });
     return;
   } catch (err) {
@@ -84,8 +84,8 @@ authRouter.post("/signup", userAuth, async (req: Request, res: Response) => {
       code: "INTERNAL_ERROR",
       errorId, // Provide error ID for support tracking
       ...(process.env.NODE_ENV !== "production" && {
-        details: err instanceof Error ? err.message : "Unknown error",
-      }),
+        details: err instanceof Error ? err.message : "Unknown error"
+      })
     });
   }
 });
@@ -99,27 +99,27 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
       return;
     }
 
-    const user = await await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
       select: {
         name: true,
         email: true,
         password: true,
         id: true,
-        isVerified: true,
-      },
+        isVerified: true
+      }
     });
     if (!user) {
       res.status(401).json({
         success: false,
-        message: "Invalid Credentials",
+        message: "Invalid Credentials"
       });
       return;
     }
     if (!user.isVerified) {
       res.status(403).json({
         success: false,
-        message: "Please verify your email address before Signing In",
+        message: "Please verify your email address before Signing In"
       });
       return;
     }
@@ -137,8 +137,8 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
       res.cookie("token", token, {
         maxAge: 12 * 60 * 60 * 1000,
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: true,
+        sameSite: "lax"
       });
 
       res.status(200).json({
@@ -146,16 +146,16 @@ authRouter.post("/signin", async (req: Request, res: Response) => {
         data: {
           id: user.id,
           name: user.name,
-          email: user.email,
+          email: user.email
         },
-        message: "Signin successful",
+        message: "Signin successful"
       });
       return;
     }
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Sign In Failed, Internal server error",
+      message: "Sign In Failed, Internal server error"
     });
   }
 });
@@ -176,19 +176,19 @@ authRouter.post("/verify-email", async (req: Request, res: Response) => {
         isVerified: true,
         verificationCode: true,
         verificationExpires: true,
-        name: true,
-      },
+        name: true
+      }
     });
 
     if (!user) {
       res.status(404).json({
-        message: "User not found",
+        message: "User not found"
       });
       return;
     }
     if (user.isVerified) {
       res.status(200).json({
-        message: "Email is already verified",
+        message: "Email is already verified"
       });
       return;
     }
@@ -198,13 +198,13 @@ authRouter.post("/verify-email", async (req: Request, res: Response) => {
       user.verificationExpires < new Date()
     ) {
       res.status(400).json({
-        message: "Invalid or expired verification code",
+        message: "Invalid or expired verification code"
       });
       return;
     }
     if (user.verificationCode !== code) {
       res.status(400).json({
-        message: "Invalid verification code",
+        message: "Invalid verification code"
       });
       return;
     }
@@ -213,8 +213,8 @@ authRouter.post("/verify-email", async (req: Request, res: Response) => {
       data: {
         isVerified: true,
         verificationCode: null,
-        verificationExpires: null,
-      },
+        verificationExpires: null
+      }
     });
     res.status(200).json({ message: "Email verified successfully" });
     return;
@@ -222,7 +222,7 @@ authRouter.post("/verify-email", async (req: Request, res: Response) => {
     // console.log("Verification err : ", err);
     res.status(500).json({
       message: "Email Verification Failed due to internal server error",
-      success: false,
+      success: false
     });
   }
 });
@@ -233,7 +233,7 @@ authRouter.post("/resend-code", async (req: Request, res: Response) => {
     if (!email || typeof email !== "string") {
       res.status(400).json({
         error: "Email is required",
-        code: "MISSING_FIELD",
+        code: "MISSING_FIELD"
       });
       return;
     }
@@ -245,14 +245,14 @@ authRouter.post("/resend-code", async (req: Request, res: Response) => {
         id: true,
         name: true,
         email: true,
-        isVerified: true,
-      },
+        isVerified: true
+      }
     });
 
     if (!user) {
       res.status(404).json({
         error: "User not found",
-        message: "USER_NOT_FOUND",
+        message: "USER_NOT_FOUND"
       });
       return;
     }
@@ -260,7 +260,7 @@ authRouter.post("/resend-code", async (req: Request, res: Response) => {
     if (user.isVerified) {
       res.status(400).json({
         error: "User is already verified",
-        message: "ALREADY_VERIFIED",
+        message: "ALREADY_VERIFIED"
       });
       return;
     }
@@ -275,8 +275,8 @@ authRouter.post("/resend-code", async (req: Request, res: Response) => {
       where: { email },
       data: {
         verificationCode,
-        verificationExpires: new Date(Date.now() + 10 * 60 * 1000), // 10 minutes
-      },
+        verificationExpires: new Date(Date.now() + 10 * 60 * 1000) // 10 minutes
+      }
     });
 
     // Send the email
@@ -292,14 +292,14 @@ authRouter.post("/resend-code", async (req: Request, res: Response) => {
       res.status(500).json({
         error: "Failed to send verification email",
         code: "EMAIL_SEND_FAILED",
-        message: "Email send failed : " + emailResult.message,
+        message: "Email send failed : " + emailResult.message
       });
       return;
     }
 
     res.status(200).json({
       message: "Verification code has been sent to your email",
-      success: true,
+      success: true
     });
     return;
   } catch (err) {
@@ -309,8 +309,8 @@ authRouter.post("/resend-code", async (req: Request, res: Response) => {
       code: "INTERNAL_ERROR",
       errorId,
       ...(process.env.NODE_ENV !== "production" && {
-        details: err instanceof Error ? err.message : "Unknown error",
-      }),
+        details: err instanceof Error ? err.message : "Unknown error"
+      })
     });
     return;
   }
@@ -326,18 +326,18 @@ authRouter.post("/forgot-password", async (req: Request, res: Response) => {
 
     const user = await prisma.user.findUnique({
       where: { email },
-      select: { isVerified: true, name: true },
+      select: { isVerified: true, name: true }
     });
     if (!user) {
       res.status(401).json({
-        message: "Invalid Credentials",
+        message: "Invalid Credentials"
       });
       return;
     }
     if (!user.isVerified) {
       res.json({
         message:
-          "Please verify your email address before resetting your password",
+          "Please verify your email address before resetting your password"
       });
       return;
     }
@@ -349,8 +349,8 @@ authRouter.post("/forgot-password", async (req: Request, res: Response) => {
       where: { email },
       data: {
         verificationCode: verificationCode,
-        verificationExpires: new Date(Date.now() + 10 * 60 * 1000),
-      },
+        verificationExpires: new Date(Date.now() + 10 * 60 * 1000)
+      }
     });
     const serviceFor = "passwordService";
     const emailResult = await SendVerification(
@@ -363,19 +363,19 @@ authRouter.post("/forgot-password", async (req: Request, res: Response) => {
     if (!emailResult.success) {
       res.status(500).json({
         message: "Failed to send forgot password code",
-        error: emailResult.message,
+        error: emailResult.message
       });
     }
 
     res.status(200).json({
       message: "A verification code has been sent to your email",
-      success: true,
+      success: true
     });
     return;
   } catch (err) {
     res.status(500).json({
       message: "Internal server error, please try again later",
-      success: false,
+      success: false
     });
   }
 });
@@ -397,18 +397,18 @@ authRouter.post("/verify-code", async (req: Request, res: Response) => {
     }
     const user = await prisma.user.findUnique({
       where: { email },
-      select: { verificationCode: true, verificationExpires: true },
+      select: { verificationCode: true, verificationExpires: true }
     });
 
     if (!user) {
       res.status(404).json({
-        message: "User not found",
+        message: "User not found"
       });
       return;
     }
     if (user.verificationCode !== code) {
       res.status(400).json({
-        message: "Invalid verification code",
+        message: "Invalid verification code"
       });
       return;
     }
@@ -418,14 +418,14 @@ authRouter.post("/verify-code", async (req: Request, res: Response) => {
       user.verificationExpires < new Date()
     ) {
       res.status(400).json({
-        message: "Invalid or expired verification code",
+        message: "Invalid or expired verification code"
       });
       return;
     }
     if (!validator.isStrongPassword(newPassword)) {
       res.json({
         message: "Enter a strong password",
-        success: false,
+        success: false
       });
       return;
     }
@@ -435,18 +435,18 @@ authRouter.post("/verify-code", async (req: Request, res: Response) => {
       data: {
         password: passwordHash,
         verificationCode: null,
-        verificationExpires: null,
-      },
+        verificationExpires: null
+      }
     });
     res.status(200).json({
       success: true,
-      message: "password updated successfully",
+      message: "password updated successfully"
     });
     return;
   } catch (err) {
     res.status(500).json({
       message: "Internal server error, please try again later",
-      success: false,
+      success: false
     });
   }
 });
@@ -457,17 +457,17 @@ authRouter.get("/getUser", userAuth, async (req: Request, res: Response) => {
   try {
     const loggedInUser = await prisma.user.findUnique({
       where: { id: user?.id },
-      select: { id: true, name: true, email: true },
+      select: { id: true, name: true, email: true }
     });
 
     res.status(200).json({
       success: true,
-      data: loggedInUser,
+      data: loggedInUser
     });
   } catch (error) {
     res.status(500).json({
       message:
-        "Failed to fetch user, Try to signout and signin or contact support",
+        "Failed to fetch user, Try to signout and signin or contact support"
     });
   }
 });
@@ -478,7 +478,7 @@ authRouter.post("/signout", async (req: Request, res: Response) => {
     httpOnly: true,
     expires: new Date(0),
     secure: true,
-    sameSite: "none",
+    sameSite: "none"
   });
 
   res.status(200).json({ message: "Logged out" });
