@@ -263,11 +263,16 @@ export const advertismentUpdateValidation = z
       .transform((date) => new Date(date))
       .optional(),
     isActive: z.boolean().optional(),
-    pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
+    pdfUrl: z
+      .string()
+      .url({ message: "Invalid URL format" })
+      .nullable()
+      .optional(),
     pdfKey: z
       .string()
       .min(3, { message: "Pdf key cannot be empty" })
       .trim()
+      .nullable()
       .optional()
   })
   .refine((data) => !(data.pdfUrl && !data.pdfKey), {
@@ -293,6 +298,7 @@ export const facultyUpdateValidation = z
 
     profileImageUrl: z
       .string()
+      .nullable()
       .optional()
       .transform((val) => (val === "" ? undefined : val))
       .refine((val) => !val || z.string().url().safeParse(val).success, {
@@ -301,7 +307,7 @@ export const facultyUpdateValidation = z
     imageKey: z
       .string()
       .transform((val) => (val === "" ? undefined : val))
-      .optional()
+      .nullable()
       .optional(),
     designation: z.string().optional(),
     isHod: z.boolean().optional(),
@@ -312,6 +318,7 @@ export const facultyUpdateValidation = z
       .optional(),
     cvUrl: z
       .string()
+      .nullable()
       .optional()
       .transform((val) => (val === "" ? undefined : val))
       .refine((val) => !val || z.string().url().safeParse(val).success, {
@@ -319,6 +326,7 @@ export const facultyUpdateValidation = z
       }),
     pdfKey: z
       .string()
+      .nullable()
       .transform((val) => (val === "" ? undefined : val))
       .optional(),
     socialLinks: z
@@ -400,8 +408,16 @@ export const noticeUpdateValidation = z
       .min(3, { message: "Category cannot be empty" })
       .optional(),
     title: z.string().min(3, { message: "Title cannot be empty" }).optional(),
-    pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-    pdfKey: z.string().min(3, { message: "Key cannot be empty" }).optional(),
+    pdfUrl: z
+      .string()
+      .url({ message: "Invalid URL format" })
+      .nullable()
+      .optional(),
+    pdfKey: z
+      .string()
+      .min(3, { message: "Key cannot be empty" })
+      .nullable()
+      .optional(),
     isActive: z.boolean().optional()
   })
   .refine((data) => !(data.pdfUrl && !data.pdfKey), {
@@ -421,8 +437,16 @@ export const staffFormUpdateValidation = z
       .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
       .transform((date) => new Date(date))
       .optional(),
-    pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-    pdfKey: z.string().min(3, { message: "Key cannot be empty" }).optional(),
+    pdfUrl: z
+      .string()
+      .url({ message: "Invalid URL format" })
+      .nullable()
+      .optional(),
+    pdfKey: z
+      .string()
+      .min(3, { message: "Key cannot be empty" })
+      .nullable()
+      .optional(),
     isActive: z.boolean().optional()
   })
   .refine((data) => !(data.pdfUrl && !data.pdfKey), {
@@ -451,8 +475,16 @@ export const tenderUpdateValidation = z
       .string()
       .min(3, { message: "Category cannot be empty" })
       .optional(),
-    pdfUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-    pdfKey: z.string().min(3, { message: "Key cannot be empty" }).optional(),
+    pdfUrl: z
+      .string()
+      .url({ message: "Invalid URL format" })
+      .nullable()
+      .optional(),
+    pdfKey: z
+      .string()
+      .min(3, { message: "Key cannot be empty" })
+      .nullable()
+      .optional(),
     status: z.enum(["Open", "Closed"]).optional()
   })
   .refine((data) => !(data.pdfUrl && !data.pdfKey), {
