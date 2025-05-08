@@ -1,16 +1,25 @@
 import express, { Request, Response } from "express";
 import { videoUpdateValidation, videoValidation } from "../utils/validation";
 import { prisma } from "../lib/prisma";
-import { Prisma } from "../generated/prisma";
+import { GalleryCategory, Prisma } from "../generated/prisma";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
 import { userAuth } from "../middleware/auth";
 const videoRouter = express.Router();
+export const galleryCategoryValues = [
+  "Campus",
+  "Events",
+  "Students",
+  "Faculty",
+  "Sports"
+] as const;
 
 videoRouter.post(
   "/add-video",
   userAuth,
   async (req: Request, res: Response) => {
     try {
+      console.log("Reached");
+      console.log("body data : ", req.body);
       const body = req.body;
       const result = videoValidation.safeParse(body);
 
@@ -21,6 +30,7 @@ videoRouter.post(
         });
         return;
       }
+      console.log("RE data : ", result.data);
       const { category, title, youtubeUrl } = result.data;
 
       const video = await prisma.galleryVideo.create({
@@ -43,8 +53,10 @@ videoRouter.post(
         });
         return;
       }
+      console.log("error : ", err);
       res.status(500).json({
-        message: "Something went wrong, please try again later"
+        message: "Something went wrong, please try again later",
+        error: err
       });
       return;
     }

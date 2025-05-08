@@ -1,3 +1,4 @@
+import { GalleryCategory } from "../generated/prisma";
 import validator from "validator";
 import { z } from "zod";
 interface User {
@@ -5,6 +6,14 @@ interface User {
   email: string;
   password: string;
 }
+const validCategories = [
+  "Campus",
+  "Events",
+  "Students",
+  "Faculty",
+  "Sports",
+] as const;
+
 export const signupValidation = (req: { body: User }) => {
   const { name, email, password } = req.body;
   if (!name) {
@@ -229,7 +238,7 @@ export const imageValidation = z
 
 export const videoValidation = z.object({
   youtubeUrl: z.string().url({ message: "Invalid URL format" }),
-  category: z.enum(["Campus", "Events", "Students", "Faculty", "Sports"]),
+  category: z.enum(validCategories),
   title: z
     .string()
     .min(3, { message: "Title cannot be empty" })
@@ -382,8 +391,7 @@ export const imageUpdateValidation = z
 
 export const videoUpdateValidation = z.object({
   youtubeUrl: z.string().url({ message: "Invalid URL format" }).optional(),
-
-  category: z.enum(["Campus", "Events", "Students", "Faculty", "Sports"]),
+  category: z.enum(validCategories),
   title: z.string().min(3, { message: "Title cannot be empty" }).optional()
 });
 
