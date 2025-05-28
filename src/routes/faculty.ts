@@ -112,7 +112,7 @@ facultyRouter.put(
       const result = facultyUpdateValidation.safeParse(body);
 
       if (!result.success) {
-        // console.log("Validation error:", result.error.format());
+        console.log("Validation error:", result.error.format());
 
         res.status(400).json({
           message: "Invalid Input",
@@ -157,7 +157,9 @@ facultyRouter.put(
           department: result.data.department ?? existingFaculty.department,
           imageKey: result.data.imageKey ?? existingFaculty.imageKey,
           pdfKey: result.data.pdfKey ?? existingFaculty.pdfKey,
-          updatedAt: new Date().toISOString()
+          updatedAt: new Date().toISOString(),
+          bioDataUrl: result.data.bioDataUrl,
+          bioDataKey: result.data.bioDataKey
         }
       });
 
