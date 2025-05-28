@@ -11,7 +11,7 @@ const validCategories = [
   "Events",
   "Students",
   "Faculty",
-  "Sports",
+  "Sports"
 ] as const;
 
 export const signupValidation = (req: { body: User }) => {
@@ -61,13 +61,26 @@ export const facultyValidation = z
     // Fix for cvUrl - allow null
     cvUrl: z
       .string()
-      .nullable() // Allow null explicitly
-      .optional(),
+      .nullable()
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine((val) => !val || z.string().url().safeParse(val).success, {
+        message: "Invalid URL format"
+      }),
     // Fix for pdfKey - allow null
     pdfKey: z
       .string()
       .nullable() // Allow null explicitly
       .optional(),
+    bioDataUrl: z
+      .string()
+      .nullable()
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine((val) => !val || z.string().url().safeParse(val).success, {
+        message: "Invalid URL format"
+      }),
+    bioDataKey: z.string().nullable().optional(),
     // Fix for socialLinks - allow null
     socialLinks: z
       .object({
@@ -103,6 +116,14 @@ export const facultyValidation = z
     message: "PDF key is required when PDF URL is provided",
     path: ["pdfKey"]
   })
+  .refine(
+    (data) =>
+      !(data.bioDataUrl && !data.bioDataKey && data.bioDataUrl !== null),
+    {
+      message: "Bio data key is required when Bio data URL is provided",
+      path: ["bioDataKey"]
+    }
+  )
   .refine(
     (data) =>
       !(
@@ -318,6 +339,19 @@ export const facultyUpdateValidation = z
       .transform((val) => (val === "" ? undefined : val))
       .nullable()
       .optional(),
+    bioDataUrl: z
+      .string()
+      .nullable()
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine((val) => !val || z.string().url().safeParse(val).success, {
+        message: "Invalid URL format"
+      }),
+    bioDataKey: z
+      .string()
+      .transform((val) => (val === "" ? undefined : val))
+      .nullable()
+      .optional(),
     designation: z.string().optional(),
     isHod: z.boolean().optional(),
     facultyType: z
@@ -368,10 +402,30 @@ export const facultyUpdateValidation = z
       )
       .optional()
   })
-  .refine((data) => !(data.cvUrl && !data.pdfKey), {
+  .refine((data) => !(data.cvUrl && !data.pdfKey && data.cvUrl !== null), {
     message: "PDF key is required when PDF URL is provided",
-    path: ["pdfKey"] // Points to the pdfKey field in error
-  });
+    path: ["pdfKey"]
+  })
+  .refine(
+    (data) =>
+      !(data.bioDataUrl && !data.bioDataKey && data.bioDataUrl !== null),
+    {
+      message: "Bio data key is required when Bio data URL is provided",
+      path: ["bioDataKey"]
+    }
+  )
+  .refine(
+    (data) =>
+      !(
+        data.profileImageUrl &&
+        !data.imageKey &&
+        data.profileImageUrl !== null
+      ),
+    {
+      message: "Image Key is required when Image URL is provided",
+      path: ["imageKey"]
+    }
+  );
 
 export const imageUpdateValidation = z
   .object({

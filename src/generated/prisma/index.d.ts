@@ -3765,6 +3765,8 @@ export namespace Prisma {
     pdfKey: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    bioDataUrl: string | null
+    bioDataKey: string | null
     department: $Enums.Departments | null
   }
 
@@ -3783,6 +3785,8 @@ export namespace Prisma {
     pdfKey: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    bioDataUrl: string | null
+    bioDataKey: string | null
     department: $Enums.Departments | null
   }
 
@@ -3802,6 +3806,8 @@ export namespace Prisma {
     socialLinks: number
     createdAt: number
     updatedAt: number
+    bioDataUrl: number
+    bioDataKey: number
     department: number
     _all: number
   }
@@ -3822,6 +3828,8 @@ export namespace Prisma {
     pdfKey?: true
     createdAt?: true
     updatedAt?: true
+    bioDataUrl?: true
+    bioDataKey?: true
     department?: true
   }
 
@@ -3840,6 +3848,8 @@ export namespace Prisma {
     pdfKey?: true
     createdAt?: true
     updatedAt?: true
+    bioDataUrl?: true
+    bioDataKey?: true
     department?: true
   }
 
@@ -3859,6 +3869,8 @@ export namespace Prisma {
     socialLinks?: true
     createdAt?: true
     updatedAt?: true
+    bioDataUrl?: true
+    bioDataKey?: true
     department?: true
     _all?: true
   }
@@ -3951,6 +3963,8 @@ export namespace Prisma {
     socialLinks: JsonValue | null
     createdAt: Date
     updatedAt: Date
+    bioDataUrl: string | null
+    bioDataKey: string | null
     department: $Enums.Departments
     _count: FacultyMemberCountAggregateOutputType | null
     _min: FacultyMemberMinAggregateOutputType | null
@@ -3987,6 +4001,8 @@ export namespace Prisma {
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    bioDataUrl?: boolean
+    bioDataKey?: boolean
     department?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
@@ -4006,6 +4022,8 @@ export namespace Prisma {
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    bioDataUrl?: boolean
+    bioDataKey?: boolean
     department?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
@@ -4025,6 +4043,8 @@ export namespace Prisma {
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    bioDataUrl?: boolean
+    bioDataKey?: boolean
     department?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
@@ -4044,10 +4064,12 @@ export namespace Prisma {
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    bioDataUrl?: boolean
+    bioDataKey?: boolean
     department?: boolean
   }
 
-  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "imageKey" | "designation" | "isHod" | "facultyType" | "cvUrl" | "pdfKey" | "socialLinks" | "createdAt" | "updatedAt" | "department", ExtArgs["result"]["facultyMember"]>
+  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "imageKey" | "designation" | "isHod" | "facultyType" | "cvUrl" | "pdfKey" | "socialLinks" | "createdAt" | "updatedAt" | "bioDataUrl" | "bioDataKey" | "department", ExtArgs["result"]["facultyMember"]>
 
   export type $FacultyMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FacultyMember"
@@ -4068,6 +4090,8 @@ export namespace Prisma {
       socialLinks: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
+      bioDataUrl: string | null
+      bioDataKey: string | null
       department: $Enums.Departments
     }, ExtArgs["result"]["facultyMember"]>
     composites: {}
@@ -4507,6 +4531,8 @@ export namespace Prisma {
     readonly socialLinks: FieldRef<"FacultyMember", 'Json'>
     readonly createdAt: FieldRef<"FacultyMember", 'DateTime'>
     readonly updatedAt: FieldRef<"FacultyMember", 'DateTime'>
+    readonly bioDataUrl: FieldRef<"FacultyMember", 'String'>
+    readonly bioDataKey: FieldRef<"FacultyMember", 'String'>
     readonly department: FieldRef<"FacultyMember", 'Departments'>
   }
     
@@ -11150,6 +11176,8 @@ export namespace Prisma {
     socialLinks: 'socialLinks',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    bioDataUrl: 'bioDataUrl',
+    bioDataKey: 'bioDataKey',
     department: 'department'
   };
 
@@ -11567,6 +11595,8 @@ export namespace Prisma {
     socialLinks?: JsonNullableFilter<"FacultyMember">
     createdAt?: DateTimeFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeFilter<"FacultyMember"> | Date | string
+    bioDataUrl?: StringNullableFilter<"FacultyMember"> | string | null
+    bioDataKey?: StringNullableFilter<"FacultyMember"> | string | null
     department?: EnumDepartmentsFilter<"FacultyMember"> | $Enums.Departments
   }
 
@@ -11586,6 +11616,8 @@ export namespace Prisma {
     socialLinks?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bioDataUrl?: SortOrderInput | SortOrder
+    bioDataKey?: SortOrderInput | SortOrder
     department?: SortOrder
   }
 
@@ -11608,6 +11640,8 @@ export namespace Prisma {
     socialLinks?: JsonNullableFilter<"FacultyMember">
     createdAt?: DateTimeFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeFilter<"FacultyMember"> | Date | string
+    bioDataUrl?: StringNullableFilter<"FacultyMember"> | string | null
+    bioDataKey?: StringNullableFilter<"FacultyMember"> | string | null
     department?: EnumDepartmentsFilter<"FacultyMember"> | $Enums.Departments
   }, "id">
 
@@ -11627,6 +11661,8 @@ export namespace Prisma {
     socialLinks?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bioDataUrl?: SortOrderInput | SortOrder
+    bioDataKey?: SortOrderInput | SortOrder
     department?: SortOrder
     _count?: FacultyMemberCountOrderByAggregateInput
     _max?: FacultyMemberMaxOrderByAggregateInput
@@ -11652,6 +11688,8 @@ export namespace Prisma {
     socialLinks?: JsonNullableWithAggregatesFilter<"FacultyMember">
     createdAt?: DateTimeWithAggregatesFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"FacultyMember"> | Date | string
+    bioDataUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
+    bioDataKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     department?: EnumDepartmentsWithAggregatesFilter<"FacultyMember"> | $Enums.Departments
   }
 
@@ -12239,6 +12277,8 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    bioDataUrl?: string | null
+    bioDataKey?: string | null
     department: $Enums.Departments
   }
 
@@ -12258,6 +12298,8 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    bioDataUrl?: string | null
+    bioDataKey?: string | null
     department: $Enums.Departments
   }
 
@@ -12277,6 +12319,8 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
   }
 
@@ -12296,6 +12340,8 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
   }
 
@@ -12315,6 +12361,8 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    bioDataUrl?: string | null
+    bioDataKey?: string | null
     department: $Enums.Departments
   }
 
@@ -12334,6 +12382,8 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
   }
 
@@ -12353,6 +12403,8 @@ export namespace Prisma {
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
   }
 
@@ -13081,6 +13133,8 @@ export namespace Prisma {
     socialLinks?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bioDataUrl?: SortOrder
+    bioDataKey?: SortOrder
     department?: SortOrder
   }
 
@@ -13099,6 +13153,8 @@ export namespace Prisma {
     pdfKey?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bioDataUrl?: SortOrder
+    bioDataKey?: SortOrder
     department?: SortOrder
   }
 
@@ -13117,6 +13173,8 @@ export namespace Prisma {
     pdfKey?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    bioDataUrl?: SortOrder
+    bioDataKey?: SortOrder
     department?: SortOrder
   }
 

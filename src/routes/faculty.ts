@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import {
   facultyUpdateValidation,
-  facultyValidation,
+  facultyValidation
 } from "../utils/validation";
 import { deleteContent } from "../services/Cloudflare/cloudflare";
 import { prisma } from "../lib/prisma";
@@ -15,14 +15,14 @@ facultyRouter.post(
   async (req: Request, res: Response) => {
     try {
       // console.log("Entered..");
-    
+
       const body = req.body;
       // console.log("Body : ", body);
       const result = await facultyValidation.safeParse(body);
       if (!result.success) {
         res.json({
           message: "Invalid Input",
-          error: result.error.errors,
+          error: result.error.errors
         });
         return;
       }
@@ -41,6 +41,8 @@ facultyRouter.post(
         pdfKey,
         socialLinks,
         department,
+        bioDataUrl,
+        bioDataKey
       } = result.data;
 
       const formattedSocialLinks =
@@ -63,12 +65,14 @@ facultyRouter.post(
           department,
           imageKey: imageKey,
           pdfKey: pdfKey,
-        },
+          bioDataUrl: bioDataUrl,
+          bioDataKey: bioDataKey
+        }
       });
 
       res.status(201).send({
         message: "success",
-        data: faculty,
+        data: faculty
       });
       return;
     } catch (err) {
@@ -76,7 +80,7 @@ facultyRouter.post(
         if (err.code === "P2002") {
           res.status(409).json({
             code: "CONFLICT",
-            message: "Faculty member with this email already exists",
+            message: "Faculty member with this email already exists"
           });
         }
         return;
@@ -112,14 +116,14 @@ facultyRouter.put(
 
         res.status(400).json({
           message: "Invalid Input",
-          error: result.error.format(),
+          error: result.error.format()
         });
         return;
       }
 
       // Check if faculty exists
       const existingFaculty = await prisma.facultyMember.findUnique({
-        where: { id },
+        where: { id }
       });
 
       if (!existingFaculty) {
@@ -153,20 +157,20 @@ facultyRouter.put(
           department: result.data.department ?? existingFaculty.department,
           imageKey: result.data.imageKey ?? existingFaculty.imageKey,
           pdfKey: result.data.pdfKey ?? existingFaculty.pdfKey,
-          updatedAt: new Date().toISOString(),
-        },
+          updatedAt: new Date().toISOString()
+        }
       });
 
       res.status(200).json({
         message: "success",
-        data: updatedFaculty,
+        data: updatedFaculty
       });
       return;
     } catch (err) {
       res.status(500).json({
         message:
           "Failed to update : Something went wrong, please try again later",
-        err,
+        err
       });
       return;
     }
@@ -178,18 +182,18 @@ facultyRouter.get("/fa/getAll", async (req: Request, res: Response) => {
     const facultyData = await prisma.facultyMember.findMany();
     if (!facultyData) {
       res.status(404).json({
-        message: "No Faculty data Found",
+        message: "No Faculty data Found"
       });
       return;
     }
     res.status(200).json({
       success: true,
-      data: facultyData,
+      data: facultyData
     });
     return;
   } catch (err) {
     res.status(500).json({
-      message: "Could not fetch the Faculty data, please try again later",
+      message: "Could not fetch the Faculty data, please try again later"
     });
     return;
   }
@@ -200,23 +204,23 @@ facultyRouter.get(
     try {
       const facultyData = await prisma.facultyMember.findMany({
         where: {
-          facultyType: "Non_Teaching",
-        },
+          facultyType: "Non_Teaching"
+        }
       });
       if (!facultyData) {
         res.status(404).json({
-          message: "No Faculty data Found",
+          message: "No Faculty data Found"
         });
         return;
       }
       res.status(200).json({
         success: true,
-        data: facultyData,
+        data: facultyData
       });
       return;
     } catch (err) {
       res.status(500).json({
-        message: "Could not fetch the Faculty data, please try again later",
+        message: "Could not fetch the Faculty data, please try again later"
       });
       return;
     }
@@ -229,23 +233,23 @@ facultyRouter.get(
     try {
       const facultyData = await prisma.facultyMember.findMany({
         where: {
-          facultyType: "Teaching",
-        },
+          facultyType: "Teaching"
+        }
       });
       if (!facultyData) {
         res.status(404).json({
-          message: "No Faculty data Found",
+          message: "No Faculty data Found"
         });
         return;
       }
       res.status(200).json({
         success: true,
-        data: facultyData,
+        data: facultyData
       });
       return;
     } catch (err) {
       res.status(500).json({
-        message: "Could not fetch the Faculty data, please try again later",
+        message: "Could not fetch the Faculty data, please try again later"
       });
       return;
     }
@@ -267,7 +271,7 @@ facultyRouter.delete(
 
       const faKeys = await prisma.facultyMember.findUnique({
         where: { id: id },
-        select: { imageKey: true, pdfKey: true, id: true, firstName: true },
+        select: { imageKey: true, pdfKey: true, id: true, firstName: true }
       });
       // console.log("FaKeys : ", faKeys);
 
@@ -283,18 +287,18 @@ facultyRouter.delete(
       }
 
       await prisma.facultyMember.delete({
-        where: { id: id },
+        where: { id: id }
       });
 
       res.status(200).json({
-        message: "Faculty member deleted successfully",
+        message: "Faculty member deleted successfully"
       });
       return;
     } catch (err: unknown) {
       // console.log(err);
       res.status(500).json({
         message: "Something went wrong, Please try again later!",
-        error: err,
+        error: err
       });
       return;
     }

@@ -13,7 +13,7 @@ newsRouter.post("/add-news", userAuth, async (req: Request, res: Response) => {
     if (!result.success) {
       res.json({
         message: "Invalid Input",
-        error: result.error.errors,
+        error: result.error.errors
       });
       return;
     }
@@ -24,26 +24,26 @@ newsRouter.post("/add-news", userAuth, async (req: Request, res: Response) => {
         title: title,
         description: description,
         publishDate: publishDate,
-        isActive: isActive,
-      },
+        isActive: isActive
+      }
     });
 
     res.status(201).json({
       message: "success",
-      data: news,
+      data: news
     });
     return;
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       res.status(400).json({
         code: "DATABASE_ERROR",
-        message: "Failed to create news article due to database constraints",
+        message: "Failed to create news article due to database constraints"
       });
       return;
     }
     res.status(500).json({
       message:
-        "Failed to create news, Something went wrong, please try again later",
+        "Failed to create news, Something went wrong, please try again later"
     });
     return;
   }
@@ -61,19 +61,19 @@ newsRouter.put(
       if (!result.success) {
         res.status(400).json({
           message: "Invalid Input",
-          error: result.error.errors,
+          error: result.error.errors
         });
         return;
       }
 
       // Check if news exists
       const existingNews = await prisma.newsUpdate.findUnique({
-        where: { id },
+        where: { id }
       });
 
       if (!existingNews) {
         res.status(404).json({
-          message: "News article not found",
+          message: "News article not found"
         });
         return;
       }
@@ -86,13 +86,13 @@ newsRouter.put(
           description: result.data.description ?? existingNews.description,
           publishDate: result.data.publishDate ?? existingNews.publishDate,
           isActive: result.data.isActive ?? existingNews.isActive,
-          updatedAt: new Date().toISOString(),
-        },
+          updatedAt: new Date().toISOString()
+        }
       });
 
       res.status(200).json({
         message: "success",
-        data: updatedNews,
+        data: updatedNews
       });
       return;
     } catch (err) {
@@ -100,18 +100,18 @@ newsRouter.put(
         if (err.code === "P2025") {
           res.status(404).json({
             code: "NOT_FOUND",
-            message: "News article not found",
+            message: "News article not found"
           });
           return;
         }
         res.status(400).json({
           code: "DATABASE_ERROR",
-          message: "Failed to update news due to database constraints",
+          message: "Failed to update news due to database constraints"
         });
         return;
       }
       res.status(500).json({
-        message: "Something went wrong, please try again later",
+        message: "Something went wrong, please try again later"
       });
       return;
     }
@@ -122,22 +122,22 @@ newsRouter.get("/ne/getAll", async (req: Request, res: Response) => {
   try {
     const news = await prisma.newsUpdate.findMany({
       orderBy: {
-        createdAt: "desc",
-      },
+        createdAt: "desc"
+      }
     });
     if (!news) {
       res.status(404).json({
-        message: "No news Found",
+        message: "No news Found"
       });
       return;
     }
     res.status(200).json({
       success: true,
-      data: news,
+      data: news
     });
   } catch (err) {
     res.status(500).json({
-      message: "Could not fetch the News, please try again later",
+      message: "Could not fetch the News, please try again later"
     });
     return;
   }
@@ -154,27 +154,27 @@ newsRouter.delete(
         return;
       }
       await prisma.newsUpdate.delete({
-        where: { id: id },
+        where: { id: id }
       });
       res.status(200).json({
-        message: "Notice deleted successfully",
+        message: "Notice deleted successfully"
       });
     } catch (err: unknown) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         if (err.code === "P2025") {
           res.status(404).json({
-            message: "News not found", // Fixed message consistency
+            message: "News not found" // Fixed message consistency
           });
           return;
         }
 
         res.status(400).json({
-          message: "Database operation failed",
+          message: "Database operation failed"
         });
         return;
       }
       res.status(500).json({
-        message: "Something went wrong, Please try again later!",
+        message: "Something went wrong, Please try again later!"
       });
       return;
     }
@@ -198,7 +198,7 @@ newsRouter.get(
       imageCount = await prisma.galleryImage.count();
       videoCount = await prisma.galleryVideo.count();
       tendersCount = await prisma.tender.count({
-        where: { status: "Open" },
+        where: { status: "Open" }
       });
       newsCount = await prisma.newsUpdate.count();
 
@@ -212,14 +212,14 @@ newsRouter.get(
           facultyCount,
           mediaCount,
           tendersCount,
-          newsCount,
-        },
+          newsCount
+        }
       });
     } catch (err) {
       console.error("Error in /get/admin-count:", err);
       res.status(500).json({
         success: false,
-        message: "Something went wrong, could not fetch data",
+        message: "Something went wrong, could not fetch data"
       });
     }
   }

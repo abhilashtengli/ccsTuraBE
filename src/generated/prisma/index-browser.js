@@ -156,6 +156,8 @@ exports.Prisma.FacultyMemberScalarFieldEnum = {
   socialLinks: 'socialLinks',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  bioDataUrl: 'bioDataUrl',
+  bioDataKey: 'bioDataKey',
   department: 'department'
 };
 
