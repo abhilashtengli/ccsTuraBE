@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../src/generated/prisma" //change src to dist in production
 }
 
 datasource db {
@@ -74,7 +74,7 @@ model FacultyMember {
   id              String      @id @default(uuid())
   firstName       String      @map("first_name") @db.VarChar(100)
   lastName        String?     @map("last_name") @db.VarChar(100)
-  email           String      @db.VarChar(255)
+  email           String?     @db.VarChar(255)
   contactNumber   String?     @map("contact_number") @db.VarChar(20)
   profileImageUrl String?     @map("profile_image_url") @db.VarChar(512)
   imageKey        String?     @map("image_key")
@@ -138,7 +138,7 @@ model Tender {
 
 model StaffForm {
   id          String   @id @default(uuid())
-  title       String   @db.VarChar(40)
+  title       String   @db.VarChar(60)
   formType    String   @map("form_type") @db.VarChar(50)
   updatedDate DateTime @map("updated_date")
   pdfUrl      String   @map("pdf_url") @db.VarChar(512)

@@ -3951,7 +3951,7 @@ export namespace Prisma {
     id: string
     firstName: string
     lastName: string | null
-    email: string
+    email: string | null
     contactNumber: string | null
     profileImageUrl: string | null
     imageKey: string | null
@@ -4078,7 +4078,7 @@ export namespace Prisma {
       id: string
       firstName: string
       lastName: string | null
-      email: string
+      email: string | null
       contactNumber: string | null
       profileImageUrl: string | null
       imageKey: string | null
@@ -11583,7 +11583,7 @@ export namespace Prisma {
     id?: StringFilter<"FacultyMember"> | string
     firstName?: StringFilter<"FacultyMember"> | string
     lastName?: StringNullableFilter<"FacultyMember"> | string | null
-    email?: StringFilter<"FacultyMember"> | string
+    email?: StringNullableFilter<"FacultyMember"> | string | null
     contactNumber?: StringNullableFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableFilter<"FacultyMember"> | string | null
     imageKey?: StringNullableFilter<"FacultyMember"> | string | null
@@ -11604,7 +11604,7 @@ export namespace Prisma {
     id?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrderInput | SortOrder
-    email?: SortOrder
+    email?: SortOrderInput | SortOrder
     contactNumber?: SortOrderInput | SortOrder
     profileImageUrl?: SortOrderInput | SortOrder
     imageKey?: SortOrderInput | SortOrder
@@ -11628,7 +11628,7 @@ export namespace Prisma {
     NOT?: FacultyMemberWhereInput | FacultyMemberWhereInput[]
     firstName?: StringFilter<"FacultyMember"> | string
     lastName?: StringNullableFilter<"FacultyMember"> | string | null
-    email?: StringFilter<"FacultyMember"> | string
+    email?: StringNullableFilter<"FacultyMember"> | string | null
     contactNumber?: StringNullableFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableFilter<"FacultyMember"> | string | null
     imageKey?: StringNullableFilter<"FacultyMember"> | string | null
@@ -11649,7 +11649,7 @@ export namespace Prisma {
     id?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrderInput | SortOrder
-    email?: SortOrder
+    email?: SortOrderInput | SortOrder
     contactNumber?: SortOrderInput | SortOrder
     profileImageUrl?: SortOrderInput | SortOrder
     imageKey?: SortOrderInput | SortOrder
@@ -11676,7 +11676,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"FacultyMember"> | string
     firstName?: StringWithAggregatesFilter<"FacultyMember"> | string
     lastName?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
-    email?: StringWithAggregatesFilter<"FacultyMember"> | string
+    email?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     contactNumber?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     imageKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
@@ -12265,7 +12265,7 @@ export namespace Prisma {
     id?: string
     firstName: string
     lastName?: string | null
-    email: string
+    email?: string | null
     contactNumber?: string | null
     profileImageUrl?: string | null
     imageKey?: string | null
@@ -12286,7 +12286,7 @@ export namespace Prisma {
     id?: string
     firstName: string
     lastName?: string | null
-    email: string
+    email?: string | null
     contactNumber?: string | null
     profileImageUrl?: string | null
     imageKey?: string | null
@@ -12307,7 +12307,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     imageKey?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12328,7 +12328,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     imageKey?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12349,7 +12349,7 @@ export namespace Prisma {
     id?: string
     firstName: string
     lastName?: string | null
-    email: string
+    email?: string | null
     contactNumber?: string | null
     profileImageUrl?: string | null
     imageKey?: string | null
@@ -12370,7 +12370,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     imageKey?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12391,7 +12391,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     imageKey?: NullableStringFieldUpdateOperationsInput | string | null

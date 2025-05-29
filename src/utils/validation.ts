@@ -31,7 +31,13 @@ export const facultyValidation = z
       .string()
       .min(2, { message: "First name must be at least 2 characters" }),
     lastName: z.string().optional(),
-    email: z.string().email({ message: "Invalid email address" }),
+    email: z
+      .string()
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine((val) => !val || z.string().email().safeParse(val).success, {
+        message: "Invalid email address"
+      }),
     contactNumber: z
       .string()
       .transform((val) => (val === "" ? undefined : val))
@@ -228,8 +234,16 @@ export const tenderValidation = z
 
 export const staffFormValidation = z
   .object({
-    title: z.string().min(3, { message: "Title cannot be empty" }).trim(),
-    formType: z.string().min(2, { message: "Title cannot be empty" }).trim(),
+    title: z
+      .string()
+      .min(3, { message: "Title cannot be empty" })
+      .max(60, { message: "Title cannot exceed 60 characters" })
+      .trim(),
+    formType: z
+      .string()
+      .min(2, { message: "Title cannot be empty" })
+      .max(50, { message: "Title cannot exceed 50 characters" })
+      .trim(),
     updatedDate: z
       .string()
       .refine((date) => !isNaN(Date.parse(date)), "Invalid date format")
@@ -317,7 +331,14 @@ export const facultyUpdateValidation = z
       .min(2, { message: "First name must be at least 2 characters" })
       .optional(),
     lastName: z.string().optional(),
-    email: z.string().email({ message: "Invalid email address" }).optional(),
+    email: z
+      .string()
+      .trim()
+      .optional()
+      .transform((val) => (val === "" ? undefined : val))
+      .refine((val) => !val || z.string().email().safeParse(val).success, {
+        message: "Invalid email address"
+      }),
     contactNumber: z
       .string()
       .transform((val) => (val === "" ? undefined : val))

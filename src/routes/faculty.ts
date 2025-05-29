@@ -207,6 +207,13 @@ facultyRouter.get(
       const facultyData = await prisma.facultyMember.findMany({
         where: {
           facultyType: "Non_Teaching"
+        },
+        select: {
+          firstName: true,
+          lastName: true,
+          designation: true,
+          email: true,
+          department: true
         }
       });
       if (!facultyData) {
@@ -236,6 +243,17 @@ facultyRouter.get(
       const facultyData = await prisma.facultyMember.findMany({
         where: {
           facultyType: "Teaching"
+        },
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          email: true,
+          socialLinks: true,
+          designation: true,
+          profileImageUrl: true,
+          department: true,
+          isHod : true
         }
       });
       if (!facultyData) {

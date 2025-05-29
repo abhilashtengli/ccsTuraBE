@@ -44,9 +44,11 @@ staffFormRouter.post(
       return;
     } catch (err) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        console.log("ERROR : ", err)
         res.status(400).json({
           code: "DATABASE_ERROR",
           message: "Failed to create Staff form due to database constraints",
+          err : err
         });
         return;
       }
