@@ -216,10 +216,6 @@ facultyRouter.get(
           department: true,
           profileImageUrl: true,
           id: true,
-          socialLinks: true,
-          cvUrl: true,
-          isHod: true,
-          bioDataUrl: true
         }
       });
       if (!facultyData) {
