@@ -214,7 +214,12 @@ facultyRouter.get(
           designation: true,
           email: true,
           department: true,
-          profileImageUrl : true
+          profileImageUrl: true,
+          id: true,
+          socialLinks: true,
+          cvUrl: true,
+          isHod: true,
+          bioDataUrl: true
         }
       });
       if (!facultyData) {
@@ -254,7 +259,9 @@ facultyRouter.get(
           designation: true,
           profileImageUrl: true,
           department: true,
-          isHod : true
+          cvUrl: true,
+          isHod: true,
+          bioDataUrl: true
         }
       });
       if (!facultyData) {
