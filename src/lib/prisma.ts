@@ -19,8 +19,7 @@ export const prisma =
     log:
       process.env.NODE_ENV === "production"
         ? ["error", "warn"]
-        : ["query", "error", "warn"],
-    
+        : ["query", "error", "warn"]
   });
 
 if (process.env.NODE_ENV !== "production") {
