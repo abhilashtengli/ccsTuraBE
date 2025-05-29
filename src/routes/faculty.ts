@@ -213,7 +213,8 @@ facultyRouter.get(
           lastName: true,
           designation: true,
           email: true,
-          department: true
+          department: true,
+          profileImageUrl : true
         }
       });
       if (!facultyData) {
