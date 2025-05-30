@@ -215,7 +215,7 @@ facultyRouter.get(
           email: true,
           department: true,
           profileImageUrl: true,
-          id: true,
+          id: true
         }
       });
       if (!facultyData) {
