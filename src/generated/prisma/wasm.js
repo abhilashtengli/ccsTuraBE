@@ -122,11 +122,11 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
+  createdAt: 'createdAt',
+  updateAt: 'updateAt',
   isVerified: 'isVerified',
   verificationCode: 'verificationCode',
-  verificationExpires: 'verificationExpires',
-  createdAt: 'createdAt',
-  updateAt: 'updateAt'
+  verificationExpires: 'verificationExpires'
 };
 
 exports.Prisma.NoticeScalarFieldEnum = {
@@ -134,10 +134,10 @@ exports.Prisma.NoticeScalarFieldEnum = {
   category: 'category',
   title: 'title',
   pdfUrl: 'pdfUrl',
-  pdfKey: 'pdfKey',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  pdfKey: 'pdfKey'
 };
 
 exports.Prisma.FacultyMemberScalarFieldEnum = {
@@ -147,19 +147,19 @@ exports.Prisma.FacultyMemberScalarFieldEnum = {
   email: 'email',
   contactNumber: 'contactNumber',
   profileImageUrl: 'profileImageUrl',
-  imageKey: 'imageKey',
   designation: 'designation',
   isHod: 'isHod',
-  bioSummary: 'bioSummary',
   facultyType: 'facultyType',
   cvUrl: 'cvUrl',
-  pdfKey: 'pdfKey',
   socialLinks: 'socialLinks',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  bioDataUrl: 'bioDataUrl',
+  department: 'department',
+  imageKey: 'imageKey',
+  pdfKey: 'pdfKey',
   bioDataKey: 'bioDataKey',
-  department: 'department'
+  bioDataUrl: 'bioDataUrl',
+  bioSummary: 'bioSummary'
 };
 
 exports.Prisma.NewsUpdateScalarFieldEnum = {
@@ -176,13 +176,13 @@ exports.Prisma.AdvertisementScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  department: 'department',
   deadlineDate: 'deadlineDate',
   pdfUrl: 'pdfUrl',
-  pdfKey: 'pdfKey',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  department: 'department',
+  pdfKey: 'pdfKey'
 };
 
 exports.Prisma.TenderScalarFieldEnum = {
@@ -193,21 +193,21 @@ exports.Prisma.TenderScalarFieldEnum = {
   closingDate: 'closingDate',
   category: 'category',
   pdfUrl: 'pdfUrl',
-  pdfKey: 'pdfKey',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  pdfKey: 'pdfKey'
 };
 
 exports.Prisma.StaffFormScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  formType: 'formType',
   updatedDate: 'updatedDate',
   pdfUrl: 'pdfUrl',
-  pdfKey: 'pdfKey',
   isActive: 'isActive',
   createdAt: 'createdAt',
+  formType: 'formType',
+  pdfKey: 'pdfKey',
   updatedAt: 'updatedAt'
 };
 
@@ -215,18 +215,18 @@ exports.Prisma.GalleryImageScalarFieldEnum = {
   id: 'id',
   imageUrl: 'imageUrl',
   category: 'category',
-  imageKey: 'imageKey',
   createdAt: 'createdAt',
+  imageKey: 'imageKey',
   updatedAt: 'updatedAt'
 };
 
 exports.Prisma.GalleryVideoScalarFieldEnum = {
   id: 'id',
   youtubeUrl: 'youtubeUrl',
-  category: 'category',
   title: 'title',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  category: 'category'
 };
 
 exports.Prisma.SortOrder = {
@@ -263,7 +263,7 @@ exports.Departments = exports.$Enums.Departments = {
   Department_of_Food_Science_and_Nutrition: 'Department_of_Food_Science_and_Nutrition',
   Department_of_Basic_Science_and_Humanities: 'Department_of_Basic_Science_and_Humanities',
   Department_of_Family_Resouces_Management: 'Department_of_Family_Resouces_Management',
-  Department_of_Housing_Development_and_Family_Studies: 'Department_of_Housing_Development_and_Family_Studies',
+  Department_of_Human_Development_and_Family_Studies: 'Department_of_Human_Development_and_Family_Studies',
   Department_of_Extension_Education_and_Communication_Management: 'Department_of_Extension_Education_and_Communication_Management',
   Department_of_Textiles_and_Apparel_Designing: 'Department_of_Textiles_and_Apparel_Designing',
   Multi_Technology_Testing_Centre_and_Vocational_Training_Centre: 'Multi_Technology_Testing_Centre_and_Vocational_Training_Centre',

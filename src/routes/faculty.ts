@@ -17,12 +17,13 @@ facultyRouter.post(
       // console.log("Entered..");
 
       const body = req.body;
-      // console.log("Body : ", body);
+      console.log("Body : ", body);
       const result = await facultyValidation.safeParse(body);
+      console.log("result : ", result);
       if (!result.success) {
         res.json({
           message: "Invalid Input",
-          error: result.error.errors
+          error: result.error.format()
         });
         return;
       }
@@ -45,6 +46,8 @@ facultyRouter.post(
         bioDataUrl,
         bioDataKey
       } = result.data;
+
+      console.log("Data : ", result.data);
 
       const formattedSocialLinks =
         socialLinks && Object.keys(socialLinks).length > 0
@@ -218,7 +221,8 @@ facultyRouter.get(
           email: true,
           department: true,
           profileImageUrl: true,
-          id: true
+          id: true,
+          contactNumber: true
         }
       });
       if (!facultyData) {
@@ -260,7 +264,9 @@ facultyRouter.get(
           department: true,
           cvUrl: true,
           isHod: true,
-          bioDataUrl: true
+          bioDataUrl: true,
+          bioSummary: true,
+          contactNumber: true
         }
       });
       if (!facultyData) {

@@ -94,7 +94,7 @@ export const Departments: {
   Department_of_Food_Science_and_Nutrition: 'Department_of_Food_Science_and_Nutrition',
   Department_of_Basic_Science_and_Humanities: 'Department_of_Basic_Science_and_Humanities',
   Department_of_Family_Resouces_Management: 'Department_of_Family_Resouces_Management',
-  Department_of_Housing_Development_and_Family_Studies: 'Department_of_Housing_Development_and_Family_Studies',
+  Department_of_Human_Development_and_Family_Studies: 'Department_of_Human_Development_and_Family_Studies',
   Department_of_Extension_Education_and_Communication_Management: 'Department_of_Extension_Education_and_Communication_Management',
   Department_of_Textiles_and_Apparel_Designing: 'Department_of_Textiles_and_Apparel_Designing',
   Multi_Technology_Testing_Centre_and_Vocational_Training_Centre: 'Multi_Technology_Testing_Centre_and_Vocational_Training_Centre',
@@ -1674,11 +1674,11 @@ export namespace Prisma {
     name: string | null
     email: string | null
     password: string | null
+    createdAt: Date | null
+    updateAt: Date | null
     isVerified: boolean | null
     verificationCode: string | null
     verificationExpires: Date | null
-    createdAt: Date | null
-    updateAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1686,11 +1686,11 @@ export namespace Prisma {
     name: string | null
     email: string | null
     password: string | null
+    createdAt: Date | null
+    updateAt: Date | null
     isVerified: boolean | null
     verificationCode: string | null
     verificationExpires: Date | null
-    createdAt: Date | null
-    updateAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1698,11 +1698,11 @@ export namespace Prisma {
     name: number
     email: number
     password: number
+    createdAt: number
+    updateAt: number
     isVerified: number
     verificationCode: number
     verificationExpires: number
-    createdAt: number
-    updateAt: number
     _all: number
   }
 
@@ -1712,11 +1712,11 @@ export namespace Prisma {
     name?: true
     email?: true
     password?: true
+    createdAt?: true
+    updateAt?: true
     isVerified?: true
     verificationCode?: true
     verificationExpires?: true
-    createdAt?: true
-    updateAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1724,11 +1724,11 @@ export namespace Prisma {
     name?: true
     email?: true
     password?: true
+    createdAt?: true
+    updateAt?: true
     isVerified?: true
     verificationCode?: true
     verificationExpires?: true
-    createdAt?: true
-    updateAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1736,11 +1736,11 @@ export namespace Prisma {
     name?: true
     email?: true
     password?: true
+    createdAt?: true
+    updateAt?: true
     isVerified?: true
     verificationCode?: true
     verificationExpires?: true
-    createdAt?: true
-    updateAt?: true
     _all?: true
   }
 
@@ -1821,11 +1821,11 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    createdAt: Date
+    updateAt: Date
     isVerified: boolean
     verificationCode: string | null
     verificationExpires: Date | null
-    createdAt: Date
-    updateAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1850,11 +1850,11 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
     isVerified?: boolean
     verificationCode?: boolean
     verificationExpires?: boolean
-    createdAt?: boolean
-    updateAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1862,11 +1862,11 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
     isVerified?: boolean
     verificationCode?: boolean
     verificationExpires?: boolean
-    createdAt?: boolean
-    updateAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1874,11 +1874,11 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
     isVerified?: boolean
     verificationCode?: boolean
     verificationExpires?: boolean
-    createdAt?: boolean
-    updateAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1886,14 +1886,14 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
+    createdAt?: boolean
+    updateAt?: boolean
     isVerified?: boolean
     verificationCode?: boolean
     verificationExpires?: boolean
-    createdAt?: boolean
-    updateAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "isVerified" | "verificationCode" | "verificationExpires" | "createdAt" | "updateAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "createdAt" | "updateAt" | "isVerified" | "verificationCode" | "verificationExpires", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1903,11 +1903,11 @@ export namespace Prisma {
       name: string
       email: string
       password: string
+      createdAt: Date
+      updateAt: Date
       isVerified: boolean
       verificationCode: string | null
       verificationExpires: Date | null
-      createdAt: Date
-      updateAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2335,11 +2335,11 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updateAt: FieldRef<"User", 'DateTime'>
     readonly isVerified: FieldRef<"User", 'Boolean'>
     readonly verificationCode: FieldRef<"User", 'String'>
     readonly verificationExpires: FieldRef<"User", 'DateTime'>
-    readonly createdAt: FieldRef<"User", 'DateTime'>
-    readonly updateAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -2721,10 +2721,10 @@ export namespace Prisma {
     category: string | null
     title: string | null
     pdfUrl: string | null
-    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    pdfKey: string | null
   }
 
   export type NoticeMaxAggregateOutputType = {
@@ -2732,10 +2732,10 @@ export namespace Prisma {
     category: string | null
     title: string | null
     pdfUrl: string | null
-    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    pdfKey: string | null
   }
 
   export type NoticeCountAggregateOutputType = {
@@ -2743,10 +2743,10 @@ export namespace Prisma {
     category: number
     title: number
     pdfUrl: number
-    pdfKey: number
     isActive: number
     createdAt: number
     updatedAt: number
+    pdfKey: number
     _all: number
   }
 
@@ -2756,10 +2756,10 @@ export namespace Prisma {
     category?: true
     title?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    pdfKey?: true
   }
 
   export type NoticeMaxAggregateInputType = {
@@ -2767,10 +2767,10 @@ export namespace Prisma {
     category?: true
     title?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    pdfKey?: true
   }
 
   export type NoticeCountAggregateInputType = {
@@ -2778,10 +2778,10 @@ export namespace Prisma {
     category?: true
     title?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    pdfKey?: true
     _all?: true
   }
 
@@ -2862,10 +2862,10 @@ export namespace Prisma {
     category: string
     title: string
     pdfUrl: string | null
-    pdfKey: string | null
     isActive: boolean
     createdAt: Date
     updatedAt: Date
+    pdfKey: string | null
     _count: NoticeCountAggregateOutputType | null
     _min: NoticeMinAggregateOutputType | null
     _max: NoticeMaxAggregateOutputType | null
@@ -2890,10 +2890,10 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["notice"]>
 
   export type NoticeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2901,10 +2901,10 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["notice"]>
 
   export type NoticeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2912,10 +2912,10 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["notice"]>
 
   export type NoticeSelectScalar = {
@@ -2923,13 +2923,13 @@ export namespace Prisma {
     category?: boolean
     title?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pdfKey?: boolean
   }
 
-  export type NoticeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "category" | "title" | "pdfUrl" | "pdfKey" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["notice"]>
+  export type NoticeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "category" | "title" | "pdfUrl" | "isActive" | "createdAt" | "updatedAt" | "pdfKey", ExtArgs["result"]["notice"]>
 
   export type $NoticePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Notice"
@@ -2939,10 +2939,10 @@ export namespace Prisma {
       category: string
       title: string
       pdfUrl: string | null
-      pdfKey: string | null
       isActive: boolean
       createdAt: Date
       updatedAt: Date
+      pdfKey: string | null
     }, ExtArgs["result"]["notice"]>
     composites: {}
   }
@@ -3370,10 +3370,10 @@ export namespace Prisma {
     readonly category: FieldRef<"Notice", 'String'>
     readonly title: FieldRef<"Notice", 'String'>
     readonly pdfUrl: FieldRef<"Notice", 'String'>
-    readonly pdfKey: FieldRef<"Notice", 'String'>
     readonly isActive: FieldRef<"Notice", 'Boolean'>
     readonly createdAt: FieldRef<"Notice", 'DateTime'>
     readonly updatedAt: FieldRef<"Notice", 'DateTime'>
+    readonly pdfKey: FieldRef<"Notice", 'String'>
   }
     
 
@@ -3757,18 +3757,18 @@ export namespace Prisma {
     email: string | null
     contactNumber: string | null
     profileImageUrl: string | null
-    imageKey: string | null
     designation: string | null
     isHod: boolean | null
-    bioSummary: string | null
     facultyType: $Enums.FacultyType | null
     cvUrl: string | null
-    pdfKey: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    bioDataUrl: string | null
-    bioDataKey: string | null
     department: $Enums.Departments | null
+    imageKey: string | null
+    pdfKey: string | null
+    bioDataKey: string | null
+    bioDataUrl: string | null
+    bioSummary: string | null
   }
 
   export type FacultyMemberMaxAggregateOutputType = {
@@ -3778,18 +3778,18 @@ export namespace Prisma {
     email: string | null
     contactNumber: string | null
     profileImageUrl: string | null
-    imageKey: string | null
     designation: string | null
     isHod: boolean | null
-    bioSummary: string | null
     facultyType: $Enums.FacultyType | null
     cvUrl: string | null
-    pdfKey: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    bioDataUrl: string | null
-    bioDataKey: string | null
     department: $Enums.Departments | null
+    imageKey: string | null
+    pdfKey: string | null
+    bioDataKey: string | null
+    bioDataUrl: string | null
+    bioSummary: string | null
   }
 
   export type FacultyMemberCountAggregateOutputType = {
@@ -3799,19 +3799,19 @@ export namespace Prisma {
     email: number
     contactNumber: number
     profileImageUrl: number
-    imageKey: number
     designation: number
     isHod: number
-    bioSummary: number
     facultyType: number
     cvUrl: number
-    pdfKey: number
     socialLinks: number
     createdAt: number
     updatedAt: number
-    bioDataUrl: number
-    bioDataKey: number
     department: number
+    imageKey: number
+    pdfKey: number
+    bioDataKey: number
+    bioDataUrl: number
+    bioSummary: number
     _all: number
   }
 
@@ -3823,18 +3823,18 @@ export namespace Prisma {
     email?: true
     contactNumber?: true
     profileImageUrl?: true
-    imageKey?: true
     designation?: true
     isHod?: true
-    bioSummary?: true
     facultyType?: true
     cvUrl?: true
-    pdfKey?: true
     createdAt?: true
     updatedAt?: true
-    bioDataUrl?: true
-    bioDataKey?: true
     department?: true
+    imageKey?: true
+    pdfKey?: true
+    bioDataKey?: true
+    bioDataUrl?: true
+    bioSummary?: true
   }
 
   export type FacultyMemberMaxAggregateInputType = {
@@ -3844,18 +3844,18 @@ export namespace Prisma {
     email?: true
     contactNumber?: true
     profileImageUrl?: true
-    imageKey?: true
     designation?: true
     isHod?: true
-    bioSummary?: true
     facultyType?: true
     cvUrl?: true
-    pdfKey?: true
     createdAt?: true
     updatedAt?: true
-    bioDataUrl?: true
-    bioDataKey?: true
     department?: true
+    imageKey?: true
+    pdfKey?: true
+    bioDataKey?: true
+    bioDataUrl?: true
+    bioSummary?: true
   }
 
   export type FacultyMemberCountAggregateInputType = {
@@ -3865,19 +3865,19 @@ export namespace Prisma {
     email?: true
     contactNumber?: true
     profileImageUrl?: true
-    imageKey?: true
     designation?: true
     isHod?: true
-    bioSummary?: true
     facultyType?: true
     cvUrl?: true
-    pdfKey?: true
     socialLinks?: true
     createdAt?: true
     updatedAt?: true
-    bioDataUrl?: true
-    bioDataKey?: true
     department?: true
+    imageKey?: true
+    pdfKey?: true
+    bioDataKey?: true
+    bioDataUrl?: true
+    bioSummary?: true
     _all?: true
   }
 
@@ -3960,19 +3960,19 @@ export namespace Prisma {
     email: string | null
     contactNumber: string | null
     profileImageUrl: string | null
-    imageKey: string | null
     designation: string
     isHod: boolean
-    bioSummary: string | null
     facultyType: $Enums.FacultyType
     cvUrl: string | null
-    pdfKey: string | null
     socialLinks: JsonValue | null
     createdAt: Date
     updatedAt: Date
-    bioDataUrl: string | null
-    bioDataKey: string | null
     department: $Enums.Departments
+    imageKey: string | null
+    pdfKey: string | null
+    bioDataKey: string | null
+    bioDataUrl: string | null
+    bioSummary: string | null
     _count: FacultyMemberCountAggregateOutputType | null
     _min: FacultyMemberMinAggregateOutputType | null
     _max: FacultyMemberMaxAggregateOutputType | null
@@ -3999,19 +3999,19 @@ export namespace Prisma {
     email?: boolean
     contactNumber?: boolean
     profileImageUrl?: boolean
-    imageKey?: boolean
     designation?: boolean
     isHod?: boolean
-    bioSummary?: boolean
     facultyType?: boolean
     cvUrl?: boolean
-    pdfKey?: boolean
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    bioDataUrl?: boolean
-    bioDataKey?: boolean
     department?: boolean
+    imageKey?: boolean
+    pdfKey?: boolean
+    bioDataKey?: boolean
+    bioDataUrl?: boolean
+    bioSummary?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
   export type FacultyMemberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4021,19 +4021,19 @@ export namespace Prisma {
     email?: boolean
     contactNumber?: boolean
     profileImageUrl?: boolean
-    imageKey?: boolean
     designation?: boolean
     isHod?: boolean
-    bioSummary?: boolean
     facultyType?: boolean
     cvUrl?: boolean
-    pdfKey?: boolean
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    bioDataUrl?: boolean
-    bioDataKey?: boolean
     department?: boolean
+    imageKey?: boolean
+    pdfKey?: boolean
+    bioDataKey?: boolean
+    bioDataUrl?: boolean
+    bioSummary?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
   export type FacultyMemberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4043,19 +4043,19 @@ export namespace Prisma {
     email?: boolean
     contactNumber?: boolean
     profileImageUrl?: boolean
-    imageKey?: boolean
     designation?: boolean
     isHod?: boolean
-    bioSummary?: boolean
     facultyType?: boolean
     cvUrl?: boolean
-    pdfKey?: boolean
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    bioDataUrl?: boolean
-    bioDataKey?: boolean
     department?: boolean
+    imageKey?: boolean
+    pdfKey?: boolean
+    bioDataKey?: boolean
+    bioDataUrl?: boolean
+    bioSummary?: boolean
   }, ExtArgs["result"]["facultyMember"]>
 
   export type FacultyMemberSelectScalar = {
@@ -4065,22 +4065,22 @@ export namespace Prisma {
     email?: boolean
     contactNumber?: boolean
     profileImageUrl?: boolean
-    imageKey?: boolean
     designation?: boolean
     isHod?: boolean
-    bioSummary?: boolean
     facultyType?: boolean
     cvUrl?: boolean
-    pdfKey?: boolean
     socialLinks?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    bioDataUrl?: boolean
-    bioDataKey?: boolean
     department?: boolean
+    imageKey?: boolean
+    pdfKey?: boolean
+    bioDataKey?: boolean
+    bioDataUrl?: boolean
+    bioSummary?: boolean
   }
 
-  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "imageKey" | "designation" | "isHod" | "bioSummary" | "facultyType" | "cvUrl" | "pdfKey" | "socialLinks" | "createdAt" | "updatedAt" | "bioDataUrl" | "bioDataKey" | "department", ExtArgs["result"]["facultyMember"]>
+  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "designation" | "isHod" | "facultyType" | "cvUrl" | "socialLinks" | "createdAt" | "updatedAt" | "department" | "imageKey" | "pdfKey" | "bioDataKey" | "bioDataUrl" | "bioSummary", ExtArgs["result"]["facultyMember"]>
 
   export type $FacultyMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FacultyMember"
@@ -4092,19 +4092,19 @@ export namespace Prisma {
       email: string | null
       contactNumber: string | null
       profileImageUrl: string | null
-      imageKey: string | null
       designation: string
       isHod: boolean
-      bioSummary: string | null
       facultyType: $Enums.FacultyType
       cvUrl: string | null
-      pdfKey: string | null
       socialLinks: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
-      bioDataUrl: string | null
-      bioDataKey: string | null
       department: $Enums.Departments
+      imageKey: string | null
+      pdfKey: string | null
+      bioDataKey: string | null
+      bioDataUrl: string | null
+      bioSummary: string | null
     }, ExtArgs["result"]["facultyMember"]>
     composites: {}
   }
@@ -4534,19 +4534,19 @@ export namespace Prisma {
     readonly email: FieldRef<"FacultyMember", 'String'>
     readonly contactNumber: FieldRef<"FacultyMember", 'String'>
     readonly profileImageUrl: FieldRef<"FacultyMember", 'String'>
-    readonly imageKey: FieldRef<"FacultyMember", 'String'>
     readonly designation: FieldRef<"FacultyMember", 'String'>
     readonly isHod: FieldRef<"FacultyMember", 'Boolean'>
-    readonly bioSummary: FieldRef<"FacultyMember", 'String'>
     readonly facultyType: FieldRef<"FacultyMember", 'FacultyType'>
     readonly cvUrl: FieldRef<"FacultyMember", 'String'>
-    readonly pdfKey: FieldRef<"FacultyMember", 'String'>
     readonly socialLinks: FieldRef<"FacultyMember", 'Json'>
     readonly createdAt: FieldRef<"FacultyMember", 'DateTime'>
     readonly updatedAt: FieldRef<"FacultyMember", 'DateTime'>
-    readonly bioDataUrl: FieldRef<"FacultyMember", 'String'>
-    readonly bioDataKey: FieldRef<"FacultyMember", 'String'>
     readonly department: FieldRef<"FacultyMember", 'Departments'>
+    readonly imageKey: FieldRef<"FacultyMember", 'String'>
+    readonly pdfKey: FieldRef<"FacultyMember", 'String'>
+    readonly bioDataKey: FieldRef<"FacultyMember", 'String'>
+    readonly bioDataUrl: FieldRef<"FacultyMember", 'String'>
+    readonly bioSummary: FieldRef<"FacultyMember", 'String'>
   }
     
 
@@ -5948,39 +5948,39 @@ export namespace Prisma {
     id: string | null
     title: string | null
     description: string | null
-    department: string | null
     deadlineDate: Date | null
     pdfUrl: string | null
-    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    department: string | null
+    pdfKey: string | null
   }
 
   export type AdvertisementMaxAggregateOutputType = {
     id: string | null
     title: string | null
     description: string | null
-    department: string | null
     deadlineDate: Date | null
     pdfUrl: string | null
-    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    department: string | null
+    pdfKey: string | null
   }
 
   export type AdvertisementCountAggregateOutputType = {
     id: number
     title: number
     description: number
-    department: number
     deadlineDate: number
     pdfUrl: number
-    pdfKey: number
     isActive: number
     createdAt: number
     updatedAt: number
+    department: number
+    pdfKey: number
     _all: number
   }
 
@@ -5989,39 +5989,39 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    department?: true
     deadlineDate?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    department?: true
+    pdfKey?: true
   }
 
   export type AdvertisementMaxAggregateInputType = {
     id?: true
     title?: true
     description?: true
-    department?: true
     deadlineDate?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    department?: true
+    pdfKey?: true
   }
 
   export type AdvertisementCountAggregateInputType = {
     id?: true
     title?: true
     description?: true
-    department?: true
     deadlineDate?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    department?: true
+    pdfKey?: true
     _all?: true
   }
 
@@ -6101,13 +6101,13 @@ export namespace Prisma {
     id: string
     title: string
     description: string | null
-    department: string
     deadlineDate: Date | null
     pdfUrl: string | null
-    pdfKey: string | null
     isActive: boolean
     createdAt: Date
     updatedAt: Date
+    department: string
+    pdfKey: string | null
     _count: AdvertisementCountAggregateOutputType | null
     _min: AdvertisementMinAggregateOutputType | null
     _max: AdvertisementMaxAggregateOutputType | null
@@ -6131,55 +6131,55 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    department?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["advertisement"]>
 
   export type AdvertisementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     description?: boolean
-    department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    department?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["advertisement"]>
 
   export type AdvertisementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     description?: boolean
-    department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    department?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["advertisement"]>
 
   export type AdvertisementSelectScalar = {
     id?: boolean
     title?: boolean
     description?: boolean
-    department?: boolean
     deadlineDate?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    department?: boolean
+    pdfKey?: boolean
   }
 
-  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "department" | "deadlineDate" | "pdfUrl" | "pdfKey" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
+  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "deadlineDate" | "pdfUrl" | "isActive" | "createdAt" | "updatedAt" | "department" | "pdfKey", ExtArgs["result"]["advertisement"]>
 
   export type $AdvertisementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Advertisement"
@@ -6188,13 +6188,13 @@ export namespace Prisma {
       id: string
       title: string
       description: string | null
-      department: string
       deadlineDate: Date | null
       pdfUrl: string | null
-      pdfKey: string | null
       isActive: boolean
       createdAt: Date
       updatedAt: Date
+      department: string
+      pdfKey: string | null
     }, ExtArgs["result"]["advertisement"]>
     composites: {}
   }
@@ -6621,13 +6621,13 @@ export namespace Prisma {
     readonly id: FieldRef<"Advertisement", 'String'>
     readonly title: FieldRef<"Advertisement", 'String'>
     readonly description: FieldRef<"Advertisement", 'String'>
-    readonly department: FieldRef<"Advertisement", 'String'>
     readonly deadlineDate: FieldRef<"Advertisement", 'DateTime'>
     readonly pdfUrl: FieldRef<"Advertisement", 'String'>
-    readonly pdfKey: FieldRef<"Advertisement", 'String'>
     readonly isActive: FieldRef<"Advertisement", 'Boolean'>
     readonly createdAt: FieldRef<"Advertisement", 'DateTime'>
     readonly updatedAt: FieldRef<"Advertisement", 'DateTime'>
+    readonly department: FieldRef<"Advertisement", 'String'>
+    readonly pdfKey: FieldRef<"Advertisement", 'String'>
   }
     
 
@@ -7012,10 +7012,10 @@ export namespace Prisma {
     closingDate: Date | null
     category: string | null
     pdfUrl: string | null
-    pdfKey: string | null
     status: $Enums.StatusType | null
     createdAt: Date | null
     updatedAt: Date | null
+    pdfKey: string | null
   }
 
   export type TenderMaxAggregateOutputType = {
@@ -7026,10 +7026,10 @@ export namespace Prisma {
     closingDate: Date | null
     category: string | null
     pdfUrl: string | null
-    pdfKey: string | null
     status: $Enums.StatusType | null
     createdAt: Date | null
     updatedAt: Date | null
+    pdfKey: string | null
   }
 
   export type TenderCountAggregateOutputType = {
@@ -7040,10 +7040,10 @@ export namespace Prisma {
     closingDate: number
     category: number
     pdfUrl: number
-    pdfKey: number
     status: number
     createdAt: number
     updatedAt: number
+    pdfKey: number
     _all: number
   }
 
@@ -7056,10 +7056,10 @@ export namespace Prisma {
     closingDate?: true
     category?: true
     pdfUrl?: true
-    pdfKey?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    pdfKey?: true
   }
 
   export type TenderMaxAggregateInputType = {
@@ -7070,10 +7070,10 @@ export namespace Prisma {
     closingDate?: true
     category?: true
     pdfUrl?: true
-    pdfKey?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    pdfKey?: true
   }
 
   export type TenderCountAggregateInputType = {
@@ -7084,10 +7084,10 @@ export namespace Prisma {
     closingDate?: true
     category?: true
     pdfUrl?: true
-    pdfKey?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    pdfKey?: true
     _all?: true
   }
 
@@ -7171,10 +7171,10 @@ export namespace Prisma {
     closingDate: Date
     category: string | null
     pdfUrl: string | null
-    pdfKey: string | null
     status: $Enums.StatusType
     createdAt: Date
     updatedAt: Date
+    pdfKey: string | null
     _count: TenderCountAggregateOutputType | null
     _min: TenderMinAggregateOutputType | null
     _max: TenderMaxAggregateOutputType | null
@@ -7202,10 +7202,10 @@ export namespace Prisma {
     closingDate?: boolean
     category?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["tender"]>
 
   export type TenderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7216,10 +7216,10 @@ export namespace Prisma {
     closingDate?: boolean
     category?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["tender"]>
 
   export type TenderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7230,10 +7230,10 @@ export namespace Prisma {
     closingDate?: boolean
     category?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pdfKey?: boolean
   }, ExtArgs["result"]["tender"]>
 
   export type TenderSelectScalar = {
@@ -7244,13 +7244,13 @@ export namespace Prisma {
     closingDate?: boolean
     category?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pdfKey?: boolean
   }
 
-  export type TenderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "reference" | "publishedDate" | "closingDate" | "category" | "pdfUrl" | "pdfKey" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["tender"]>
+  export type TenderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "reference" | "publishedDate" | "closingDate" | "category" | "pdfUrl" | "status" | "createdAt" | "updatedAt" | "pdfKey", ExtArgs["result"]["tender"]>
 
   export type $TenderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Tender"
@@ -7263,10 +7263,10 @@ export namespace Prisma {
       closingDate: Date
       category: string | null
       pdfUrl: string | null
-      pdfKey: string | null
       status: $Enums.StatusType
       createdAt: Date
       updatedAt: Date
+      pdfKey: string | null
     }, ExtArgs["result"]["tender"]>
     composites: {}
   }
@@ -7697,10 +7697,10 @@ export namespace Prisma {
     readonly closingDate: FieldRef<"Tender", 'DateTime'>
     readonly category: FieldRef<"Tender", 'String'>
     readonly pdfUrl: FieldRef<"Tender", 'String'>
-    readonly pdfKey: FieldRef<"Tender", 'String'>
     readonly status: FieldRef<"Tender", 'StatusType'>
     readonly createdAt: FieldRef<"Tender", 'DateTime'>
     readonly updatedAt: FieldRef<"Tender", 'DateTime'>
+    readonly pdfKey: FieldRef<"Tender", 'String'>
   }
     
 
@@ -8080,36 +8080,36 @@ export namespace Prisma {
   export type StaffFormMinAggregateOutputType = {
     id: string | null
     title: string | null
-    formType: string | null
     updatedDate: Date | null
     pdfUrl: string | null
-    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
+    formType: string | null
+    pdfKey: string | null
     updatedAt: Date | null
   }
 
   export type StaffFormMaxAggregateOutputType = {
     id: string | null
     title: string | null
-    formType: string | null
     updatedDate: Date | null
     pdfUrl: string | null
-    pdfKey: string | null
     isActive: boolean | null
     createdAt: Date | null
+    formType: string | null
+    pdfKey: string | null
     updatedAt: Date | null
   }
 
   export type StaffFormCountAggregateOutputType = {
     id: number
     title: number
-    formType: number
     updatedDate: number
     pdfUrl: number
-    pdfKey: number
     isActive: number
     createdAt: number
+    formType: number
+    pdfKey: number
     updatedAt: number
     _all: number
   }
@@ -8118,36 +8118,36 @@ export namespace Prisma {
   export type StaffFormMinAggregateInputType = {
     id?: true
     title?: true
-    formType?: true
     updatedDate?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
+    formType?: true
+    pdfKey?: true
     updatedAt?: true
   }
 
   export type StaffFormMaxAggregateInputType = {
     id?: true
     title?: true
-    formType?: true
     updatedDate?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
+    formType?: true
+    pdfKey?: true
     updatedAt?: true
   }
 
   export type StaffFormCountAggregateInputType = {
     id?: true
     title?: true
-    formType?: true
     updatedDate?: true
     pdfUrl?: true
-    pdfKey?: true
     isActive?: true
     createdAt?: true
+    formType?: true
+    pdfKey?: true
     updatedAt?: true
     _all?: true
   }
@@ -8227,12 +8227,12 @@ export namespace Prisma {
   export type StaffFormGroupByOutputType = {
     id: string
     title: string
-    formType: string
     updatedDate: Date
     pdfUrl: string
-    pdfKey: string
     isActive: boolean
     createdAt: Date
+    formType: string
+    pdfKey: string
     updatedAt: Date
     _count: StaffFormCountAggregateOutputType | null
     _min: StaffFormMinAggregateOutputType | null
@@ -8256,52 +8256,52 @@ export namespace Prisma {
   export type StaffFormSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    formType?: boolean
     updatedDate?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
+    formType?: boolean
+    pdfKey?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
 
   export type StaffFormSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    formType?: boolean
     updatedDate?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
+    formType?: boolean
+    pdfKey?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
 
   export type StaffFormSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    formType?: boolean
     updatedDate?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
+    formType?: boolean
+    pdfKey?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["staffForm"]>
 
   export type StaffFormSelectScalar = {
     id?: boolean
     title?: boolean
-    formType?: boolean
     updatedDate?: boolean
     pdfUrl?: boolean
-    pdfKey?: boolean
     isActive?: boolean
     createdAt?: boolean
+    formType?: boolean
+    pdfKey?: boolean
     updatedAt?: boolean
   }
 
-  export type StaffFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "formType" | "updatedDate" | "pdfUrl" | "pdfKey" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["staffForm"]>
+  export type StaffFormOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "updatedDate" | "pdfUrl" | "isActive" | "createdAt" | "formType" | "pdfKey" | "updatedAt", ExtArgs["result"]["staffForm"]>
 
   export type $StaffFormPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StaffForm"
@@ -8309,12 +8309,12 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string
-      formType: string
       updatedDate: Date
       pdfUrl: string
-      pdfKey: string
       isActive: boolean
       createdAt: Date
+      formType: string
+      pdfKey: string
       updatedAt: Date
     }, ExtArgs["result"]["staffForm"]>
     composites: {}
@@ -8741,12 +8741,12 @@ export namespace Prisma {
   interface StaffFormFieldRefs {
     readonly id: FieldRef<"StaffForm", 'String'>
     readonly title: FieldRef<"StaffForm", 'String'>
-    readonly formType: FieldRef<"StaffForm", 'String'>
     readonly updatedDate: FieldRef<"StaffForm", 'DateTime'>
     readonly pdfUrl: FieldRef<"StaffForm", 'String'>
-    readonly pdfKey: FieldRef<"StaffForm", 'String'>
     readonly isActive: FieldRef<"StaffForm", 'Boolean'>
     readonly createdAt: FieldRef<"StaffForm", 'DateTime'>
+    readonly formType: FieldRef<"StaffForm", 'String'>
+    readonly pdfKey: FieldRef<"StaffForm", 'String'>
     readonly updatedAt: FieldRef<"StaffForm", 'DateTime'>
   }
     
@@ -9128,8 +9128,8 @@ export namespace Prisma {
     id: string | null
     imageUrl: string | null
     category: $Enums.GalleryCategory | null
-    imageKey: string | null
     createdAt: Date | null
+    imageKey: string | null
     updatedAt: Date | null
   }
 
@@ -9137,8 +9137,8 @@ export namespace Prisma {
     id: string | null
     imageUrl: string | null
     category: $Enums.GalleryCategory | null
-    imageKey: string | null
     createdAt: Date | null
+    imageKey: string | null
     updatedAt: Date | null
   }
 
@@ -9146,8 +9146,8 @@ export namespace Prisma {
     id: number
     imageUrl: number
     category: number
-    imageKey: number
     createdAt: number
+    imageKey: number
     updatedAt: number
     _all: number
   }
@@ -9157,8 +9157,8 @@ export namespace Prisma {
     id?: true
     imageUrl?: true
     category?: true
-    imageKey?: true
     createdAt?: true
+    imageKey?: true
     updatedAt?: true
   }
 
@@ -9166,8 +9166,8 @@ export namespace Prisma {
     id?: true
     imageUrl?: true
     category?: true
-    imageKey?: true
     createdAt?: true
+    imageKey?: true
     updatedAt?: true
   }
 
@@ -9175,8 +9175,8 @@ export namespace Prisma {
     id?: true
     imageUrl?: true
     category?: true
-    imageKey?: true
     createdAt?: true
+    imageKey?: true
     updatedAt?: true
     _all?: true
   }
@@ -9257,8 +9257,8 @@ export namespace Prisma {
     id: string
     imageUrl: string
     category: $Enums.GalleryCategory
-    imageKey: string
     createdAt: Date
+    imageKey: string
     updatedAt: Date
     _count: GalleryImageCountAggregateOutputType | null
     _min: GalleryImageMinAggregateOutputType | null
@@ -9283,8 +9283,8 @@ export namespace Prisma {
     id?: boolean
     imageUrl?: boolean
     category?: boolean
-    imageKey?: boolean
     createdAt?: boolean
+    imageKey?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
@@ -9292,8 +9292,8 @@ export namespace Prisma {
     id?: boolean
     imageUrl?: boolean
     category?: boolean
-    imageKey?: boolean
     createdAt?: boolean
+    imageKey?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
@@ -9301,8 +9301,8 @@ export namespace Prisma {
     id?: boolean
     imageUrl?: boolean
     category?: boolean
-    imageKey?: boolean
     createdAt?: boolean
+    imageKey?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["galleryImage"]>
 
@@ -9310,12 +9310,12 @@ export namespace Prisma {
     id?: boolean
     imageUrl?: boolean
     category?: boolean
-    imageKey?: boolean
     createdAt?: boolean
+    imageKey?: boolean
     updatedAt?: boolean
   }
 
-  export type GalleryImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "category" | "imageKey" | "createdAt" | "updatedAt", ExtArgs["result"]["galleryImage"]>
+  export type GalleryImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "category" | "createdAt" | "imageKey" | "updatedAt", ExtArgs["result"]["galleryImage"]>
 
   export type $GalleryImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GalleryImage"
@@ -9324,8 +9324,8 @@ export namespace Prisma {
       id: string
       imageUrl: string
       category: $Enums.GalleryCategory
-      imageKey: string
       createdAt: Date
+      imageKey: string
       updatedAt: Date
     }, ExtArgs["result"]["galleryImage"]>
     composites: {}
@@ -9753,8 +9753,8 @@ export namespace Prisma {
     readonly id: FieldRef<"GalleryImage", 'String'>
     readonly imageUrl: FieldRef<"GalleryImage", 'String'>
     readonly category: FieldRef<"GalleryImage", 'GalleryCategory'>
-    readonly imageKey: FieldRef<"GalleryImage", 'String'>
     readonly createdAt: FieldRef<"GalleryImage", 'DateTime'>
+    readonly imageKey: FieldRef<"GalleryImage", 'String'>
     readonly updatedAt: FieldRef<"GalleryImage", 'DateTime'>
   }
     
@@ -10135,28 +10135,28 @@ export namespace Prisma {
   export type GalleryVideoMinAggregateOutputType = {
     id: string | null
     youtubeUrl: string | null
-    category: $Enums.GalleryCategory | null
     title: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    category: $Enums.GalleryCategory | null
   }
 
   export type GalleryVideoMaxAggregateOutputType = {
     id: string | null
     youtubeUrl: string | null
-    category: $Enums.GalleryCategory | null
     title: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    category: $Enums.GalleryCategory | null
   }
 
   export type GalleryVideoCountAggregateOutputType = {
     id: number
     youtubeUrl: number
-    category: number
     title: number
     createdAt: number
     updatedAt: number
+    category: number
     _all: number
   }
 
@@ -10164,28 +10164,28 @@ export namespace Prisma {
   export type GalleryVideoMinAggregateInputType = {
     id?: true
     youtubeUrl?: true
-    category?: true
     title?: true
     createdAt?: true
     updatedAt?: true
+    category?: true
   }
 
   export type GalleryVideoMaxAggregateInputType = {
     id?: true
     youtubeUrl?: true
-    category?: true
     title?: true
     createdAt?: true
     updatedAt?: true
+    category?: true
   }
 
   export type GalleryVideoCountAggregateInputType = {
     id?: true
     youtubeUrl?: true
-    category?: true
     title?: true
     createdAt?: true
     updatedAt?: true
+    category?: true
     _all?: true
   }
 
@@ -10264,10 +10264,10 @@ export namespace Prisma {
   export type GalleryVideoGroupByOutputType = {
     id: string
     youtubeUrl: string
-    category: $Enums.GalleryCategory
     title: string | null
     createdAt: Date
     updatedAt: Date
+    category: $Enums.GalleryCategory
     _count: GalleryVideoCountAggregateOutputType | null
     _min: GalleryVideoMinAggregateOutputType | null
     _max: GalleryVideoMaxAggregateOutputType | null
@@ -10290,40 +10290,40 @@ export namespace Prisma {
   export type GalleryVideoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
-    category?: boolean
     title?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    category?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
-    category?: boolean
     title?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    category?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     youtubeUrl?: boolean
-    category?: boolean
     title?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    category?: boolean
   }, ExtArgs["result"]["galleryVideo"]>
 
   export type GalleryVideoSelectScalar = {
     id?: boolean
     youtubeUrl?: boolean
-    category?: boolean
     title?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    category?: boolean
   }
 
-  export type GalleryVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "youtubeUrl" | "category" | "title" | "createdAt" | "updatedAt", ExtArgs["result"]["galleryVideo"]>
+  export type GalleryVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "youtubeUrl" | "title" | "createdAt" | "updatedAt" | "category", ExtArgs["result"]["galleryVideo"]>
 
   export type $GalleryVideoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GalleryVideo"
@@ -10331,10 +10331,10 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       youtubeUrl: string
-      category: $Enums.GalleryCategory
       title: string | null
       createdAt: Date
       updatedAt: Date
+      category: $Enums.GalleryCategory
     }, ExtArgs["result"]["galleryVideo"]>
     composites: {}
   }
@@ -10760,10 +10760,10 @@ export namespace Prisma {
   interface GalleryVideoFieldRefs {
     readonly id: FieldRef<"GalleryVideo", 'String'>
     readonly youtubeUrl: FieldRef<"GalleryVideo", 'String'>
-    readonly category: FieldRef<"GalleryVideo", 'GalleryCategory'>
     readonly title: FieldRef<"GalleryVideo", 'String'>
     readonly createdAt: FieldRef<"GalleryVideo", 'DateTime'>
     readonly updatedAt: FieldRef<"GalleryVideo", 'DateTime'>
+    readonly category: FieldRef<"GalleryVideo", 'GalleryCategory'>
   }
     
 
@@ -11149,11 +11149,11 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     password: 'password',
+    createdAt: 'createdAt',
+    updateAt: 'updateAt',
     isVerified: 'isVerified',
     verificationCode: 'verificationCode',
-    verificationExpires: 'verificationExpires',
-    createdAt: 'createdAt',
-    updateAt: 'updateAt'
+    verificationExpires: 'verificationExpires'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -11164,10 +11164,10 @@ export namespace Prisma {
     category: 'category',
     title: 'title',
     pdfUrl: 'pdfUrl',
-    pdfKey: 'pdfKey',
     isActive: 'isActive',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    pdfKey: 'pdfKey'
   };
 
   export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof NoticeScalarFieldEnum]
@@ -11180,19 +11180,19 @@ export namespace Prisma {
     email: 'email',
     contactNumber: 'contactNumber',
     profileImageUrl: 'profileImageUrl',
-    imageKey: 'imageKey',
     designation: 'designation',
     isHod: 'isHod',
-    bioSummary: 'bioSummary',
     facultyType: 'facultyType',
     cvUrl: 'cvUrl',
-    pdfKey: 'pdfKey',
     socialLinks: 'socialLinks',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    bioDataUrl: 'bioDataUrl',
+    department: 'department',
+    imageKey: 'imageKey',
+    pdfKey: 'pdfKey',
     bioDataKey: 'bioDataKey',
-    department: 'department'
+    bioDataUrl: 'bioDataUrl',
+    bioSummary: 'bioSummary'
   };
 
   export type FacultyMemberScalarFieldEnum = (typeof FacultyMemberScalarFieldEnum)[keyof typeof FacultyMemberScalarFieldEnum]
@@ -11215,13 +11215,13 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     description: 'description',
-    department: 'department',
     deadlineDate: 'deadlineDate',
     pdfUrl: 'pdfUrl',
-    pdfKey: 'pdfKey',
     isActive: 'isActive',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    department: 'department',
+    pdfKey: 'pdfKey'
   };
 
   export type AdvertisementScalarFieldEnum = (typeof AdvertisementScalarFieldEnum)[keyof typeof AdvertisementScalarFieldEnum]
@@ -11235,10 +11235,10 @@ export namespace Prisma {
     closingDate: 'closingDate',
     category: 'category',
     pdfUrl: 'pdfUrl',
-    pdfKey: 'pdfKey',
     status: 'status',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    pdfKey: 'pdfKey'
   };
 
   export type TenderScalarFieldEnum = (typeof TenderScalarFieldEnum)[keyof typeof TenderScalarFieldEnum]
@@ -11247,12 +11247,12 @@ export namespace Prisma {
   export const StaffFormScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    formType: 'formType',
     updatedDate: 'updatedDate',
     pdfUrl: 'pdfUrl',
-    pdfKey: 'pdfKey',
     isActive: 'isActive',
     createdAt: 'createdAt',
+    formType: 'formType',
+    pdfKey: 'pdfKey',
     updatedAt: 'updatedAt'
   };
 
@@ -11263,8 +11263,8 @@ export namespace Prisma {
     id: 'id',
     imageUrl: 'imageUrl',
     category: 'category',
-    imageKey: 'imageKey',
     createdAt: 'createdAt',
+    imageKey: 'imageKey',
     updatedAt: 'updatedAt'
   };
 
@@ -11274,10 +11274,10 @@ export namespace Prisma {
   export const GalleryVideoScalarFieldEnum: {
     id: 'id',
     youtubeUrl: 'youtubeUrl',
-    category: 'category',
     title: 'title',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    category: 'category'
   };
 
   export type GalleryVideoScalarFieldEnum = (typeof GalleryVideoScalarFieldEnum)[keyof typeof GalleryVideoScalarFieldEnum]
@@ -11344,13 +11344,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -11361,6 +11354,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -11459,11 +11459,11 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updateAt?: DateTimeFilter<"User"> | Date | string
     isVerified?: BoolFilter<"User"> | boolean
     verificationCode?: StringNullableFilter<"User"> | string | null
     verificationExpires?: DateTimeNullableFilter<"User"> | Date | string | null
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updateAt?: DateTimeFilter<"User"> | Date | string
   }
 
   export type UserOrderByWithRelationInput = {
@@ -11471,11 +11471,11 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
     isVerified?: SortOrder
     verificationCode?: SortOrderInput | SortOrder
     verificationExpires?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updateAt?: SortOrder
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -11486,11 +11486,11 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updateAt?: DateTimeFilter<"User"> | Date | string
     isVerified?: BoolFilter<"User"> | boolean
     verificationCode?: StringNullableFilter<"User"> | string | null
     verificationExpires?: DateTimeNullableFilter<"User"> | Date | string | null
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updateAt?: DateTimeFilter<"User"> | Date | string
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -11498,11 +11498,11 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
     isVerified?: SortOrder
     verificationCode?: SortOrderInput | SortOrder
     verificationExpires?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updateAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -11516,11 +11516,11 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updateAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
     verificationCode?: StringNullableWithAggregatesFilter<"User"> | string | null
     verificationExpires?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updateAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type NoticeWhereInput = {
@@ -11531,10 +11531,10 @@ export namespace Prisma {
     category?: StringFilter<"Notice"> | string
     title?: StringFilter<"Notice"> | string
     pdfUrl?: StringNullableFilter<"Notice"> | string | null
-    pdfKey?: StringNullableFilter<"Notice"> | string | null
     isActive?: BoolFilter<"Notice"> | boolean
     createdAt?: DateTimeFilter<"Notice"> | Date | string
     updatedAt?: DateTimeFilter<"Notice"> | Date | string
+    pdfKey?: StringNullableFilter<"Notice"> | string | null
   }
 
   export type NoticeOrderByWithRelationInput = {
@@ -11542,10 +11542,10 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrderInput | SortOrder
-    pdfKey?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
   }
 
   export type NoticeWhereUniqueInput = Prisma.AtLeast<{
@@ -11556,10 +11556,10 @@ export namespace Prisma {
     category?: StringFilter<"Notice"> | string
     title?: StringFilter<"Notice"> | string
     pdfUrl?: StringNullableFilter<"Notice"> | string | null
-    pdfKey?: StringNullableFilter<"Notice"> | string | null
     isActive?: BoolFilter<"Notice"> | boolean
     createdAt?: DateTimeFilter<"Notice"> | Date | string
     updatedAt?: DateTimeFilter<"Notice"> | Date | string
+    pdfKey?: StringNullableFilter<"Notice"> | string | null
   }, "id">
 
   export type NoticeOrderByWithAggregationInput = {
@@ -11567,10 +11567,10 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrderInput | SortOrder
-    pdfKey?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     _count?: NoticeCountOrderByAggregateInput
     _max?: NoticeMaxOrderByAggregateInput
     _min?: NoticeMinOrderByAggregateInput
@@ -11584,10 +11584,10 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"Notice"> | string
     title?: StringWithAggregatesFilter<"Notice"> | string
     pdfUrl?: StringNullableWithAggregatesFilter<"Notice"> | string | null
-    pdfKey?: StringNullableWithAggregatesFilter<"Notice"> | string | null
     isActive?: BoolWithAggregatesFilter<"Notice"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Notice"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Notice"> | Date | string
+    pdfKey?: StringNullableWithAggregatesFilter<"Notice"> | string | null
   }
 
   export type FacultyMemberWhereInput = {
@@ -11600,19 +11600,19 @@ export namespace Prisma {
     email?: StringNullableFilter<"FacultyMember"> | string | null
     contactNumber?: StringNullableFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableFilter<"FacultyMember"> | string | null
-    imageKey?: StringNullableFilter<"FacultyMember"> | string | null
     designation?: StringFilter<"FacultyMember"> | string
     isHod?: BoolFilter<"FacultyMember"> | boolean
-    bioSummary?: StringNullableFilter<"FacultyMember"> | string | null
     facultyType?: EnumFacultyTypeFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableFilter<"FacultyMember"> | string | null
-    pdfKey?: StringNullableFilter<"FacultyMember"> | string | null
     socialLinks?: JsonNullableFilter<"FacultyMember">
     createdAt?: DateTimeFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeFilter<"FacultyMember"> | Date | string
-    bioDataUrl?: StringNullableFilter<"FacultyMember"> | string | null
-    bioDataKey?: StringNullableFilter<"FacultyMember"> | string | null
     department?: EnumDepartmentsFilter<"FacultyMember"> | $Enums.Departments
+    imageKey?: StringNullableFilter<"FacultyMember"> | string | null
+    pdfKey?: StringNullableFilter<"FacultyMember"> | string | null
+    bioDataKey?: StringNullableFilter<"FacultyMember"> | string | null
+    bioDataUrl?: StringNullableFilter<"FacultyMember"> | string | null
+    bioSummary?: StringNullableFilter<"FacultyMember"> | string | null
   }
 
   export type FacultyMemberOrderByWithRelationInput = {
@@ -11622,19 +11622,19 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     contactNumber?: SortOrderInput | SortOrder
     profileImageUrl?: SortOrderInput | SortOrder
-    imageKey?: SortOrderInput | SortOrder
     designation?: SortOrder
     isHod?: SortOrder
-    bioSummary?: SortOrderInput | SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrderInput | SortOrder
-    pdfKey?: SortOrderInput | SortOrder
     socialLinks?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    bioDataUrl?: SortOrderInput | SortOrder
-    bioDataKey?: SortOrderInput | SortOrder
     department?: SortOrder
+    imageKey?: SortOrderInput | SortOrder
+    pdfKey?: SortOrderInput | SortOrder
+    bioDataKey?: SortOrderInput | SortOrder
+    bioDataUrl?: SortOrderInput | SortOrder
+    bioSummary?: SortOrderInput | SortOrder
   }
 
   export type FacultyMemberWhereUniqueInput = Prisma.AtLeast<{
@@ -11647,19 +11647,19 @@ export namespace Prisma {
     email?: StringNullableFilter<"FacultyMember"> | string | null
     contactNumber?: StringNullableFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableFilter<"FacultyMember"> | string | null
-    imageKey?: StringNullableFilter<"FacultyMember"> | string | null
     designation?: StringFilter<"FacultyMember"> | string
     isHod?: BoolFilter<"FacultyMember"> | boolean
-    bioSummary?: StringNullableFilter<"FacultyMember"> | string | null
     facultyType?: EnumFacultyTypeFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableFilter<"FacultyMember"> | string | null
-    pdfKey?: StringNullableFilter<"FacultyMember"> | string | null
     socialLinks?: JsonNullableFilter<"FacultyMember">
     createdAt?: DateTimeFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeFilter<"FacultyMember"> | Date | string
-    bioDataUrl?: StringNullableFilter<"FacultyMember"> | string | null
-    bioDataKey?: StringNullableFilter<"FacultyMember"> | string | null
     department?: EnumDepartmentsFilter<"FacultyMember"> | $Enums.Departments
+    imageKey?: StringNullableFilter<"FacultyMember"> | string | null
+    pdfKey?: StringNullableFilter<"FacultyMember"> | string | null
+    bioDataKey?: StringNullableFilter<"FacultyMember"> | string | null
+    bioDataUrl?: StringNullableFilter<"FacultyMember"> | string | null
+    bioSummary?: StringNullableFilter<"FacultyMember"> | string | null
   }, "id">
 
   export type FacultyMemberOrderByWithAggregationInput = {
@@ -11669,19 +11669,19 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     contactNumber?: SortOrderInput | SortOrder
     profileImageUrl?: SortOrderInput | SortOrder
-    imageKey?: SortOrderInput | SortOrder
     designation?: SortOrder
     isHod?: SortOrder
-    bioSummary?: SortOrderInput | SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrderInput | SortOrder
-    pdfKey?: SortOrderInput | SortOrder
     socialLinks?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    bioDataUrl?: SortOrderInput | SortOrder
-    bioDataKey?: SortOrderInput | SortOrder
     department?: SortOrder
+    imageKey?: SortOrderInput | SortOrder
+    pdfKey?: SortOrderInput | SortOrder
+    bioDataKey?: SortOrderInput | SortOrder
+    bioDataUrl?: SortOrderInput | SortOrder
+    bioSummary?: SortOrderInput | SortOrder
     _count?: FacultyMemberCountOrderByAggregateInput
     _max?: FacultyMemberMaxOrderByAggregateInput
     _min?: FacultyMemberMinOrderByAggregateInput
@@ -11697,19 +11697,19 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     contactNumber?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     profileImageUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
-    imageKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     designation?: StringWithAggregatesFilter<"FacultyMember"> | string
     isHod?: BoolWithAggregatesFilter<"FacultyMember"> | boolean
-    bioSummary?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     facultyType?: EnumFacultyTypeWithAggregatesFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
-    pdfKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     socialLinks?: JsonNullableWithAggregatesFilter<"FacultyMember">
     createdAt?: DateTimeWithAggregatesFilter<"FacultyMember"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"FacultyMember"> | Date | string
-    bioDataUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
-    bioDataKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     department?: EnumDepartmentsWithAggregatesFilter<"FacultyMember"> | $Enums.Departments
+    imageKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
+    pdfKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
+    bioDataKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
+    bioDataUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
+    bioSummary?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
   }
 
   export type NewsUpdateWhereInput = {
@@ -11781,26 +11781,26 @@ export namespace Prisma {
     id?: StringFilter<"Advertisement"> | string
     title?: StringFilter<"Advertisement"> | string
     description?: StringNullableFilter<"Advertisement"> | string | null
-    department?: StringFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableFilter<"Advertisement"> | string | null
-    pdfKey?: StringNullableFilter<"Advertisement"> | string | null
     isActive?: BoolFilter<"Advertisement"> | boolean
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
+    department?: StringFilter<"Advertisement"> | string
+    pdfKey?: StringNullableFilter<"Advertisement"> | string | null
   }
 
   export type AdvertisementOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    department?: SortOrder
     deadlineDate?: SortOrderInput | SortOrder
     pdfUrl?: SortOrderInput | SortOrder
-    pdfKey?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    department?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
   }
 
   export type AdvertisementWhereUniqueInput = Prisma.AtLeast<{
@@ -11810,26 +11810,26 @@ export namespace Prisma {
     NOT?: AdvertisementWhereInput | AdvertisementWhereInput[]
     title?: StringFilter<"Advertisement"> | string
     description?: StringNullableFilter<"Advertisement"> | string | null
-    department?: StringFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableFilter<"Advertisement"> | string | null
-    pdfKey?: StringNullableFilter<"Advertisement"> | string | null
     isActive?: BoolFilter<"Advertisement"> | boolean
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
+    department?: StringFilter<"Advertisement"> | string
+    pdfKey?: StringNullableFilter<"Advertisement"> | string | null
   }, "id">
 
   export type AdvertisementOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    department?: SortOrder
     deadlineDate?: SortOrderInput | SortOrder
     pdfUrl?: SortOrderInput | SortOrder
-    pdfKey?: SortOrderInput | SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    department?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     _count?: AdvertisementCountOrderByAggregateInput
     _max?: AdvertisementMaxOrderByAggregateInput
     _min?: AdvertisementMinOrderByAggregateInput
@@ -11842,13 +11842,13 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Advertisement"> | string
     title?: StringWithAggregatesFilter<"Advertisement"> | string
     description?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
-    department?: StringWithAggregatesFilter<"Advertisement"> | string
     deadlineDate?: DateTimeNullableWithAggregatesFilter<"Advertisement"> | Date | string | null
     pdfUrl?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
-    pdfKey?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
     isActive?: BoolWithAggregatesFilter<"Advertisement"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
+    department?: StringWithAggregatesFilter<"Advertisement"> | string
+    pdfKey?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
   }
 
   export type TenderWhereInput = {
@@ -11862,10 +11862,10 @@ export namespace Prisma {
     closingDate?: DateTimeFilter<"Tender"> | Date | string
     category?: StringNullableFilter<"Tender"> | string | null
     pdfUrl?: StringNullableFilter<"Tender"> | string | null
-    pdfKey?: StringNullableFilter<"Tender"> | string | null
     status?: EnumStatusTypeFilter<"Tender"> | $Enums.StatusType
     createdAt?: DateTimeFilter<"Tender"> | Date | string
     updatedAt?: DateTimeFilter<"Tender"> | Date | string
+    pdfKey?: StringNullableFilter<"Tender"> | string | null
   }
 
   export type TenderOrderByWithRelationInput = {
@@ -11876,10 +11876,10 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrderInput | SortOrder
     pdfUrl?: SortOrderInput | SortOrder
-    pdfKey?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
   }
 
   export type TenderWhereUniqueInput = Prisma.AtLeast<{
@@ -11893,10 +11893,10 @@ export namespace Prisma {
     closingDate?: DateTimeFilter<"Tender"> | Date | string
     category?: StringNullableFilter<"Tender"> | string | null
     pdfUrl?: StringNullableFilter<"Tender"> | string | null
-    pdfKey?: StringNullableFilter<"Tender"> | string | null
     status?: EnumStatusTypeFilter<"Tender"> | $Enums.StatusType
     createdAt?: DateTimeFilter<"Tender"> | Date | string
     updatedAt?: DateTimeFilter<"Tender"> | Date | string
+    pdfKey?: StringNullableFilter<"Tender"> | string | null
   }, "id">
 
   export type TenderOrderByWithAggregationInput = {
@@ -11907,10 +11907,10 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrderInput | SortOrder
     pdfUrl?: SortOrderInput | SortOrder
-    pdfKey?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrderInput | SortOrder
     _count?: TenderCountOrderByAggregateInput
     _max?: TenderMaxOrderByAggregateInput
     _min?: TenderMinOrderByAggregateInput
@@ -11927,10 +11927,10 @@ export namespace Prisma {
     closingDate?: DateTimeWithAggregatesFilter<"Tender"> | Date | string
     category?: StringNullableWithAggregatesFilter<"Tender"> | string | null
     pdfUrl?: StringNullableWithAggregatesFilter<"Tender"> | string | null
-    pdfKey?: StringNullableWithAggregatesFilter<"Tender"> | string | null
     status?: EnumStatusTypeWithAggregatesFilter<"Tender"> | $Enums.StatusType
     createdAt?: DateTimeWithAggregatesFilter<"Tender"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Tender"> | Date | string
+    pdfKey?: StringNullableWithAggregatesFilter<"Tender"> | string | null
   }
 
   export type StaffFormWhereInput = {
@@ -11939,24 +11939,24 @@ export namespace Prisma {
     NOT?: StaffFormWhereInput | StaffFormWhereInput[]
     id?: StringFilter<"StaffForm"> | string
     title?: StringFilter<"StaffForm"> | string
-    formType?: StringFilter<"StaffForm"> | string
     updatedDate?: DateTimeFilter<"StaffForm"> | Date | string
     pdfUrl?: StringFilter<"StaffForm"> | string
-    pdfKey?: StringFilter<"StaffForm"> | string
     isActive?: BoolFilter<"StaffForm"> | boolean
     createdAt?: DateTimeFilter<"StaffForm"> | Date | string
+    formType?: StringFilter<"StaffForm"> | string
+    pdfKey?: StringFilter<"StaffForm"> | string
     updatedAt?: DateTimeFilter<"StaffForm"> | Date | string
   }
 
   export type StaffFormOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    formType?: SortOrder
+    pdfKey?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -11966,24 +11966,24 @@ export namespace Prisma {
     OR?: StaffFormWhereInput[]
     NOT?: StaffFormWhereInput | StaffFormWhereInput[]
     title?: StringFilter<"StaffForm"> | string
-    formType?: StringFilter<"StaffForm"> | string
     updatedDate?: DateTimeFilter<"StaffForm"> | Date | string
     pdfUrl?: StringFilter<"StaffForm"> | string
-    pdfKey?: StringFilter<"StaffForm"> | string
     isActive?: BoolFilter<"StaffForm"> | boolean
     createdAt?: DateTimeFilter<"StaffForm"> | Date | string
+    formType?: StringFilter<"StaffForm"> | string
+    pdfKey?: StringFilter<"StaffForm"> | string
     updatedAt?: DateTimeFilter<"StaffForm"> | Date | string
   }, "id">
 
   export type StaffFormOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
-    formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    formType?: SortOrder
+    pdfKey?: SortOrder
     updatedAt?: SortOrder
     _count?: StaffFormCountOrderByAggregateInput
     _max?: StaffFormMaxOrderByAggregateInput
@@ -11996,12 +11996,12 @@ export namespace Prisma {
     NOT?: StaffFormScalarWhereWithAggregatesInput | StaffFormScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"StaffForm"> | string
     title?: StringWithAggregatesFilter<"StaffForm"> | string
-    formType?: StringWithAggregatesFilter<"StaffForm"> | string
     updatedDate?: DateTimeWithAggregatesFilter<"StaffForm"> | Date | string
     pdfUrl?: StringWithAggregatesFilter<"StaffForm"> | string
-    pdfKey?: StringWithAggregatesFilter<"StaffForm"> | string
     isActive?: BoolWithAggregatesFilter<"StaffForm"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"StaffForm"> | Date | string
+    formType?: StringWithAggregatesFilter<"StaffForm"> | string
+    pdfKey?: StringWithAggregatesFilter<"StaffForm"> | string
     updatedAt?: DateTimeWithAggregatesFilter<"StaffForm"> | Date | string
   }
 
@@ -12012,8 +12012,8 @@ export namespace Prisma {
     id?: StringFilter<"GalleryImage"> | string
     imageUrl?: StringFilter<"GalleryImage"> | string
     category?: EnumGalleryCategoryFilter<"GalleryImage"> | $Enums.GalleryCategory
-    imageKey?: StringFilter<"GalleryImage"> | string
     createdAt?: DateTimeFilter<"GalleryImage"> | Date | string
+    imageKey?: StringFilter<"GalleryImage"> | string
     updatedAt?: DateTimeFilter<"GalleryImage"> | Date | string
   }
 
@@ -12021,8 +12021,8 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    imageKey?: SortOrder
     createdAt?: SortOrder
+    imageKey?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -12033,8 +12033,8 @@ export namespace Prisma {
     NOT?: GalleryImageWhereInput | GalleryImageWhereInput[]
     imageUrl?: StringFilter<"GalleryImage"> | string
     category?: EnumGalleryCategoryFilter<"GalleryImage"> | $Enums.GalleryCategory
-    imageKey?: StringFilter<"GalleryImage"> | string
     createdAt?: DateTimeFilter<"GalleryImage"> | Date | string
+    imageKey?: StringFilter<"GalleryImage"> | string
     updatedAt?: DateTimeFilter<"GalleryImage"> | Date | string
   }, "id">
 
@@ -12042,8 +12042,8 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    imageKey?: SortOrder
     createdAt?: SortOrder
+    imageKey?: SortOrder
     updatedAt?: SortOrder
     _count?: GalleryImageCountOrderByAggregateInput
     _max?: GalleryImageMaxOrderByAggregateInput
@@ -12057,8 +12057,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"GalleryImage"> | string
     imageUrl?: StringWithAggregatesFilter<"GalleryImage"> | string
     category?: EnumGalleryCategoryWithAggregatesFilter<"GalleryImage"> | $Enums.GalleryCategory
-    imageKey?: StringWithAggregatesFilter<"GalleryImage"> | string
     createdAt?: DateTimeWithAggregatesFilter<"GalleryImage"> | Date | string
+    imageKey?: StringWithAggregatesFilter<"GalleryImage"> | string
     updatedAt?: DateTimeWithAggregatesFilter<"GalleryImage"> | Date | string
   }
 
@@ -12068,19 +12068,19 @@ export namespace Prisma {
     NOT?: GalleryVideoWhereInput | GalleryVideoWhereInput[]
     id?: StringFilter<"GalleryVideo"> | string
     youtubeUrl?: StringFilter<"GalleryVideo"> | string
-    category?: EnumGalleryCategoryFilter<"GalleryVideo"> | $Enums.GalleryCategory
     title?: StringNullableFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
     updatedAt?: DateTimeFilter<"GalleryVideo"> | Date | string
+    category?: EnumGalleryCategoryFilter<"GalleryVideo"> | $Enums.GalleryCategory
   }
 
   export type GalleryVideoOrderByWithRelationInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    category?: SortOrder
     title?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    category?: SortOrder
   }
 
   export type GalleryVideoWhereUniqueInput = Prisma.AtLeast<{
@@ -12089,19 +12089,19 @@ export namespace Prisma {
     OR?: GalleryVideoWhereInput[]
     NOT?: GalleryVideoWhereInput | GalleryVideoWhereInput[]
     youtubeUrl?: StringFilter<"GalleryVideo"> | string
-    category?: EnumGalleryCategoryFilter<"GalleryVideo"> | $Enums.GalleryCategory
     title?: StringNullableFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeFilter<"GalleryVideo"> | Date | string
     updatedAt?: DateTimeFilter<"GalleryVideo"> | Date | string
+    category?: EnumGalleryCategoryFilter<"GalleryVideo"> | $Enums.GalleryCategory
   }, "id">
 
   export type GalleryVideoOrderByWithAggregationInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    category?: SortOrder
     title?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    category?: SortOrder
     _count?: GalleryVideoCountOrderByAggregateInput
     _max?: GalleryVideoMaxOrderByAggregateInput
     _min?: GalleryVideoMinOrderByAggregateInput
@@ -12113,10 +12113,10 @@ export namespace Prisma {
     NOT?: GalleryVideoScalarWhereWithAggregatesInput | GalleryVideoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"GalleryVideo"> | string
     youtubeUrl?: StringWithAggregatesFilter<"GalleryVideo"> | string
-    category?: EnumGalleryCategoryWithAggregatesFilter<"GalleryVideo"> | $Enums.GalleryCategory
     title?: StringNullableWithAggregatesFilter<"GalleryVideo"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"GalleryVideo"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"GalleryVideo"> | Date | string
+    category?: EnumGalleryCategoryWithAggregatesFilter<"GalleryVideo"> | $Enums.GalleryCategory
   }
 
   export type UserCreateInput = {
@@ -12124,11 +12124,11 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    createdAt?: Date | string
+    updateAt?: Date | string
     isVerified?: boolean
     verificationCode?: string | null
     verificationExpires?: Date | string | null
-    createdAt?: Date | string
-    updateAt?: Date | string
   }
 
   export type UserUncheckedCreateInput = {
@@ -12136,11 +12136,11 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    createdAt?: Date | string
+    updateAt?: Date | string
     isVerified?: boolean
     verificationCode?: string | null
     verificationExpires?: Date | string | null
-    createdAt?: Date | string
-    updateAt?: Date | string
   }
 
   export type UserUpdateInput = {
@@ -12148,11 +12148,11 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationCode?: NullableStringFieldUpdateOperationsInput | string | null
     verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateInput = {
@@ -12160,11 +12160,11 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationCode?: NullableStringFieldUpdateOperationsInput | string | null
     verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateManyInput = {
@@ -12172,11 +12172,11 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    createdAt?: Date | string
+    updateAt?: Date | string
     isVerified?: boolean
     verificationCode?: string | null
     verificationExpires?: Date | string | null
-    createdAt?: Date | string
-    updateAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -12184,11 +12184,11 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationCode?: NullableStringFieldUpdateOperationsInput | string | null
     verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -12196,11 +12196,11 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationCode?: NullableStringFieldUpdateOperationsInput | string | null
     verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NoticeCreateInput = {
@@ -12208,10 +12208,10 @@ export namespace Prisma {
     category: string
     title: string
     pdfUrl?: string | null
-    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    pdfKey?: string | null
   }
 
   export type NoticeUncheckedCreateInput = {
@@ -12219,10 +12219,10 @@ export namespace Prisma {
     category: string
     title: string
     pdfUrl?: string | null
-    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    pdfKey?: string | null
   }
 
   export type NoticeUpdateInput = {
@@ -12230,10 +12230,10 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type NoticeUncheckedUpdateInput = {
@@ -12241,10 +12241,10 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type NoticeCreateManyInput = {
@@ -12252,10 +12252,10 @@ export namespace Prisma {
     category: string
     title: string
     pdfUrl?: string | null
-    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    pdfKey?: string | null
   }
 
   export type NoticeUpdateManyMutationInput = {
@@ -12263,10 +12263,10 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type NoticeUncheckedUpdateManyInput = {
@@ -12274,10 +12274,10 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FacultyMemberCreateInput = {
@@ -12287,19 +12287,19 @@ export namespace Prisma {
     email?: string | null
     contactNumber?: string | null
     profileImageUrl?: string | null
-    imageKey?: string | null
     designation: string
     isHod?: boolean
-    bioSummary?: string | null
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
-    pdfKey?: string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    bioDataUrl?: string | null
-    bioDataKey?: string | null
     department: $Enums.Departments
+    imageKey?: string | null
+    pdfKey?: string | null
+    bioDataKey?: string | null
+    bioDataUrl?: string | null
+    bioSummary?: string | null
   }
 
   export type FacultyMemberUncheckedCreateInput = {
@@ -12309,19 +12309,19 @@ export namespace Prisma {
     email?: string | null
     contactNumber?: string | null
     profileImageUrl?: string | null
-    imageKey?: string | null
     designation: string
     isHod?: boolean
-    bioSummary?: string | null
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
-    pdfKey?: string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    bioDataUrl?: string | null
-    bioDataKey?: string | null
     department: $Enums.Departments
+    imageKey?: string | null
+    pdfKey?: string | null
+    bioDataKey?: string | null
+    bioDataUrl?: string | null
+    bioSummary?: string | null
   }
 
   export type FacultyMemberUpdateInput = {
@@ -12331,19 +12331,19 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
-    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
+    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FacultyMemberUncheckedUpdateInput = {
@@ -12353,19 +12353,19 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
-    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
+    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FacultyMemberCreateManyInput = {
@@ -12375,19 +12375,19 @@ export namespace Prisma {
     email?: string | null
     contactNumber?: string | null
     profileImageUrl?: string | null
-    imageKey?: string | null
     designation: string
     isHod?: boolean
-    bioSummary?: string | null
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
-    pdfKey?: string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    bioDataUrl?: string | null
-    bioDataKey?: string | null
     department: $Enums.Departments
+    imageKey?: string | null
+    pdfKey?: string | null
+    bioDataKey?: string | null
+    bioDataUrl?: string | null
+    bioSummary?: string | null
   }
 
   export type FacultyMemberUpdateManyMutationInput = {
@@ -12397,19 +12397,19 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
-    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
+    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FacultyMemberUncheckedUpdateManyInput = {
@@ -12419,19 +12419,19 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
     profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
-    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     socialLinks?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
     department?: EnumDepartmentsFieldUpdateOperationsInput | $Enums.Departments
+    imageKey?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataKey?: NullableStringFieldUpdateOperationsInput | string | null
+    bioDataUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type NewsUpdateCreateInput = {
@@ -12508,91 +12508,91 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
-    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    department: string
+    pdfKey?: string | null
   }
 
   export type AdvertisementUncheckedCreateInput = {
     id?: string
     title: string
     description?: string | null
-    department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
-    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    department: string
+    pdfKey?: string | null
   }
 
   export type AdvertisementUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AdvertisementUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AdvertisementCreateManyInput = {
     id?: string
     title: string
     description?: string | null
-    department: string
     deadlineDate?: Date | string | null
     pdfUrl?: string | null
-    pdfKey?: string | null
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    department: string
+    pdfKey?: string | null
   }
 
   export type AdvertisementUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AdvertisementUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    department?: StringFieldUpdateOperationsInput | string
     deadlineDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TenderCreateInput = {
@@ -12603,10 +12603,10 @@ export namespace Prisma {
     closingDate: Date | string
     category?: string | null
     pdfUrl?: string | null
-    pdfKey?: string | null
     status: $Enums.StatusType
     createdAt?: Date | string
     updatedAt?: Date | string
+    pdfKey?: string | null
   }
 
   export type TenderUncheckedCreateInput = {
@@ -12617,10 +12617,10 @@ export namespace Prisma {
     closingDate: Date | string
     category?: string | null
     pdfUrl?: string | null
-    pdfKey?: string | null
     status: $Enums.StatusType
     createdAt?: Date | string
     updatedAt?: Date | string
+    pdfKey?: string | null
   }
 
   export type TenderUpdateInput = {
@@ -12631,10 +12631,10 @@ export namespace Prisma {
     closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTypeFieldUpdateOperationsInput | $Enums.StatusType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TenderUncheckedUpdateInput = {
@@ -12645,10 +12645,10 @@ export namespace Prisma {
     closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTypeFieldUpdateOperationsInput | $Enums.StatusType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TenderCreateManyInput = {
@@ -12659,10 +12659,10 @@ export namespace Prisma {
     closingDate: Date | string
     category?: string | null
     pdfUrl?: string | null
-    pdfKey?: string | null
     status: $Enums.StatusType
     createdAt?: Date | string
     updatedAt?: Date | string
+    pdfKey?: string | null
   }
 
   export type TenderUpdateManyMutationInput = {
@@ -12673,10 +12673,10 @@ export namespace Prisma {
     closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTypeFieldUpdateOperationsInput | $Enums.StatusType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TenderUncheckedUpdateManyInput = {
@@ -12687,93 +12687,93 @@ export namespace Prisma {
     closingDate?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
     pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTypeFieldUpdateOperationsInput | $Enums.StatusType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StaffFormCreateInput = {
     id?: string
     title: string
-    formType: string
     updatedDate: Date | string
     pdfUrl: string
-    pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
+    formType: string
+    pdfKey: string
     updatedAt?: Date | string
   }
 
   export type StaffFormUncheckedCreateInput = {
     id?: string
     title: string
-    formType: string
     updatedDate: Date | string
     pdfUrl: string
-    pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
+    formType: string
+    pdfKey: string
     updatedAt?: Date | string
   }
 
   export type StaffFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    formType?: StringFieldUpdateOperationsInput | string
     updatedDate?: DateTimeFieldUpdateOperationsInput | Date | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
-    pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formType?: StringFieldUpdateOperationsInput | string
+    pdfKey?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StaffFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    formType?: StringFieldUpdateOperationsInput | string
     updatedDate?: DateTimeFieldUpdateOperationsInput | Date | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
-    pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formType?: StringFieldUpdateOperationsInput | string
+    pdfKey?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StaffFormCreateManyInput = {
     id?: string
     title: string
-    formType: string
     updatedDate: Date | string
     pdfUrl: string
-    pdfKey: string
     isActive?: boolean
     createdAt?: Date | string
+    formType: string
+    pdfKey: string
     updatedAt?: Date | string
   }
 
   export type StaffFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    formType?: StringFieldUpdateOperationsInput | string
     updatedDate?: DateTimeFieldUpdateOperationsInput | Date | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
-    pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formType?: StringFieldUpdateOperationsInput | string
+    pdfKey?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StaffFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    formType?: StringFieldUpdateOperationsInput | string
     updatedDate?: DateTimeFieldUpdateOperationsInput | Date | string
     pdfUrl?: StringFieldUpdateOperationsInput | string
-    pdfKey?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formType?: StringFieldUpdateOperationsInput | string
+    pdfKey?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12781,8 +12781,8 @@ export namespace Prisma {
     id?: string
     imageUrl: string
     category: $Enums.GalleryCategory
-    imageKey: string
     createdAt?: Date | string
+    imageKey: string
     updatedAt?: Date | string
   }
 
@@ -12790,8 +12790,8 @@ export namespace Prisma {
     id?: string
     imageUrl: string
     category: $Enums.GalleryCategory
-    imageKey: string
     createdAt?: Date | string
+    imageKey: string
     updatedAt?: Date | string
   }
 
@@ -12799,8 +12799,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
-    imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageKey?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12808,8 +12808,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
-    imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageKey?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12817,8 +12817,8 @@ export namespace Prisma {
     id?: string
     imageUrl: string
     category: $Enums.GalleryCategory
-    imageKey: string
     createdAt?: Date | string
+    imageKey: string
     updatedAt?: Date | string
   }
 
@@ -12826,8 +12826,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
-    imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageKey?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12835,72 +12835,72 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
-    imageKey?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageKey?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GalleryVideoCreateInput = {
     id?: string
     youtubeUrl: string
-    category: $Enums.GalleryCategory
     title?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    category: $Enums.GalleryCategory
   }
 
   export type GalleryVideoUncheckedCreateInput = {
     id?: string
     youtubeUrl: string
-    category: $Enums.GalleryCategory
     title?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    category: $Enums.GalleryCategory
   }
 
   export type GalleryVideoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
   }
 
   export type GalleryVideoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
   }
 
   export type GalleryVideoCreateManyInput = {
     id?: string
     youtubeUrl: string
-    category: $Enums.GalleryCategory
     title?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    category: $Enums.GalleryCategory
   }
 
   export type GalleryVideoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
   }
 
   export type GalleryVideoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     youtubeUrl?: StringFieldUpdateOperationsInput | string
-    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
     title?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: EnumGalleryCategoryFieldUpdateOperationsInput | $Enums.GalleryCategory
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -12916,6 +12916,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -12949,17 +12960,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -12970,11 +12970,11 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
     isVerified?: SortOrder
     verificationCode?: SortOrder
     verificationExpires?: SortOrder
-    createdAt?: SortOrder
-    updateAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -12982,11 +12982,11 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
     isVerified?: SortOrder
     verificationCode?: SortOrder
     verificationExpires?: SortOrder
-    createdAt?: SortOrder
-    updateAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -12994,11 +12994,11 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    createdAt?: SortOrder
+    updateAt?: SortOrder
     isVerified?: SortOrder
     verificationCode?: SortOrder
     verificationExpires?: SortOrder
-    createdAt?: SortOrder
-    updateAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -13017,6 +13017,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -13059,29 +13073,15 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type NoticeCountOrderByAggregateInput = {
     id?: SortOrder
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type NoticeMaxOrderByAggregateInput = {
@@ -13089,10 +13089,10 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type NoticeMinOrderByAggregateInput = {
@@ -13100,10 +13100,10 @@ export namespace Prisma {
     category?: SortOrder
     title?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type EnumFacultyTypeFilter<$PrismaModel = never> = {
@@ -13150,19 +13150,19 @@ export namespace Prisma {
     email?: SortOrder
     contactNumber?: SortOrder
     profileImageUrl?: SortOrder
-    imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
-    bioSummary?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
-    pdfKey?: SortOrder
     socialLinks?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    bioDataUrl?: SortOrder
-    bioDataKey?: SortOrder
     department?: SortOrder
+    imageKey?: SortOrder
+    pdfKey?: SortOrder
+    bioDataKey?: SortOrder
+    bioDataUrl?: SortOrder
+    bioSummary?: SortOrder
   }
 
   export type FacultyMemberMaxOrderByAggregateInput = {
@@ -13172,18 +13172,18 @@ export namespace Prisma {
     email?: SortOrder
     contactNumber?: SortOrder
     profileImageUrl?: SortOrder
-    imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
-    bioSummary?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
-    pdfKey?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    bioDataUrl?: SortOrder
-    bioDataKey?: SortOrder
     department?: SortOrder
+    imageKey?: SortOrder
+    pdfKey?: SortOrder
+    bioDataKey?: SortOrder
+    bioDataUrl?: SortOrder
+    bioSummary?: SortOrder
   }
 
   export type FacultyMemberMinOrderByAggregateInput = {
@@ -13193,18 +13193,18 @@ export namespace Prisma {
     email?: SortOrder
     contactNumber?: SortOrder
     profileImageUrl?: SortOrder
-    imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
-    bioSummary?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
-    pdfKey?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    bioDataUrl?: SortOrder
-    bioDataKey?: SortOrder
     department?: SortOrder
+    imageKey?: SortOrder
+    pdfKey?: SortOrder
+    bioDataKey?: SortOrder
+    bioDataUrl?: SortOrder
+    bioSummary?: SortOrder
   }
 
   export type EnumFacultyTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -13287,39 +13287,39 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    department?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type AdvertisementMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    department?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type AdvertisementMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    department?: SortOrder
     deadlineDate?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    department?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type EnumStatusTypeFilter<$PrismaModel = never> = {
@@ -13337,10 +13337,10 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type TenderMaxOrderByAggregateInput = {
@@ -13351,10 +13351,10 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type TenderMinOrderByAggregateInput = {
@@ -13365,10 +13365,10 @@ export namespace Prisma {
     closingDate?: SortOrder
     category?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pdfKey?: SortOrder
   }
 
   export type EnumStatusTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -13384,36 +13384,36 @@ export namespace Prisma {
   export type StaffFormCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    formType?: SortOrder
+    pdfKey?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type StaffFormMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    formType?: SortOrder
+    pdfKey?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type StaffFormMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    formType?: SortOrder
     updatedDate?: SortOrder
     pdfUrl?: SortOrder
-    pdfKey?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
+    formType?: SortOrder
+    pdfKey?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -13428,8 +13428,8 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    imageKey?: SortOrder
     createdAt?: SortOrder
+    imageKey?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -13437,8 +13437,8 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    imageKey?: SortOrder
     createdAt?: SortOrder
+    imageKey?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -13446,8 +13446,8 @@ export namespace Prisma {
     id?: SortOrder
     imageUrl?: SortOrder
     category?: SortOrder
-    imageKey?: SortOrder
     createdAt?: SortOrder
+    imageKey?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -13464,32 +13464,36 @@ export namespace Prisma {
   export type GalleryVideoCountOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    category?: SortOrder
   }
 
   export type GalleryVideoMaxOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    category?: SortOrder
   }
 
   export type GalleryVideoMinOrderByAggregateInput = {
     id?: SortOrder
     youtubeUrl?: SortOrder
-    category?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    category?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -13502,10 +13506,6 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type EnumFacultyTypeFieldUpdateOperationsInput = {
@@ -13538,6 +13538,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -13568,17 +13579,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -13605,6 +13605,20 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -13655,20 +13669,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedEnumFacultyTypeFilter<$PrismaModel = never> = {

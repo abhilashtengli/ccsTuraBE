@@ -1,17 +1,141 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma" //change src to dist in production
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String    @id @default(uuid())
+  name                String
+  email               String    @unique
+  password            String
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updateAt            DateTime  @default(now()) @updatedAt @map("updated_at")
+  isVerified          Boolean   @default(false) @map("is_verified")
+  verificationCode    String?   @map("verification_code")
+  verificationExpires DateTime?
+
+  @@map("user")
+}
+
+model Notice {
+  id        String   @id @default(uuid())
+  category  String   @db.VarChar(100)
+  title     String   @db.VarChar(255)
+  pdfUrl    String?  @map("pdf_url") @db.VarChar(512)
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  pdfKey    String?  @map("pdf_key")
+
+  @@map("notices")
+}
+
+model FacultyMember {
+  id              String      @id @default(uuid())
+  firstName       String      @map("first_name") @db.VarChar(100)
+  lastName        String?     @map("last_name") @db.VarChar(100)
+  email           String?     @db.VarChar(255)
+  contactNumber   String?     @map("contact_number") @db.VarChar(20)
+  profileImageUrl String?     @map("profile_image_url") @db.VarChar(512)
+  designation     String      @db.VarChar(100)
+  isHod           Boolean     @default(false) @map("is_hod")
+  facultyType     FacultyType @map("faculty_type")
+  cvUrl           String?     @map("cv_url") @db.VarChar(512)
+  socialLinks     Json?       @map("social_links")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @default(now()) @updatedAt @map("updated_at")
+  department      Departments
+  imageKey        String?     @map("image_key")
+  pdfKey          String?     @map("pdf_key")
+  bioDataKey      String?     @map("bioDataKey")
+  bioDataUrl      String?     @map("bioDataUrl")
+  bioSummary      String?     @map("bio_summary") @db.VarChar(2000)
+
+  @@map("faculty_members")
+}
+
+model NewsUpdate {
+  id          String   @id @default(uuid())
+  title       String   @db.VarChar(80)
+  description String
+  publishDate DateTime @map("publish_date")
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("news_updates")
+}
+
+model Advertisement {
+  id           String    @id @default(uuid())
+  title        String    @db.VarChar(50)
+  description  String?
+  deadlineDate DateTime? @map("deadline_date")
+  pdfUrl       String?   @map("pdf_url") @db.VarChar(512)
+  isActive     Boolean   @default(true) @map("is_active")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at")
+  department   String
+  pdfKey       String?   @map("pdf_key")
+
+  @@map("advertisements")
+}
+
+model Tender {
+  id            String     @id @default(uuid())
+  title         String     @db.VarChar(50)
+  reference     String?    @db.VarChar(100)
+  publishedDate DateTime   @map("published_date")
+  closingDate   DateTime   @map("closing_date")
+  category      String?    @db.VarChar(100)
+  pdfUrl        String?    @map("pdf_url") @db.VarChar(512)
+  status        StatusType
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @default(now()) @updatedAt @map("updated_at")
+  pdfKey        String?    @map("pdf_key")
+
+  @@map("tenders")
+}
+
+model StaffForm {
+  id          String   @id @default(uuid())
+  title       String   @db.VarChar(60)
+  updatedDate DateTime @map("updated_date")
+  pdfUrl      String   @map("pdf_url") @db.VarChar(512)
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  formType    String   @map("form_type") @db.VarChar(50)
+  pdfKey      String   @map("pdf_key")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("staff_forms")
+}
+
+model GalleryImage {
+  id        String          @id @default(uuid())
+  imageUrl  String          @map("image_url") @db.VarChar(512)
+  category  GalleryCategory
+  createdAt DateTime        @default(now()) @map("created_at")
+  imageKey  String
+  updatedAt DateTime        @default(now()) @updatedAt @map("updated_at")
+
+  @@map("gallery_images")
+}
+
+model GalleryVideo {
+  id         String          @id @default(uuid())
+  youtubeUrl String          @map("youtube_url") @db.VarChar(512)
+  title      String?         @db.VarChar(255)
+  createdAt  DateTime        @default(now()) @map("created_at")
+  updatedAt  DateTime        @default(now()) @updatedAt @map("updated_at")
+  category   GalleryCategory
+
+  @@map("gallery_videos")
 }
 
 enum StatusType {
@@ -36,139 +160,9 @@ enum Departments {
   Department_of_Food_Science_and_Nutrition
   Department_of_Basic_Science_and_Humanities
   Department_of_Family_Resouces_Management
-  Department_of_Housing_Development_and_Family_Studies
+  Department_of_Human_Development_and_Family_Studies
   Department_of_Extension_Education_and_Communication_Management
   Department_of_Textiles_and_Apparel_Designing
   Multi_Technology_Testing_Centre_and_Vocational_Training_Centre
   Other
-}
-
-model User {
-  id                  String    @id @default(uuid())
-  name                String
-  email               String    @unique
-  password            String
-  isVerified          Boolean   @default(false) @map("is_verified")
-  verificationCode    String?   @map("verification_code")
-  verificationExpires DateTime?
-  createdAt           DateTime  @default(now()) @map("created_at")
-  updateAt            DateTime  @default(now()) @updatedAt @map("updated_at")
-
-  @@map("user")
-}
-
-model Notice {
-  id        String   @id @default(uuid())
-  category  String   @db.VarChar(100)
-  title     String   @db.VarChar(255)
-  pdfUrl    String?  @map("pdf_url") @db.VarChar(512)
-  pdfKey    String?  @map("pdf_key")
-  isActive  Boolean  @default(true) @map("is_active")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("notices")
-}
-
-model FacultyMember {
-  id              String      @id @default(uuid())
-  firstName       String      @map("first_name") @db.VarChar(100)
-  lastName        String?     @map("last_name") @db.VarChar(100)
-  email           String?     @db.VarChar(255)
-  contactNumber   String?     @map("contact_number") @db.VarChar(20)
-  profileImageUrl String?     @map("profile_image_url") @db.VarChar(512)
-  imageKey        String?     @map("image_key")
-  designation     String      @db.VarChar(100)
-  isHod           Boolean     @default(false) @map("is_hod")
-  bioSummary      String?     @map("bio_summary")  @db.VarChar(2000)
-  facultyType     FacultyType @map("faculty_type")
-  cvUrl           String?     @map("cv_url") @db.VarChar(512)
-  pdfKey          String?     @map("pdf_key")
-  socialLinks     Json?       @map("social_links")
-  createdAt       DateTime    @default(now()) @map("created_at")
-  updatedAt       DateTime    @default(now()) @updatedAt @map("updated_at")
-  bioDataUrl      String?     @map("bioDataUrl")
-  bioDataKey      String?     @map("bioDataKey")
-  department      Departments
-
-  @@map("faculty_members")
-}
-
-model NewsUpdate {
-  id          String   @id @default(uuid())
-  title       String   @db.VarChar(80)
-  description String
-  publishDate DateTime @map("publish_date")
-  isActive    Boolean  @default(true) @map("is_active")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("news_updates")
-}
-
-model Advertisement {
-  id           String    @id @default(uuid())
-  title        String    @db.VarChar(50)
-  description  String?
-  department   String
-  deadlineDate DateTime? @map("deadline_date")
-  pdfUrl       String?   @map("pdf_url") @db.VarChar(512)
-  pdfKey       String?   @map("pdf_key")
-  isActive     Boolean   @default(true) @map("is_active")
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at")
-
-  @@map("advertisements")
-}
-
-model Tender {
-  id            String     @id @default(uuid())
-  title         String     @db.VarChar(50)
-  reference     String?    @db.VarChar(100)
-  publishedDate DateTime   @map("published_date")
-  closingDate   DateTime   @map("closing_date")
-  category      String?    @db.VarChar(100)
-  pdfUrl        String?    @map("pdf_url") @db.VarChar(512)
-  pdfKey        String?    @map("pdf_key")
-  status        StatusType
-  createdAt     DateTime   @default(now()) @map("created_at")
-  updatedAt     DateTime   @default(now()) @updatedAt @map("updated_at")
-
-  @@map("tenders")
-}
-
-model StaffForm {
-  id          String   @id @default(uuid())
-  title       String   @db.VarChar(60)
-  formType    String   @map("form_type") @db.VarChar(50)
-  updatedDate DateTime @map("updated_date")
-  pdfUrl      String   @map("pdf_url") @db.VarChar(512)
-  pdfKey      String   @map("pdf_key")
-  isActive    Boolean  @default(true) @map("is_active")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("staff_forms")
-}
-
-model GalleryImage {
-  id        String          @id @default(uuid())
-  imageUrl  String          @map("image_url") @db.VarChar(512)
-  category  GalleryCategory
-  imageKey  String
-  createdAt DateTime        @default(now()) @map("created_at")
-  updatedAt DateTime        @default(now()) @updatedAt @map("updated_at")
-
-  @@map("gallery_images")
-}
-
-model GalleryVideo {
-  id         String          @id @default(uuid())
-  youtubeUrl String          @map("youtube_url") @db.VarChar(512)
-  category   GalleryCategory
-  title      String?         @db.VarChar(255)
-  createdAt  DateTime        @default(now()) @map("created_at")
-  updatedAt  DateTime        @default(now()) @updatedAt @map("updated_at")
-
-  @@map("gallery_videos")
 }

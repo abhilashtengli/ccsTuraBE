@@ -40,10 +40,15 @@ export const facultyValidation = z
       }),
     bioSummary: z
       .string()
-      .trim()
-      .min(50, { message: "Bio must be at least 50 characters" })
-      .max(2000, { message: "Bio can be max of 2000 characters" })
-      .optional(),
+      .transform((val) => (val?.trim() === "" ? undefined : val.trim()))
+      .optional()
+      .refine((val) => val === undefined || val.length >= 50, {
+        message: "Bio must be at least 50 characters"
+      })
+      .refine((val) => val === undefined || val.length <= 2000, {
+        message: "Bio can be max of 2000 characters"
+      }),
+
     contactNumber: z
       .string()
       .transform((val) => (val === "" ? undefined : val))
@@ -112,7 +117,7 @@ export const facultyValidation = z
         "Department_of_Food_Science_and_Nutrition",
         "Department_of_Basic_Science_and_Humanities",
         "Department_of_Family_Resouces_Management",
-        "Department_of_Housing_Development_and_Family_Studies",
+        "Department_of_Human_Development_and_Family_Studies",
         "Department_of_Extension_Education_and_Communication_Management",
         "Department_of_Textiles_and_Apparel_Designing",
         "Multi_Technology_Testing_Centre_and_Vocational_Training_Centre",
@@ -347,10 +352,15 @@ export const facultyUpdateValidation = z
       }),
     bioSummary: z
       .string()
-      .trim()
-      .min(50, { message: "Bio must be at least 50 characters" })
-      .max(2000, { message: "Bio can be max of 2000 characters" })
-      .optional(),
+      .transform((val) => (val?.trim() === "" ? undefined : val.trim()))
+      .optional()
+      .refine((val) => val === undefined || val.length >= 50, {
+        message: "Bio must be at least 50 characters"
+      })
+      .refine((val) => val === undefined || val.length <= 2000, {
+        message: "Bio can be max of 2000 characters"
+      }),
+
     contactNumber: z
       .string()
       .transform((val) => (val === "" ? undefined : val))
@@ -423,7 +433,7 @@ export const facultyUpdateValidation = z
           "Department_of_Food_Science_and_Nutrition",
           "Department_of_Basic_Science_and_Humanities",
           "Department_of_Family_Resouces_Management",
-          "Department_of_Housing_Development_and_Family_Studies",
+          "Department_of_Human_Development_and_Family_Studies",
           "Department_of_Extension_Education_and_Communication_Management",
           "Department_of_Textiles_and_Apparel_Designing",
           "Multi_Technology_Testing_Centre_and_Vocational_Training_Centre",
