@@ -37,6 +37,7 @@ facultyRouter.post(
         designation,
         isHod,
         facultyType,
+        bioSummary,
         cvUrl,
         pdfKey,
         socialLinks,
@@ -58,6 +59,7 @@ facultyRouter.post(
           contactNumber: contactNumber !== "" ? contactNumber : undefined,
           profileImageUrl: profileImageUrl !== "" ? profileImageUrl : undefined,
           designation: designation,
+          bioSummary: bioSummary,
           isHod: isHod,
           facultyType: facultyType,
           cvUrl: cvUrl !== "" ? cvUrl : undefined,
@@ -157,6 +159,7 @@ facultyRouter.put(
           department: result.data.department ?? existingFaculty.department,
           imageKey: result.data.imageKey ?? existingFaculty.imageKey,
           pdfKey: result.data.pdfKey ?? existingFaculty.pdfKey,
+          bioSummary: result.data.bioSummary ?? existingFaculty.bioSummary,
           updatedAt: new Date().toISOString(),
           bioDataUrl: result.data.bioDataUrl,
           bioDataKey: result.data.bioDataKey

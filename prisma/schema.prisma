@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../dist/generated/prisma" //change src to dist in production
+  output   = "../src/generated/prisma" //change src to dist in production
 }
 
 datasource db {
@@ -80,6 +80,7 @@ model FacultyMember {
   imageKey        String?     @map("image_key")
   designation     String      @db.VarChar(100)
   isHod           Boolean     @default(false) @map("is_hod")
+  bioSummary      String?     @map("bio_summary")  @db.VarChar(2000)
   facultyType     FacultyType @map("faculty_type")
   cvUrl           String?     @map("cv_url") @db.VarChar(512)
   pdfKey          String?     @map("pdf_key")

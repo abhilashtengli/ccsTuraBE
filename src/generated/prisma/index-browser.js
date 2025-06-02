@@ -150,6 +150,7 @@ exports.Prisma.FacultyMemberScalarFieldEnum = {
   imageKey: 'imageKey',
   designation: 'designation',
   isHod: 'isHod',
+  bioSummary: 'bioSummary',
   facultyType: 'facultyType',
   cvUrl: 'cvUrl',
   pdfKey: 'pdfKey',

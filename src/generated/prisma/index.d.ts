@@ -3760,6 +3760,7 @@ export namespace Prisma {
     imageKey: string | null
     designation: string | null
     isHod: boolean | null
+    bioSummary: string | null
     facultyType: $Enums.FacultyType | null
     cvUrl: string | null
     pdfKey: string | null
@@ -3780,6 +3781,7 @@ export namespace Prisma {
     imageKey: string | null
     designation: string | null
     isHod: boolean | null
+    bioSummary: string | null
     facultyType: $Enums.FacultyType | null
     cvUrl: string | null
     pdfKey: string | null
@@ -3800,6 +3802,7 @@ export namespace Prisma {
     imageKey: number
     designation: number
     isHod: number
+    bioSummary: number
     facultyType: number
     cvUrl: number
     pdfKey: number
@@ -3823,6 +3826,7 @@ export namespace Prisma {
     imageKey?: true
     designation?: true
     isHod?: true
+    bioSummary?: true
     facultyType?: true
     cvUrl?: true
     pdfKey?: true
@@ -3843,6 +3847,7 @@ export namespace Prisma {
     imageKey?: true
     designation?: true
     isHod?: true
+    bioSummary?: true
     facultyType?: true
     cvUrl?: true
     pdfKey?: true
@@ -3863,6 +3868,7 @@ export namespace Prisma {
     imageKey?: true
     designation?: true
     isHod?: true
+    bioSummary?: true
     facultyType?: true
     cvUrl?: true
     pdfKey?: true
@@ -3957,6 +3963,7 @@ export namespace Prisma {
     imageKey: string | null
     designation: string
     isHod: boolean
+    bioSummary: string | null
     facultyType: $Enums.FacultyType
     cvUrl: string | null
     pdfKey: string | null
@@ -3995,6 +4002,7 @@ export namespace Prisma {
     imageKey?: boolean
     designation?: boolean
     isHod?: boolean
+    bioSummary?: boolean
     facultyType?: boolean
     cvUrl?: boolean
     pdfKey?: boolean
@@ -4016,6 +4024,7 @@ export namespace Prisma {
     imageKey?: boolean
     designation?: boolean
     isHod?: boolean
+    bioSummary?: boolean
     facultyType?: boolean
     cvUrl?: boolean
     pdfKey?: boolean
@@ -4037,6 +4046,7 @@ export namespace Prisma {
     imageKey?: boolean
     designation?: boolean
     isHod?: boolean
+    bioSummary?: boolean
     facultyType?: boolean
     cvUrl?: boolean
     pdfKey?: boolean
@@ -4058,6 +4068,7 @@ export namespace Prisma {
     imageKey?: boolean
     designation?: boolean
     isHod?: boolean
+    bioSummary?: boolean
     facultyType?: boolean
     cvUrl?: boolean
     pdfKey?: boolean
@@ -4069,7 +4080,7 @@ export namespace Prisma {
     department?: boolean
   }
 
-  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "imageKey" | "designation" | "isHod" | "facultyType" | "cvUrl" | "pdfKey" | "socialLinks" | "createdAt" | "updatedAt" | "bioDataUrl" | "bioDataKey" | "department", ExtArgs["result"]["facultyMember"]>
+  export type FacultyMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "contactNumber" | "profileImageUrl" | "imageKey" | "designation" | "isHod" | "bioSummary" | "facultyType" | "cvUrl" | "pdfKey" | "socialLinks" | "createdAt" | "updatedAt" | "bioDataUrl" | "bioDataKey" | "department", ExtArgs["result"]["facultyMember"]>
 
   export type $FacultyMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "FacultyMember"
@@ -4084,6 +4095,7 @@ export namespace Prisma {
       imageKey: string | null
       designation: string
       isHod: boolean
+      bioSummary: string | null
       facultyType: $Enums.FacultyType
       cvUrl: string | null
       pdfKey: string | null
@@ -4525,6 +4537,7 @@ export namespace Prisma {
     readonly imageKey: FieldRef<"FacultyMember", 'String'>
     readonly designation: FieldRef<"FacultyMember", 'String'>
     readonly isHod: FieldRef<"FacultyMember", 'Boolean'>
+    readonly bioSummary: FieldRef<"FacultyMember", 'String'>
     readonly facultyType: FieldRef<"FacultyMember", 'FacultyType'>
     readonly cvUrl: FieldRef<"FacultyMember", 'String'>
     readonly pdfKey: FieldRef<"FacultyMember", 'String'>
@@ -11170,6 +11183,7 @@ export namespace Prisma {
     imageKey: 'imageKey',
     designation: 'designation',
     isHod: 'isHod',
+    bioSummary: 'bioSummary',
     facultyType: 'facultyType',
     cvUrl: 'cvUrl',
     pdfKey: 'pdfKey',
@@ -11589,6 +11603,7 @@ export namespace Prisma {
     imageKey?: StringNullableFilter<"FacultyMember"> | string | null
     designation?: StringFilter<"FacultyMember"> | string
     isHod?: BoolFilter<"FacultyMember"> | boolean
+    bioSummary?: StringNullableFilter<"FacultyMember"> | string | null
     facultyType?: EnumFacultyTypeFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableFilter<"FacultyMember"> | string | null
     pdfKey?: StringNullableFilter<"FacultyMember"> | string | null
@@ -11610,6 +11625,7 @@ export namespace Prisma {
     imageKey?: SortOrderInput | SortOrder
     designation?: SortOrder
     isHod?: SortOrder
+    bioSummary?: SortOrderInput | SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrderInput | SortOrder
     pdfKey?: SortOrderInput | SortOrder
@@ -11634,6 +11650,7 @@ export namespace Prisma {
     imageKey?: StringNullableFilter<"FacultyMember"> | string | null
     designation?: StringFilter<"FacultyMember"> | string
     isHod?: BoolFilter<"FacultyMember"> | boolean
+    bioSummary?: StringNullableFilter<"FacultyMember"> | string | null
     facultyType?: EnumFacultyTypeFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableFilter<"FacultyMember"> | string | null
     pdfKey?: StringNullableFilter<"FacultyMember"> | string | null
@@ -11655,6 +11672,7 @@ export namespace Prisma {
     imageKey?: SortOrderInput | SortOrder
     designation?: SortOrder
     isHod?: SortOrder
+    bioSummary?: SortOrderInput | SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrderInput | SortOrder
     pdfKey?: SortOrderInput | SortOrder
@@ -11682,6 +11700,7 @@ export namespace Prisma {
     imageKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     designation?: StringWithAggregatesFilter<"FacultyMember"> | string
     isHod?: BoolWithAggregatesFilter<"FacultyMember"> | boolean
+    bioSummary?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     facultyType?: EnumFacultyTypeWithAggregatesFilter<"FacultyMember"> | $Enums.FacultyType
     cvUrl?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
     pdfKey?: StringNullableWithAggregatesFilter<"FacultyMember"> | string | null
@@ -12271,6 +12290,7 @@ export namespace Prisma {
     imageKey?: string | null
     designation: string
     isHod?: boolean
+    bioSummary?: string | null
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
     pdfKey?: string | null
@@ -12292,6 +12312,7 @@ export namespace Prisma {
     imageKey?: string | null
     designation: string
     isHod?: boolean
+    bioSummary?: string | null
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
     pdfKey?: string | null
@@ -12313,6 +12334,7 @@ export namespace Prisma {
     imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
+    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
     pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12334,6 +12356,7 @@ export namespace Prisma {
     imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
+    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
     pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12355,6 +12378,7 @@ export namespace Prisma {
     imageKey?: string | null
     designation: string
     isHod?: boolean
+    bioSummary?: string | null
     facultyType: $Enums.FacultyType
     cvUrl?: string | null
     pdfKey?: string | null
@@ -12376,6 +12400,7 @@ export namespace Prisma {
     imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
+    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
     pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12397,6 +12422,7 @@ export namespace Prisma {
     imageKey?: NullableStringFieldUpdateOperationsInput | string | null
     designation?: StringFieldUpdateOperationsInput | string
     isHod?: BoolFieldUpdateOperationsInput | boolean
+    bioSummary?: NullableStringFieldUpdateOperationsInput | string | null
     facultyType?: EnumFacultyTypeFieldUpdateOperationsInput | $Enums.FacultyType
     cvUrl?: NullableStringFieldUpdateOperationsInput | string | null
     pdfKey?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13127,6 +13153,7 @@ export namespace Prisma {
     imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
+    bioSummary?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
     pdfKey?: SortOrder
@@ -13148,6 +13175,7 @@ export namespace Prisma {
     imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
+    bioSummary?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
     pdfKey?: SortOrder
@@ -13168,6 +13196,7 @@ export namespace Prisma {
     imageKey?: SortOrder
     designation?: SortOrder
     isHod?: SortOrder
+    bioSummary?: SortOrder
     facultyType?: SortOrder
     cvUrl?: SortOrder
     pdfKey?: SortOrder

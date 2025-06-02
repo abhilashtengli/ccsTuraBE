@@ -38,6 +38,12 @@ export const facultyValidation = z
       .refine((val) => !val || z.string().email().safeParse(val).success, {
         message: "Invalid email address"
       }),
+    bioSummary: z
+      .string()
+      .trim()
+      .min(50, { message: "Bio must be at least 50 characters" })
+      .max(2000, { message: "Bio can be max of 2000 characters" })
+      .optional(),
     contactNumber: z
       .string()
       .transform((val) => (val === "" ? undefined : val))
@@ -339,6 +345,12 @@ export const facultyUpdateValidation = z
       .refine((val) => !val || z.string().email().safeParse(val).success, {
         message: "Invalid email address"
       }),
+    bioSummary: z
+      .string()
+      .trim()
+      .min(50, { message: "Bio must be at least 50 characters" })
+      .max(2000, { message: "Bio can be max of 2000 characters" })
+      .optional(),
     contactNumber: z
       .string()
       .transform((val) => (val === "" ? undefined : val))
